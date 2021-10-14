@@ -1,0 +1,11 @@
+_hola
+	STLL	       ;
+	ADD R1, R2, R3 ; comentario
+	ADD R1, R2, 3  ; comentario2
+	MOVI R1, R2    ; comentario3
+	STR R1, R2     ;
+	BGT _hola      ;
+	B _ciclo       ;
+
+_ciclo
+	SUB R2, R2, R3 ;

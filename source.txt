@@ -1,11 +1,36 @@
 _hola
-	STLL	       ;
-	ADD R1, R2, R3 ; comentario
-	ADD R1, R2, 3  ; comentario2
-	MOVI R1, R2    ; comentario3
-	STR R1, R2     ;
-	BGT _hola      ;
-	B _ciclo       ;
+	STLL
+	ADD R1, R2, R3  ; comentario
+	ADDI R1, R2,  ; comentario 2 r1 * r2 + - (ap) - 3 ;
+	SUB R1, R2, R3
+	SUBI R1, R2, 10
+	MUL R10, R2, R12
+	MULI R9, R4, 19
+
+	MOVI R1, 4       ; comentario3
+	CMP R1, R2
+	CMPI R2, 3
+
+	STR R1, R2
+	STRI R14, 2
+
+	BGT _hola
+	BGTE _hola
+	BE _hola
+	B _hola
+	BRGT R2
+	BRGTE R1
+	BRE R3
+	BR R5
+
+	BGT _ciclo
+	BGTE _ciclo
+	BE _ciclo
+	B _ciclo
+	BRGT R3
+	BRGTE R2
+	BRE R1
+	BR R5
 
 _ciclo
 	SUB R2, R2, R3 ;

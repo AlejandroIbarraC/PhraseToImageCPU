@@ -1,98 +1,99 @@
 Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 
+Unused terminals:
+
+    COMMENT
+
 Grammar
 
 Rule 0     S' -> code
 Rule 1     code -> body
-Rule 2     body -> instruction
-Rule 3     body -> label
-Rule 4     label -> LABEL body
-Rule 5     label -> empty
+Rule 2     body -> instruction body
+Rule 3     body -> label body
+Rule 4     body -> <empty>
+Rule 5     label -> LABEL
 Rule 6     instruction -> spe_instr
 Rule 7     instruction -> ari_instr
 Rule 8     instruction -> reg_instr
 Rule 9     instruction -> mem_instr
 Rule 10    instruction -> bra_instr
-Rule 11    ari_instr -> ari_instr_name REG COMMA REG COMMA REG SEMICOLON body
-Rule 12    ari_instr -> ari_instr_name REG COMMA REG COMMA IMM SEMICOLON body
-Rule 13    ari_instr -> empty
-Rule 14    reg_instr -> reg_instr_name REG COMMA REG SEMICOLON body
-Rule 15    reg_instr -> reg_instr_name REG COMMA IMM SEMICOLON body
-Rule 16    reg_instr -> empty
-Rule 17    mem_instr -> mem_instr_name REG COMMA REG SEMICOLON body
-Rule 18    mem_instr -> mem_instr_name REG COMMA IMM SEMICOLON body
-Rule 19    mem_instr -> empty
-Rule 20    bra_instr -> bra_instr_name LABEL SEMICOLON body
-Rule 21    bra_instr -> empty
-Rule 22    spe_instr -> STLL SEMICOLON body
-Rule 23    spe_instr -> empty
-Rule 24    ari_instr_name -> ADD
-Rule 25    ari_instr_name -> ADDI
-Rule 26    ari_instr_name -> SUB
-Rule 27    ari_instr_name -> SUBI
-Rule 28    ari_instr_name -> MUL
-Rule 29    ari_instr_name -> MULI
-Rule 30    reg_instr_name -> MOVI
-Rule 31    reg_instr_name -> CMP
-Rule 32    reg_instr_name -> CMPI
-Rule 33    mem_instr_name -> STR
-Rule 34    mem_instr_name -> STRI
-Rule 35    mem_instr_name -> LD
-Rule 36    bra_instr_name -> BGT
-Rule 37    bra_instr_name -> BGTE
-Rule 38    bra_instr_name -> BE
-Rule 39    bra_instr_name -> B
-Rule 40    bra_instr_name -> BRGT
-Rule 41    bra_instr_name -> BRGTE
-Rule 42    bra_instr_name -> BRE
-Rule 43    bra_instr_name -> BR
-Rule 44    empty -> <empty>
+Rule 11    ari_instr -> ari_instr_name REG COMMA REG COMMA REG
+Rule 12    ari_instr -> ari_instr_name REG COMMA REG COMMA IMM
+Rule 13    reg_instr -> reg_instr_name REG COMMA REG
+Rule 14    reg_instr -> reg_instr_name REG COMMA IMM
+Rule 15    mem_instr -> mem_instr_name REG COMMA REG
+Rule 16    mem_instr -> mem_instr_name REG COMMA IMM
+Rule 17    bra_instr -> bra_instr_name LABEL
+Rule 18    bra_instr -> bra_ret_instr_name REG
+Rule 19    spe_instr -> STLL
+Rule 20    ari_instr_name -> ADD
+Rule 21    ari_instr_name -> ADDI
+Rule 22    ari_instr_name -> SUB
+Rule 23    ari_instr_name -> SUBI
+Rule 24    ari_instr_name -> MUL
+Rule 25    ari_instr_name -> MULI
+Rule 26    reg_instr_name -> MOV
+Rule 27    reg_instr_name -> MOVI
+Rule 28    reg_instr_name -> CMP
+Rule 29    reg_instr_name -> CMPI
+Rule 30    mem_instr_name -> STR
+Rule 31    mem_instr_name -> STRI
+Rule 32    mem_instr_name -> LD
+Rule 33    bra_instr_name -> BGT
+Rule 34    bra_instr_name -> BGTE
+Rule 35    bra_instr_name -> BEQ
+Rule 36    bra_instr_name -> B
+Rule 37    bra_ret_instr_name -> BRGT
+Rule 38    bra_ret_instr_name -> BRGTE
+Rule 39    bra_ret_instr_name -> BREQ
+Rule 40    bra_ret_instr_name -> BR
 
 Terminals, with rules where they appear
 
-ADD                  : 24
-ADDI                 : 25
-B                    : 39
-BE                   : 38
-BGT                  : 36
-BGTE                 : 37
-BR                   : 43
-BRE                  : 42
-BRGT                 : 40
-BRGTE                : 41
-CMP                  : 31
-CMPI                 : 32
-COMMA                : 11 11 12 12 14 15 17 18
-IMM                  : 12 15 18
-LABEL                : 4 20
-LD                   : 35
-MOVI                 : 30
-MUL                  : 28
-MULI                 : 29
-REG                  : 11 11 11 12 12 14 14 15 17 17 18
-SEMICOLON            : 11 12 14 15 17 18 20 22
-STLL                 : 22
-STR                  : 33
-STRI                 : 34
-SUB                  : 26
-SUBI                 : 27
+ADD                  : 20
+ADDI                 : 21
+B                    : 36
+BEQ                  : 35
+BGT                  : 33
+BGTE                 : 34
+BR                   : 40
+BREQ                 : 39
+BRGT                 : 37
+BRGTE                : 38
+CMP                  : 28
+CMPI                 : 29
+COMMA                : 11 11 12 12 13 14 15 16
+COMMENT              : 
+IMM                  : 12 14 16
+LABEL                : 5 17
+LD                   : 32
+MOV                  : 26
+MOVI                 : 27
+MUL                  : 24
+MULI                 : 25
+REG                  : 11 11 11 12 12 13 13 14 15 15 16 18
+STLL                 : 19
+STR                  : 30
+STRI                 : 31
+SUB                  : 22
+SUBI                 : 23
 error                : 
 
 Nonterminals, with rules where they appear
 
 ari_instr            : 7
 ari_instr_name       : 11 12
-body                 : 1 4 11 12 14 15 17 18 20 22
+body                 : 1 2 3
 bra_instr            : 10
-bra_instr_name       : 20
+bra_instr_name       : 17
+bra_ret_instr_name   : 18
 code                 : 0
-empty                : 5 13 16 19 21 23
 instruction          : 2
 label                : 3
 mem_instr            : 9
-mem_instr_name       : 17 18
+mem_instr_name       : 15 16
 reg_instr            : 8
-reg_instr_name       : 14 15
+reg_instr_name       : 13 14
 spe_instr            : 6
 
 Parsing method: LALR
@@ -101,73 +102,70 @@ state 0
 
     (0) S' -> . code
     (1) code -> . body
-    (2) body -> . instruction
-    (3) body -> . label
+    (2) body -> . instruction body
+    (3) body -> . label body
+    (4) body -> .
     (6) instruction -> . spe_instr
     (7) instruction -> . ari_instr
     (8) instruction -> . reg_instr
     (9) instruction -> . mem_instr
     (10) instruction -> . bra_instr
-    (4) label -> . LABEL body
-    (5) label -> . empty
-    (22) spe_instr -> . STLL SEMICOLON body
-    (23) spe_instr -> . empty
-    (11) ari_instr -> . ari_instr_name REG COMMA REG COMMA REG SEMICOLON body
-    (12) ari_instr -> . ari_instr_name REG COMMA REG COMMA IMM SEMICOLON body
-    (13) ari_instr -> . empty
-    (14) reg_instr -> . reg_instr_name REG COMMA REG SEMICOLON body
-    (15) reg_instr -> . reg_instr_name REG COMMA IMM SEMICOLON body
-    (16) reg_instr -> . empty
-    (17) mem_instr -> . mem_instr_name REG COMMA REG SEMICOLON body
-    (18) mem_instr -> . mem_instr_name REG COMMA IMM SEMICOLON body
-    (19) mem_instr -> . empty
-    (20) bra_instr -> . bra_instr_name LABEL SEMICOLON body
-    (21) bra_instr -> . empty
-    (44) empty -> .
-    (24) ari_instr_name -> . ADD
-    (25) ari_instr_name -> . ADDI
-    (26) ari_instr_name -> . SUB
-    (27) ari_instr_name -> . SUBI
-    (28) ari_instr_name -> . MUL
-    (29) ari_instr_name -> . MULI
-    (30) reg_instr_name -> . MOVI
-    (31) reg_instr_name -> . CMP
-    (32) reg_instr_name -> . CMPI
-    (33) mem_instr_name -> . STR
-    (34) mem_instr_name -> . STRI
-    (35) mem_instr_name -> . LD
-    (36) bra_instr_name -> . BGT
-    (37) bra_instr_name -> . BGTE
-    (38) bra_instr_name -> . BE
-    (39) bra_instr_name -> . B
-    (40) bra_instr_name -> . BRGT
-    (41) bra_instr_name -> . BRGTE
-    (42) bra_instr_name -> . BRE
-    (43) bra_instr_name -> . BR
+    (5) label -> . LABEL
+    (19) spe_instr -> . STLL
+    (11) ari_instr -> . ari_instr_name REG COMMA REG COMMA REG
+    (12) ari_instr -> . ari_instr_name REG COMMA REG COMMA IMM
+    (13) reg_instr -> . reg_instr_name REG COMMA REG
+    (14) reg_instr -> . reg_instr_name REG COMMA IMM
+    (15) mem_instr -> . mem_instr_name REG COMMA REG
+    (16) mem_instr -> . mem_instr_name REG COMMA IMM
+    (17) bra_instr -> . bra_instr_name LABEL
+    (18) bra_instr -> . bra_ret_instr_name REG
+    (20) ari_instr_name -> . ADD
+    (21) ari_instr_name -> . ADDI
+    (22) ari_instr_name -> . SUB
+    (23) ari_instr_name -> . SUBI
+    (24) ari_instr_name -> . MUL
+    (25) ari_instr_name -> . MULI
+    (26) reg_instr_name -> . MOV
+    (27) reg_instr_name -> . MOVI
+    (28) reg_instr_name -> . CMP
+    (29) reg_instr_name -> . CMPI
+    (30) mem_instr_name -> . STR
+    (31) mem_instr_name -> . STRI
+    (32) mem_instr_name -> . LD
+    (33) bra_instr_name -> . BGT
+    (34) bra_instr_name -> . BGTE
+    (35) bra_instr_name -> . BEQ
+    (36) bra_instr_name -> . B
+    (37) bra_ret_instr_name -> . BRGT
+    (38) bra_ret_instr_name -> . BRGTE
+    (39) bra_ret_instr_name -> . BREQ
+    (40) bra_ret_instr_name -> . BR
 
+    $end            reduce using rule 4 (body -> .)
     LABEL           shift and go to state 10
-    STLL            shift and go to state 12
-    $end            reduce using rule 44 (empty -> .)
+    STLL            shift and go to state 11
     ADD             shift and go to state 17
     ADDI            shift and go to state 18
     SUB             shift and go to state 19
     SUBI            shift and go to state 20
     MUL             shift and go to state 21
     MULI            shift and go to state 22
-    MOVI            shift and go to state 23
-    CMP             shift and go to state 24
-    CMPI            shift and go to state 25
-    STR             shift and go to state 26
-    STRI            shift and go to state 27
-    LD              shift and go to state 28
-    BGT             shift and go to state 29
-    BGTE            shift and go to state 30
-    BE              shift and go to state 31
-    B               shift and go to state 32
-    BRGT            shift and go to state 33
-    BRGTE           shift and go to state 34
-    BRE             shift and go to state 35
-    BR              shift and go to state 36
+    MOV             shift and go to state 23
+    MOVI            shift and go to state 24
+    CMP             shift and go to state 25
+    CMPI            shift and go to state 26
+    STR             shift and go to state 27
+    STRI            shift and go to state 28
+    LD              shift and go to state 29
+    BGT             shift and go to state 30
+    BGTE            shift and go to state 31
+    BEQ             shift and go to state 32
+    B               shift and go to state 33
+    BRGT            shift and go to state 34
+    BRGTE           shift and go to state 35
+    BREQ            shift and go to state 36
+    BR              shift and go to state 37
 
     code                           shift and go to state 1
     body                           shift and go to state 2
@@ -178,11 +176,11 @@ state 0
     reg_instr                      shift and go to state 7
     mem_instr                      shift and go to state 8
     bra_instr                      shift and go to state 9
-    empty                          shift and go to state 11
-    ari_instr_name                 shift and go to state 13
-    reg_instr_name                 shift and go to state 14
-    mem_instr_name                 shift and go to state 15
-    bra_instr_name                 shift and go to state 16
+    ari_instr_name                 shift and go to state 12
+    reg_instr_name                 shift and go to state 13
+    mem_instr_name                 shift and go to state 14
+    bra_instr_name                 shift and go to state 15
+    bra_ret_instr_name             shift and go to state 16
 
 state 1
 
@@ -199,22 +197,195 @@ state 2
 
 state 3
 
-    (2) body -> instruction .
+    (2) body -> instruction . body
+    (2) body -> . instruction body
+    (3) body -> . label body
+    (4) body -> .
+    (6) instruction -> . spe_instr
+    (7) instruction -> . ari_instr
+    (8) instruction -> . reg_instr
+    (9) instruction -> . mem_instr
+    (10) instruction -> . bra_instr
+    (5) label -> . LABEL
+    (19) spe_instr -> . STLL
+    (11) ari_instr -> . ari_instr_name REG COMMA REG COMMA REG
+    (12) ari_instr -> . ari_instr_name REG COMMA REG COMMA IMM
+    (13) reg_instr -> . reg_instr_name REG COMMA REG
+    (14) reg_instr -> . reg_instr_name REG COMMA IMM
+    (15) mem_instr -> . mem_instr_name REG COMMA REG
+    (16) mem_instr -> . mem_instr_name REG COMMA IMM
+    (17) bra_instr -> . bra_instr_name LABEL
+    (18) bra_instr -> . bra_ret_instr_name REG
+    (20) ari_instr_name -> . ADD
+    (21) ari_instr_name -> . ADDI
+    (22) ari_instr_name -> . SUB
+    (23) ari_instr_name -> . SUBI
+    (24) ari_instr_name -> . MUL
+    (25) ari_instr_name -> . MULI
+    (26) reg_instr_name -> . MOV
+    (27) reg_instr_name -> . MOVI
+    (28) reg_instr_name -> . CMP
+    (29) reg_instr_name -> . CMPI
+    (30) mem_instr_name -> . STR
+    (31) mem_instr_name -> . STRI
+    (32) mem_instr_name -> . LD
+    (33) bra_instr_name -> . BGT
+    (34) bra_instr_name -> . BGTE
+    (35) bra_instr_name -> . BEQ
+    (36) bra_instr_name -> . B
+    (37) bra_ret_instr_name -> . BRGT
+    (38) bra_ret_instr_name -> . BRGTE
+    (39) bra_ret_instr_name -> . BREQ
+    (40) bra_ret_instr_name -> . BR
 
-    $end            reduce using rule 2 (body -> instruction .)
+    $end            reduce using rule 4 (body -> .)
+    LABEL           shift and go to state 10
+    STLL            shift and go to state 11
+    ADD             shift and go to state 17
+    ADDI            shift and go to state 18
+    SUB             shift and go to state 19
+    SUBI            shift and go to state 20
+    MUL             shift and go to state 21
+    MULI            shift and go to state 22
+    MOV             shift and go to state 23
+    MOVI            shift and go to state 24
+    CMP             shift and go to state 25
+    CMPI            shift and go to state 26
+    STR             shift and go to state 27
+    STRI            shift and go to state 28
+    LD              shift and go to state 29
+    BGT             shift and go to state 30
+    BGTE            shift and go to state 31
+    BEQ             shift and go to state 32
+    B               shift and go to state 33
+    BRGT            shift and go to state 34
+    BRGTE           shift and go to state 35
+    BREQ            shift and go to state 36
+    BR              shift and go to state 37
 
+    instruction                    shift and go to state 3
+    body                           shift and go to state 38
+    label                          shift and go to state 4
+    spe_instr                      shift and go to state 5
+    ari_instr                      shift and go to state 6
+    reg_instr                      shift and go to state 7
+    mem_instr                      shift and go to state 8
+    bra_instr                      shift and go to state 9
+    ari_instr_name                 shift and go to state 12
+    reg_instr_name                 shift and go to state 13
+    mem_instr_name                 shift and go to state 14
+    bra_instr_name                 shift and go to state 15
+    bra_ret_instr_name             shift and go to state 16
 
 state 4
 
-    (3) body -> label .
+    (3) body -> label . body
+    (2) body -> . instruction body
+    (3) body -> . label body
+    (4) body -> .
+    (6) instruction -> . spe_instr
+    (7) instruction -> . ari_instr
+    (8) instruction -> . reg_instr
+    (9) instruction -> . mem_instr
+    (10) instruction -> . bra_instr
+    (5) label -> . LABEL
+    (19) spe_instr -> . STLL
+    (11) ari_instr -> . ari_instr_name REG COMMA REG COMMA REG
+    (12) ari_instr -> . ari_instr_name REG COMMA REG COMMA IMM
+    (13) reg_instr -> . reg_instr_name REG COMMA REG
+    (14) reg_instr -> . reg_instr_name REG COMMA IMM
+    (15) mem_instr -> . mem_instr_name REG COMMA REG
+    (16) mem_instr -> . mem_instr_name REG COMMA IMM
+    (17) bra_instr -> . bra_instr_name LABEL
+    (18) bra_instr -> . bra_ret_instr_name REG
+    (20) ari_instr_name -> . ADD
+    (21) ari_instr_name -> . ADDI
+    (22) ari_instr_name -> . SUB
+    (23) ari_instr_name -> . SUBI
+    (24) ari_instr_name -> . MUL
+    (25) ari_instr_name -> . MULI
+    (26) reg_instr_name -> . MOV
+    (27) reg_instr_name -> . MOVI
+    (28) reg_instr_name -> . CMP
+    (29) reg_instr_name -> . CMPI
+    (30) mem_instr_name -> . STR
+    (31) mem_instr_name -> . STRI
+    (32) mem_instr_name -> . LD
+    (33) bra_instr_name -> . BGT
+    (34) bra_instr_name -> . BGTE
+    (35) bra_instr_name -> . BEQ
+    (36) bra_instr_name -> . B
+    (37) bra_ret_instr_name -> . BRGT
+    (38) bra_ret_instr_name -> . BRGTE
+    (39) bra_ret_instr_name -> . BREQ
+    (40) bra_ret_instr_name -> . BR
 
-    $end            reduce using rule 3 (body -> label .)
+    $end            reduce using rule 4 (body -> .)
+    LABEL           shift and go to state 10
+    STLL            shift and go to state 11
+    ADD             shift and go to state 17
+    ADDI            shift and go to state 18
+    SUB             shift and go to state 19
+    SUBI            shift and go to state 20
+    MUL             shift and go to state 21
+    MULI            shift and go to state 22
+    MOV             shift and go to state 23
+    MOVI            shift and go to state 24
+    CMP             shift and go to state 25
+    CMPI            shift and go to state 26
+    STR             shift and go to state 27
+    STRI            shift and go to state 28
+    LD              shift and go to state 29
+    BGT             shift and go to state 30
+    BGTE            shift and go to state 31
+    BEQ             shift and go to state 32
+    B               shift and go to state 33
+    BRGT            shift and go to state 34
+    BRGTE           shift and go to state 35
+    BREQ            shift and go to state 36
+    BR              shift and go to state 37
 
+    label                          shift and go to state 4
+    body                           shift and go to state 39
+    instruction                    shift and go to state 3
+    spe_instr                      shift and go to state 5
+    ari_instr                      shift and go to state 6
+    reg_instr                      shift and go to state 7
+    mem_instr                      shift and go to state 8
+    bra_instr                      shift and go to state 9
+    ari_instr_name                 shift and go to state 12
+    reg_instr_name                 shift and go to state 13
+    mem_instr_name                 shift and go to state 14
+    bra_instr_name                 shift and go to state 15
+    bra_ret_instr_name             shift and go to state 16
 
 state 5
 
     (6) instruction -> spe_instr .
 
+    LABEL           reduce using rule 6 (instruction -> spe_instr .)
+    STLL            reduce using rule 6 (instruction -> spe_instr .)
+    ADD             reduce using rule 6 (instruction -> spe_instr .)
+    ADDI            reduce using rule 6 (instruction -> spe_instr .)
+    SUB             reduce using rule 6 (instruction -> spe_instr .)
+    SUBI            reduce using rule 6 (instruction -> spe_instr .)
+    MUL             reduce using rule 6 (instruction -> spe_instr .)
+    MULI            reduce using rule 6 (instruction -> spe_instr .)
+    MOV             reduce using rule 6 (instruction -> spe_instr .)
+    MOVI            reduce using rule 6 (instruction -> spe_instr .)
+    CMP             reduce using rule 6 (instruction -> spe_instr .)
+    CMPI            reduce using rule 6 (instruction -> spe_instr .)
+    STR             reduce using rule 6 (instruction -> spe_instr .)
+    STRI            reduce using rule 6 (instruction -> spe_instr .)
+    LD              reduce using rule 6 (instruction -> spe_instr .)
+    BGT             reduce using rule 6 (instruction -> spe_instr .)
+    BGTE            reduce using rule 6 (instruction -> spe_instr .)
+    BEQ             reduce using rule 6 (instruction -> spe_instr .)
+    B               reduce using rule 6 (instruction -> spe_instr .)
+    BRGT            reduce using rule 6 (instruction -> spe_instr .)
+    BRGTE           reduce using rule 6 (instruction -> spe_instr .)
+    BREQ            reduce using rule 6 (instruction -> spe_instr .)
+    BR              reduce using rule 6 (instruction -> spe_instr .)
     $end            reduce using rule 6 (instruction -> spe_instr .)
 
 
@@ -222,6 +393,29 @@ state 6
 
     (7) instruction -> ari_instr .
 
+    LABEL           reduce using rule 7 (instruction -> ari_instr .)
+    STLL            reduce using rule 7 (instruction -> ari_instr .)
+    ADD             reduce using rule 7 (instruction -> ari_instr .)
+    ADDI            reduce using rule 7 (instruction -> ari_instr .)
+    SUB             reduce using rule 7 (instruction -> ari_instr .)
+    SUBI            reduce using rule 7 (instruction -> ari_instr .)
+    MUL             reduce using rule 7 (instruction -> ari_instr .)
+    MULI            reduce using rule 7 (instruction -> ari_instr .)
+    MOV             reduce using rule 7 (instruction -> ari_instr .)
+    MOVI            reduce using rule 7 (instruction -> ari_instr .)
+    CMP             reduce using rule 7 (instruction -> ari_instr .)
+    CMPI            reduce using rule 7 (instruction -> ari_instr .)
+    STR             reduce using rule 7 (instruction -> ari_instr .)
+    STRI            reduce using rule 7 (instruction -> ari_instr .)
+    LD              reduce using rule 7 (instruction -> ari_instr .)
+    BGT             reduce using rule 7 (instruction -> ari_instr .)
+    BGTE            reduce using rule 7 (instruction -> ari_instr .)
+    BEQ             reduce using rule 7 (instruction -> ari_instr .)
+    B               reduce using rule 7 (instruction -> ari_instr .)
+    BRGT            reduce using rule 7 (instruction -> ari_instr .)
+    BRGTE           reduce using rule 7 (instruction -> ari_instr .)
+    BREQ            reduce using rule 7 (instruction -> ari_instr .)
+    BR              reduce using rule 7 (instruction -> ari_instr .)
     $end            reduce using rule 7 (instruction -> ari_instr .)
 
 
@@ -229,6 +423,29 @@ state 7
 
     (8) instruction -> reg_instr .
 
+    LABEL           reduce using rule 8 (instruction -> reg_instr .)
+    STLL            reduce using rule 8 (instruction -> reg_instr .)
+    ADD             reduce using rule 8 (instruction -> reg_instr .)
+    ADDI            reduce using rule 8 (instruction -> reg_instr .)
+    SUB             reduce using rule 8 (instruction -> reg_instr .)
+    SUBI            reduce using rule 8 (instruction -> reg_instr .)
+    MUL             reduce using rule 8 (instruction -> reg_instr .)
+    MULI            reduce using rule 8 (instruction -> reg_instr .)
+    MOV             reduce using rule 8 (instruction -> reg_instr .)
+    MOVI            reduce using rule 8 (instruction -> reg_instr .)
+    CMP             reduce using rule 8 (instruction -> reg_instr .)
+    CMPI            reduce using rule 8 (instruction -> reg_instr .)
+    STR             reduce using rule 8 (instruction -> reg_instr .)
+    STRI            reduce using rule 8 (instruction -> reg_instr .)
+    LD              reduce using rule 8 (instruction -> reg_instr .)
+    BGT             reduce using rule 8 (instruction -> reg_instr .)
+    BGTE            reduce using rule 8 (instruction -> reg_instr .)
+    BEQ             reduce using rule 8 (instruction -> reg_instr .)
+    B               reduce using rule 8 (instruction -> reg_instr .)
+    BRGT            reduce using rule 8 (instruction -> reg_instr .)
+    BRGTE           reduce using rule 8 (instruction -> reg_instr .)
+    BREQ            reduce using rule 8 (instruction -> reg_instr .)
+    BR              reduce using rule 8 (instruction -> reg_instr .)
     $end            reduce using rule 8 (instruction -> reg_instr .)
 
 
@@ -236,6 +453,29 @@ state 8
 
     (9) instruction -> mem_instr .
 
+    LABEL           reduce using rule 9 (instruction -> mem_instr .)
+    STLL            reduce using rule 9 (instruction -> mem_instr .)
+    ADD             reduce using rule 9 (instruction -> mem_instr .)
+    ADDI            reduce using rule 9 (instruction -> mem_instr .)
+    SUB             reduce using rule 9 (instruction -> mem_instr .)
+    SUBI            reduce using rule 9 (instruction -> mem_instr .)
+    MUL             reduce using rule 9 (instruction -> mem_instr .)
+    MULI            reduce using rule 9 (instruction -> mem_instr .)
+    MOV             reduce using rule 9 (instruction -> mem_instr .)
+    MOVI            reduce using rule 9 (instruction -> mem_instr .)
+    CMP             reduce using rule 9 (instruction -> mem_instr .)
+    CMPI            reduce using rule 9 (instruction -> mem_instr .)
+    STR             reduce using rule 9 (instruction -> mem_instr .)
+    STRI            reduce using rule 9 (instruction -> mem_instr .)
+    LD              reduce using rule 9 (instruction -> mem_instr .)
+    BGT             reduce using rule 9 (instruction -> mem_instr .)
+    BGTE            reduce using rule 9 (instruction -> mem_instr .)
+    BEQ             reduce using rule 9 (instruction -> mem_instr .)
+    B               reduce using rule 9 (instruction -> mem_instr .)
+    BRGT            reduce using rule 9 (instruction -> mem_instr .)
+    BRGTE           reduce using rule 9 (instruction -> mem_instr .)
+    BREQ            reduce using rule 9 (instruction -> mem_instr .)
+    BR              reduce using rule 9 (instruction -> mem_instr .)
     $end            reduce using rule 9 (instruction -> mem_instr .)
 
 
@@ -243,1168 +483,594 @@ state 9
 
     (10) instruction -> bra_instr .
 
+    LABEL           reduce using rule 10 (instruction -> bra_instr .)
+    STLL            reduce using rule 10 (instruction -> bra_instr .)
+    ADD             reduce using rule 10 (instruction -> bra_instr .)
+    ADDI            reduce using rule 10 (instruction -> bra_instr .)
+    SUB             reduce using rule 10 (instruction -> bra_instr .)
+    SUBI            reduce using rule 10 (instruction -> bra_instr .)
+    MUL             reduce using rule 10 (instruction -> bra_instr .)
+    MULI            reduce using rule 10 (instruction -> bra_instr .)
+    MOV             reduce using rule 10 (instruction -> bra_instr .)
+    MOVI            reduce using rule 10 (instruction -> bra_instr .)
+    CMP             reduce using rule 10 (instruction -> bra_instr .)
+    CMPI            reduce using rule 10 (instruction -> bra_instr .)
+    STR             reduce using rule 10 (instruction -> bra_instr .)
+    STRI            reduce using rule 10 (instruction -> bra_instr .)
+    LD              reduce using rule 10 (instruction -> bra_instr .)
+    BGT             reduce using rule 10 (instruction -> bra_instr .)
+    BGTE            reduce using rule 10 (instruction -> bra_instr .)
+    BEQ             reduce using rule 10 (instruction -> bra_instr .)
+    B               reduce using rule 10 (instruction -> bra_instr .)
+    BRGT            reduce using rule 10 (instruction -> bra_instr .)
+    BRGTE           reduce using rule 10 (instruction -> bra_instr .)
+    BREQ            reduce using rule 10 (instruction -> bra_instr .)
+    BR              reduce using rule 10 (instruction -> bra_instr .)
     $end            reduce using rule 10 (instruction -> bra_instr .)
 
 
 state 10
 
-    (4) label -> LABEL . body
-    (2) body -> . instruction
-    (3) body -> . label
-    (6) instruction -> . spe_instr
-    (7) instruction -> . ari_instr
-    (8) instruction -> . reg_instr
-    (9) instruction -> . mem_instr
-    (10) instruction -> . bra_instr
-    (4) label -> . LABEL body
-    (5) label -> . empty
-    (22) spe_instr -> . STLL SEMICOLON body
-    (23) spe_instr -> . empty
-    (11) ari_instr -> . ari_instr_name REG COMMA REG COMMA REG SEMICOLON body
-    (12) ari_instr -> . ari_instr_name REG COMMA REG COMMA IMM SEMICOLON body
-    (13) ari_instr -> . empty
-    (14) reg_instr -> . reg_instr_name REG COMMA REG SEMICOLON body
-    (15) reg_instr -> . reg_instr_name REG COMMA IMM SEMICOLON body
-    (16) reg_instr -> . empty
-    (17) mem_instr -> . mem_instr_name REG COMMA REG SEMICOLON body
-    (18) mem_instr -> . mem_instr_name REG COMMA IMM SEMICOLON body
-    (19) mem_instr -> . empty
-    (20) bra_instr -> . bra_instr_name LABEL SEMICOLON body
-    (21) bra_instr -> . empty
-    (44) empty -> .
-    (24) ari_instr_name -> . ADD
-    (25) ari_instr_name -> . ADDI
-    (26) ari_instr_name -> . SUB
-    (27) ari_instr_name -> . SUBI
-    (28) ari_instr_name -> . MUL
-    (29) ari_instr_name -> . MULI
-    (30) reg_instr_name -> . MOVI
-    (31) reg_instr_name -> . CMP
-    (32) reg_instr_name -> . CMPI
-    (33) mem_instr_name -> . STR
-    (34) mem_instr_name -> . STRI
-    (35) mem_instr_name -> . LD
-    (36) bra_instr_name -> . BGT
-    (37) bra_instr_name -> . BGTE
-    (38) bra_instr_name -> . BE
-    (39) bra_instr_name -> . B
-    (40) bra_instr_name -> . BRGT
-    (41) bra_instr_name -> . BRGTE
-    (42) bra_instr_name -> . BRE
-    (43) bra_instr_name -> . BR
+    (5) label -> LABEL .
 
-    LABEL           shift and go to state 10
-    STLL            shift and go to state 12
-    $end            reduce using rule 44 (empty -> .)
-    ADD             shift and go to state 17
-    ADDI            shift and go to state 18
-    SUB             shift and go to state 19
-    SUBI            shift and go to state 20
-    MUL             shift and go to state 21
-    MULI            shift and go to state 22
-    MOVI            shift and go to state 23
-    CMP             shift and go to state 24
-    CMPI            shift and go to state 25
-    STR             shift and go to state 26
-    STRI            shift and go to state 27
-    LD              shift and go to state 28
-    BGT             shift and go to state 29
-    BGTE            shift and go to state 30
-    BE              shift and go to state 31
-    B               shift and go to state 32
-    BRGT            shift and go to state 33
-    BRGTE           shift and go to state 34
-    BRE             shift and go to state 35
-    BR              shift and go to state 36
+    LABEL           reduce using rule 5 (label -> LABEL .)
+    STLL            reduce using rule 5 (label -> LABEL .)
+    ADD             reduce using rule 5 (label -> LABEL .)
+    ADDI            reduce using rule 5 (label -> LABEL .)
+    SUB             reduce using rule 5 (label -> LABEL .)
+    SUBI            reduce using rule 5 (label -> LABEL .)
+    MUL             reduce using rule 5 (label -> LABEL .)
+    MULI            reduce using rule 5 (label -> LABEL .)
+    MOV             reduce using rule 5 (label -> LABEL .)
+    MOVI            reduce using rule 5 (label -> LABEL .)
+    CMP             reduce using rule 5 (label -> LABEL .)
+    CMPI            reduce using rule 5 (label -> LABEL .)
+    STR             reduce using rule 5 (label -> LABEL .)
+    STRI            reduce using rule 5 (label -> LABEL .)
+    LD              reduce using rule 5 (label -> LABEL .)
+    BGT             reduce using rule 5 (label -> LABEL .)
+    BGTE            reduce using rule 5 (label -> LABEL .)
+    BEQ             reduce using rule 5 (label -> LABEL .)
+    B               reduce using rule 5 (label -> LABEL .)
+    BRGT            reduce using rule 5 (label -> LABEL .)
+    BRGTE           reduce using rule 5 (label -> LABEL .)
+    BREQ            reduce using rule 5 (label -> LABEL .)
+    BR              reduce using rule 5 (label -> LABEL .)
+    $end            reduce using rule 5 (label -> LABEL .)
 
-    body                           shift and go to state 37
-    instruction                    shift and go to state 3
-    label                          shift and go to state 4
-    spe_instr                      shift and go to state 5
-    ari_instr                      shift and go to state 6
-    reg_instr                      shift and go to state 7
-    mem_instr                      shift and go to state 8
-    bra_instr                      shift and go to state 9
-    empty                          shift and go to state 11
-    ari_instr_name                 shift and go to state 13
-    reg_instr_name                 shift and go to state 14
-    mem_instr_name                 shift and go to state 15
-    bra_instr_name                 shift and go to state 16
 
 state 11
 
-    (5) label -> empty .
-    (23) spe_instr -> empty .
-    (13) ari_instr -> empty .
-    (16) reg_instr -> empty .
-    (19) mem_instr -> empty .
-    (21) bra_instr -> empty .
+    (19) spe_instr -> STLL .
 
-  ! reduce/reduce conflict for $end resolved using rule 5 (label -> empty .)
-  ! reduce/reduce conflict for $end resolved using rule 5 (label -> empty .)
-  ! reduce/reduce conflict for $end resolved using rule 5 (label -> empty .)
-  ! reduce/reduce conflict for $end resolved using rule 5 (label -> empty .)
-  ! reduce/reduce conflict for $end resolved using rule 5 (label -> empty .)
-    $end            reduce using rule 5 (label -> empty .)
-
-  ! $end            [ reduce using rule 23 (spe_instr -> empty .) ]
-  ! $end            [ reduce using rule 13 (ari_instr -> empty .) ]
-  ! $end            [ reduce using rule 16 (reg_instr -> empty .) ]
-  ! $end            [ reduce using rule 19 (mem_instr -> empty .) ]
-  ! $end            [ reduce using rule 21 (bra_instr -> empty .) ]
+    LABEL           reduce using rule 19 (spe_instr -> STLL .)
+    STLL            reduce using rule 19 (spe_instr -> STLL .)
+    ADD             reduce using rule 19 (spe_instr -> STLL .)
+    ADDI            reduce using rule 19 (spe_instr -> STLL .)
+    SUB             reduce using rule 19 (spe_instr -> STLL .)
+    SUBI            reduce using rule 19 (spe_instr -> STLL .)
+    MUL             reduce using rule 19 (spe_instr -> STLL .)
+    MULI            reduce using rule 19 (spe_instr -> STLL .)
+    MOV             reduce using rule 19 (spe_instr -> STLL .)
+    MOVI            reduce using rule 19 (spe_instr -> STLL .)
+    CMP             reduce using rule 19 (spe_instr -> STLL .)
+    CMPI            reduce using rule 19 (spe_instr -> STLL .)
+    STR             reduce using rule 19 (spe_instr -> STLL .)
+    STRI            reduce using rule 19 (spe_instr -> STLL .)
+    LD              reduce using rule 19 (spe_instr -> STLL .)
+    BGT             reduce using rule 19 (spe_instr -> STLL .)
+    BGTE            reduce using rule 19 (spe_instr -> STLL .)
+    BEQ             reduce using rule 19 (spe_instr -> STLL .)
+    B               reduce using rule 19 (spe_instr -> STLL .)
+    BRGT            reduce using rule 19 (spe_instr -> STLL .)
+    BRGTE           reduce using rule 19 (spe_instr -> STLL .)
+    BREQ            reduce using rule 19 (spe_instr -> STLL .)
+    BR              reduce using rule 19 (spe_instr -> STLL .)
+    $end            reduce using rule 19 (spe_instr -> STLL .)
 
 
 state 12
 
-    (22) spe_instr -> STLL . SEMICOLON body
-
-    SEMICOLON       shift and go to state 38
-
-
-state 13
-
-    (11) ari_instr -> ari_instr_name . REG COMMA REG COMMA REG SEMICOLON body
-    (12) ari_instr -> ari_instr_name . REG COMMA REG COMMA IMM SEMICOLON body
-
-    REG             shift and go to state 39
-
-
-state 14
-
-    (14) reg_instr -> reg_instr_name . REG COMMA REG SEMICOLON body
-    (15) reg_instr -> reg_instr_name . REG COMMA IMM SEMICOLON body
+    (11) ari_instr -> ari_instr_name . REG COMMA REG COMMA REG
+    (12) ari_instr -> ari_instr_name . REG COMMA REG COMMA IMM
 
     REG             shift and go to state 40
 
 
-state 15
+state 13
 
-    (17) mem_instr -> mem_instr_name . REG COMMA REG SEMICOLON body
-    (18) mem_instr -> mem_instr_name . REG COMMA IMM SEMICOLON body
+    (13) reg_instr -> reg_instr_name . REG COMMA REG
+    (14) reg_instr -> reg_instr_name . REG COMMA IMM
 
     REG             shift and go to state 41
 
 
+state 14
+
+    (15) mem_instr -> mem_instr_name . REG COMMA REG
+    (16) mem_instr -> mem_instr_name . REG COMMA IMM
+
+    REG             shift and go to state 42
+
+
+state 15
+
+    (17) bra_instr -> bra_instr_name . LABEL
+
+    LABEL           shift and go to state 43
+
+
 state 16
 
-    (20) bra_instr -> bra_instr_name . LABEL SEMICOLON body
+    (18) bra_instr -> bra_ret_instr_name . REG
 
-    LABEL           shift and go to state 42
+    REG             shift and go to state 44
 
 
 state 17
 
-    (24) ari_instr_name -> ADD .
+    (20) ari_instr_name -> ADD .
 
-    REG             reduce using rule 24 (ari_instr_name -> ADD .)
+    REG             reduce using rule 20 (ari_instr_name -> ADD .)
 
 
 state 18
 
-    (25) ari_instr_name -> ADDI .
+    (21) ari_instr_name -> ADDI .
 
-    REG             reduce using rule 25 (ari_instr_name -> ADDI .)
+    REG             reduce using rule 21 (ari_instr_name -> ADDI .)
 
 
 state 19
 
-    (26) ari_instr_name -> SUB .
+    (22) ari_instr_name -> SUB .
 
-    REG             reduce using rule 26 (ari_instr_name -> SUB .)
+    REG             reduce using rule 22 (ari_instr_name -> SUB .)
 
 
 state 20
 
-    (27) ari_instr_name -> SUBI .
+    (23) ari_instr_name -> SUBI .
 
-    REG             reduce using rule 27 (ari_instr_name -> SUBI .)
+    REG             reduce using rule 23 (ari_instr_name -> SUBI .)
 
 
 state 21
 
-    (28) ari_instr_name -> MUL .
+    (24) ari_instr_name -> MUL .
 
-    REG             reduce using rule 28 (ari_instr_name -> MUL .)
+    REG             reduce using rule 24 (ari_instr_name -> MUL .)
 
 
 state 22
 
-    (29) ari_instr_name -> MULI .
+    (25) ari_instr_name -> MULI .
 
-    REG             reduce using rule 29 (ari_instr_name -> MULI .)
+    REG             reduce using rule 25 (ari_instr_name -> MULI .)
 
 
 state 23
 
-    (30) reg_instr_name -> MOVI .
+    (26) reg_instr_name -> MOV .
 
-    REG             reduce using rule 30 (reg_instr_name -> MOVI .)
+    REG             reduce using rule 26 (reg_instr_name -> MOV .)
 
 
 state 24
 
-    (31) reg_instr_name -> CMP .
+    (27) reg_instr_name -> MOVI .
 
-    REG             reduce using rule 31 (reg_instr_name -> CMP .)
+    REG             reduce using rule 27 (reg_instr_name -> MOVI .)
 
 
 state 25
 
-    (32) reg_instr_name -> CMPI .
+    (28) reg_instr_name -> CMP .
 
-    REG             reduce using rule 32 (reg_instr_name -> CMPI .)
+    REG             reduce using rule 28 (reg_instr_name -> CMP .)
 
 
 state 26
 
-    (33) mem_instr_name -> STR .
+    (29) reg_instr_name -> CMPI .
 
-    REG             reduce using rule 33 (mem_instr_name -> STR .)
+    REG             reduce using rule 29 (reg_instr_name -> CMPI .)
 
 
 state 27
 
-    (34) mem_instr_name -> STRI .
+    (30) mem_instr_name -> STR .
 
-    REG             reduce using rule 34 (mem_instr_name -> STRI .)
+    REG             reduce using rule 30 (mem_instr_name -> STR .)
 
 
 state 28
 
-    (35) mem_instr_name -> LD .
+    (31) mem_instr_name -> STRI .
 
-    REG             reduce using rule 35 (mem_instr_name -> LD .)
+    REG             reduce using rule 31 (mem_instr_name -> STRI .)
 
 
 state 29
 
-    (36) bra_instr_name -> BGT .
+    (32) mem_instr_name -> LD .
 
-    LABEL           reduce using rule 36 (bra_instr_name -> BGT .)
+    REG             reduce using rule 32 (mem_instr_name -> LD .)
 
 
 state 30
 
-    (37) bra_instr_name -> BGTE .
+    (33) bra_instr_name -> BGT .
 
-    LABEL           reduce using rule 37 (bra_instr_name -> BGTE .)
+    LABEL           reduce using rule 33 (bra_instr_name -> BGT .)
 
 
 state 31
 
-    (38) bra_instr_name -> BE .
+    (34) bra_instr_name -> BGTE .
 
-    LABEL           reduce using rule 38 (bra_instr_name -> BE .)
+    LABEL           reduce using rule 34 (bra_instr_name -> BGTE .)
 
 
 state 32
 
-    (39) bra_instr_name -> B .
+    (35) bra_instr_name -> BEQ .
 
-    LABEL           reduce using rule 39 (bra_instr_name -> B .)
+    LABEL           reduce using rule 35 (bra_instr_name -> BEQ .)
 
 
 state 33
 
-    (40) bra_instr_name -> BRGT .
+    (36) bra_instr_name -> B .
 
-    LABEL           reduce using rule 40 (bra_instr_name -> BRGT .)
+    LABEL           reduce using rule 36 (bra_instr_name -> B .)
 
 
 state 34
 
-    (41) bra_instr_name -> BRGTE .
+    (37) bra_ret_instr_name -> BRGT .
 
-    LABEL           reduce using rule 41 (bra_instr_name -> BRGTE .)
+    REG             reduce using rule 37 (bra_ret_instr_name -> BRGT .)
 
 
 state 35
 
-    (42) bra_instr_name -> BRE .
+    (38) bra_ret_instr_name -> BRGTE .
 
-    LABEL           reduce using rule 42 (bra_instr_name -> BRE .)
+    REG             reduce using rule 38 (bra_ret_instr_name -> BRGTE .)
 
 
 state 36
 
-    (43) bra_instr_name -> BR .
+    (39) bra_ret_instr_name -> BREQ .
 
-    LABEL           reduce using rule 43 (bra_instr_name -> BR .)
+    REG             reduce using rule 39 (bra_ret_instr_name -> BREQ .)
 
 
 state 37
 
-    (4) label -> LABEL body .
+    (40) bra_ret_instr_name -> BR .
 
-    $end            reduce using rule 4 (label -> LABEL body .)
+    REG             reduce using rule 40 (bra_ret_instr_name -> BR .)
 
 
 state 38
 
-    (22) spe_instr -> STLL SEMICOLON . body
-    (2) body -> . instruction
-    (3) body -> . label
-    (6) instruction -> . spe_instr
-    (7) instruction -> . ari_instr
-    (8) instruction -> . reg_instr
-    (9) instruction -> . mem_instr
-    (10) instruction -> . bra_instr
-    (4) label -> . LABEL body
-    (5) label -> . empty
-    (22) spe_instr -> . STLL SEMICOLON body
-    (23) spe_instr -> . empty
-    (11) ari_instr -> . ari_instr_name REG COMMA REG COMMA REG SEMICOLON body
-    (12) ari_instr -> . ari_instr_name REG COMMA REG COMMA IMM SEMICOLON body
-    (13) ari_instr -> . empty
-    (14) reg_instr -> . reg_instr_name REG COMMA REG SEMICOLON body
-    (15) reg_instr -> . reg_instr_name REG COMMA IMM SEMICOLON body
-    (16) reg_instr -> . empty
-    (17) mem_instr -> . mem_instr_name REG COMMA REG SEMICOLON body
-    (18) mem_instr -> . mem_instr_name REG COMMA IMM SEMICOLON body
-    (19) mem_instr -> . empty
-    (20) bra_instr -> . bra_instr_name LABEL SEMICOLON body
-    (21) bra_instr -> . empty
-    (44) empty -> .
-    (24) ari_instr_name -> . ADD
-    (25) ari_instr_name -> . ADDI
-    (26) ari_instr_name -> . SUB
-    (27) ari_instr_name -> . SUBI
-    (28) ari_instr_name -> . MUL
-    (29) ari_instr_name -> . MULI
-    (30) reg_instr_name -> . MOVI
-    (31) reg_instr_name -> . CMP
-    (32) reg_instr_name -> . CMPI
-    (33) mem_instr_name -> . STR
-    (34) mem_instr_name -> . STRI
-    (35) mem_instr_name -> . LD
-    (36) bra_instr_name -> . BGT
-    (37) bra_instr_name -> . BGTE
-    (38) bra_instr_name -> . BE
-    (39) bra_instr_name -> . B
-    (40) bra_instr_name -> . BRGT
-    (41) bra_instr_name -> . BRGTE
-    (42) bra_instr_name -> . BRE
-    (43) bra_instr_name -> . BR
+    (2) body -> instruction body .
 
-    LABEL           shift and go to state 10
-    STLL            shift and go to state 12
-    $end            reduce using rule 44 (empty -> .)
-    ADD             shift and go to state 17
-    ADDI            shift and go to state 18
-    SUB             shift and go to state 19
-    SUBI            shift and go to state 20
-    MUL             shift and go to state 21
-    MULI            shift and go to state 22
-    MOVI            shift and go to state 23
-    CMP             shift and go to state 24
-    CMPI            shift and go to state 25
-    STR             shift and go to state 26
-    STRI            shift and go to state 27
-    LD              shift and go to state 28
-    BGT             shift and go to state 29
-    BGTE            shift and go to state 30
-    BE              shift and go to state 31
-    B               shift and go to state 32
-    BRGT            shift and go to state 33
-    BRGTE           shift and go to state 34
-    BRE             shift and go to state 35
-    BR              shift and go to state 36
+    $end            reduce using rule 2 (body -> instruction body .)
 
-    body                           shift and go to state 43
-    instruction                    shift and go to state 3
-    label                          shift and go to state 4
-    spe_instr                      shift and go to state 5
-    ari_instr                      shift and go to state 6
-    reg_instr                      shift and go to state 7
-    mem_instr                      shift and go to state 8
-    bra_instr                      shift and go to state 9
-    empty                          shift and go to state 11
-    ari_instr_name                 shift and go to state 13
-    reg_instr_name                 shift and go to state 14
-    mem_instr_name                 shift and go to state 15
-    bra_instr_name                 shift and go to state 16
 
 state 39
 
-    (11) ari_instr -> ari_instr_name REG . COMMA REG COMMA REG SEMICOLON body
-    (12) ari_instr -> ari_instr_name REG . COMMA REG COMMA IMM SEMICOLON body
+    (3) body -> label body .
 
-    COMMA           shift and go to state 44
+    $end            reduce using rule 3 (body -> label body .)
 
 
 state 40
 
-    (14) reg_instr -> reg_instr_name REG . COMMA REG SEMICOLON body
-    (15) reg_instr -> reg_instr_name REG . COMMA IMM SEMICOLON body
+    (11) ari_instr -> ari_instr_name REG . COMMA REG COMMA REG
+    (12) ari_instr -> ari_instr_name REG . COMMA REG COMMA IMM
 
     COMMA           shift and go to state 45
 
 
 state 41
 
-    (17) mem_instr -> mem_instr_name REG . COMMA REG SEMICOLON body
-    (18) mem_instr -> mem_instr_name REG . COMMA IMM SEMICOLON body
+    (13) reg_instr -> reg_instr_name REG . COMMA REG
+    (14) reg_instr -> reg_instr_name REG . COMMA IMM
 
     COMMA           shift and go to state 46
 
 
 state 42
 
-    (20) bra_instr -> bra_instr_name LABEL . SEMICOLON body
+    (15) mem_instr -> mem_instr_name REG . COMMA REG
+    (16) mem_instr -> mem_instr_name REG . COMMA IMM
 
-    SEMICOLON       shift and go to state 47
+    COMMA           shift and go to state 47
 
 
 state 43
 
-    (22) spe_instr -> STLL SEMICOLON body .
+    (17) bra_instr -> bra_instr_name LABEL .
 
-    $end            reduce using rule 22 (spe_instr -> STLL SEMICOLON body .)
+    LABEL           reduce using rule 17 (bra_instr -> bra_instr_name LABEL .)
+    STLL            reduce using rule 17 (bra_instr -> bra_instr_name LABEL .)
+    ADD             reduce using rule 17 (bra_instr -> bra_instr_name LABEL .)
+    ADDI            reduce using rule 17 (bra_instr -> bra_instr_name LABEL .)
+    SUB             reduce using rule 17 (bra_instr -> bra_instr_name LABEL .)
+    SUBI            reduce using rule 17 (bra_instr -> bra_instr_name LABEL .)
+    MUL             reduce using rule 17 (bra_instr -> bra_instr_name LABEL .)
+    MULI            reduce using rule 17 (bra_instr -> bra_instr_name LABEL .)
+    MOV             reduce using rule 17 (bra_instr -> bra_instr_name LABEL .)
+    MOVI            reduce using rule 17 (bra_instr -> bra_instr_name LABEL .)
+    CMP             reduce using rule 17 (bra_instr -> bra_instr_name LABEL .)
+    CMPI            reduce using rule 17 (bra_instr -> bra_instr_name LABEL .)
+    STR             reduce using rule 17 (bra_instr -> bra_instr_name LABEL .)
+    STRI            reduce using rule 17 (bra_instr -> bra_instr_name LABEL .)
+    LD              reduce using rule 17 (bra_instr -> bra_instr_name LABEL .)
+    BGT             reduce using rule 17 (bra_instr -> bra_instr_name LABEL .)
+    BGTE            reduce using rule 17 (bra_instr -> bra_instr_name LABEL .)
+    BEQ             reduce using rule 17 (bra_instr -> bra_instr_name LABEL .)
+    B               reduce using rule 17 (bra_instr -> bra_instr_name LABEL .)
+    BRGT            reduce using rule 17 (bra_instr -> bra_instr_name LABEL .)
+    BRGTE           reduce using rule 17 (bra_instr -> bra_instr_name LABEL .)
+    BREQ            reduce using rule 17 (bra_instr -> bra_instr_name LABEL .)
+    BR              reduce using rule 17 (bra_instr -> bra_instr_name LABEL .)
+    $end            reduce using rule 17 (bra_instr -> bra_instr_name LABEL .)
 
 
 state 44
 
-    (11) ari_instr -> ari_instr_name REG COMMA . REG COMMA REG SEMICOLON body
-    (12) ari_instr -> ari_instr_name REG COMMA . REG COMMA IMM SEMICOLON body
+    (18) bra_instr -> bra_ret_instr_name REG .
 
-    REG             shift and go to state 48
+    LABEL           reduce using rule 18 (bra_instr -> bra_ret_instr_name REG .)
+    STLL            reduce using rule 18 (bra_instr -> bra_ret_instr_name REG .)
+    ADD             reduce using rule 18 (bra_instr -> bra_ret_instr_name REG .)
+    ADDI            reduce using rule 18 (bra_instr -> bra_ret_instr_name REG .)
+    SUB             reduce using rule 18 (bra_instr -> bra_ret_instr_name REG .)
+    SUBI            reduce using rule 18 (bra_instr -> bra_ret_instr_name REG .)
+    MUL             reduce using rule 18 (bra_instr -> bra_ret_instr_name REG .)
+    MULI            reduce using rule 18 (bra_instr -> bra_ret_instr_name REG .)
+    MOV             reduce using rule 18 (bra_instr -> bra_ret_instr_name REG .)
+    MOVI            reduce using rule 18 (bra_instr -> bra_ret_instr_name REG .)
+    CMP             reduce using rule 18 (bra_instr -> bra_ret_instr_name REG .)
+    CMPI            reduce using rule 18 (bra_instr -> bra_ret_instr_name REG .)
+    STR             reduce using rule 18 (bra_instr -> bra_ret_instr_name REG .)
+    STRI            reduce using rule 18 (bra_instr -> bra_ret_instr_name REG .)
+    LD              reduce using rule 18 (bra_instr -> bra_ret_instr_name REG .)
+    BGT             reduce using rule 18 (bra_instr -> bra_ret_instr_name REG .)
+    BGTE            reduce using rule 18 (bra_instr -> bra_ret_instr_name REG .)
+    BEQ             reduce using rule 18 (bra_instr -> bra_ret_instr_name REG .)
+    B               reduce using rule 18 (bra_instr -> bra_ret_instr_name REG .)
+    BRGT            reduce using rule 18 (bra_instr -> bra_ret_instr_name REG .)
+    BRGTE           reduce using rule 18 (bra_instr -> bra_ret_instr_name REG .)
+    BREQ            reduce using rule 18 (bra_instr -> bra_ret_instr_name REG .)
+    BR              reduce using rule 18 (bra_instr -> bra_ret_instr_name REG .)
+    $end            reduce using rule 18 (bra_instr -> bra_ret_instr_name REG .)
 
 
 state 45
 
-    (14) reg_instr -> reg_instr_name REG COMMA . REG SEMICOLON body
-    (15) reg_instr -> reg_instr_name REG COMMA . IMM SEMICOLON body
+    (11) ari_instr -> ari_instr_name REG COMMA . REG COMMA REG
+    (12) ari_instr -> ari_instr_name REG COMMA . REG COMMA IMM
+
+    REG             shift and go to state 48
+
+
+state 46
+
+    (13) reg_instr -> reg_instr_name REG COMMA . REG
+    (14) reg_instr -> reg_instr_name REG COMMA . IMM
 
     REG             shift and go to state 49
     IMM             shift and go to state 50
 
 
-state 46
+state 47
 
-    (17) mem_instr -> mem_instr_name REG COMMA . REG SEMICOLON body
-    (18) mem_instr -> mem_instr_name REG COMMA . IMM SEMICOLON body
+    (15) mem_instr -> mem_instr_name REG COMMA . REG
+    (16) mem_instr -> mem_instr_name REG COMMA . IMM
 
     REG             shift and go to state 51
     IMM             shift and go to state 52
 
 
-state 47
-
-    (20) bra_instr -> bra_instr_name LABEL SEMICOLON . body
-    (2) body -> . instruction
-    (3) body -> . label
-    (6) instruction -> . spe_instr
-    (7) instruction -> . ari_instr
-    (8) instruction -> . reg_instr
-    (9) instruction -> . mem_instr
-    (10) instruction -> . bra_instr
-    (4) label -> . LABEL body
-    (5) label -> . empty
-    (22) spe_instr -> . STLL SEMICOLON body
-    (23) spe_instr -> . empty
-    (11) ari_instr -> . ari_instr_name REG COMMA REG COMMA REG SEMICOLON body
-    (12) ari_instr -> . ari_instr_name REG COMMA REG COMMA IMM SEMICOLON body
-    (13) ari_instr -> . empty
-    (14) reg_instr -> . reg_instr_name REG COMMA REG SEMICOLON body
-    (15) reg_instr -> . reg_instr_name REG COMMA IMM SEMICOLON body
-    (16) reg_instr -> . empty
-    (17) mem_instr -> . mem_instr_name REG COMMA REG SEMICOLON body
-    (18) mem_instr -> . mem_instr_name REG COMMA IMM SEMICOLON body
-    (19) mem_instr -> . empty
-    (20) bra_instr -> . bra_instr_name LABEL SEMICOLON body
-    (21) bra_instr -> . empty
-    (44) empty -> .
-    (24) ari_instr_name -> . ADD
-    (25) ari_instr_name -> . ADDI
-    (26) ari_instr_name -> . SUB
-    (27) ari_instr_name -> . SUBI
-    (28) ari_instr_name -> . MUL
-    (29) ari_instr_name -> . MULI
-    (30) reg_instr_name -> . MOVI
-    (31) reg_instr_name -> . CMP
-    (32) reg_instr_name -> . CMPI
-    (33) mem_instr_name -> . STR
-    (34) mem_instr_name -> . STRI
-    (35) mem_instr_name -> . LD
-    (36) bra_instr_name -> . BGT
-    (37) bra_instr_name -> . BGTE
-    (38) bra_instr_name -> . BE
-    (39) bra_instr_name -> . B
-    (40) bra_instr_name -> . BRGT
-    (41) bra_instr_name -> . BRGTE
-    (42) bra_instr_name -> . BRE
-    (43) bra_instr_name -> . BR
-
-    LABEL           shift and go to state 10
-    STLL            shift and go to state 12
-    $end            reduce using rule 44 (empty -> .)
-    ADD             shift and go to state 17
-    ADDI            shift and go to state 18
-    SUB             shift and go to state 19
-    SUBI            shift and go to state 20
-    MUL             shift and go to state 21
-    MULI            shift and go to state 22
-    MOVI            shift and go to state 23
-    CMP             shift and go to state 24
-    CMPI            shift and go to state 25
-    STR             shift and go to state 26
-    STRI            shift and go to state 27
-    LD              shift and go to state 28
-    BGT             shift and go to state 29
-    BGTE            shift and go to state 30
-    BE              shift and go to state 31
-    B               shift and go to state 32
-    BRGT            shift and go to state 33
-    BRGTE           shift and go to state 34
-    BRE             shift and go to state 35
-    BR              shift and go to state 36
-
-    bra_instr_name                 shift and go to state 16
-    body                           shift and go to state 53
-    instruction                    shift and go to state 3
-    label                          shift and go to state 4
-    spe_instr                      shift and go to state 5
-    ari_instr                      shift and go to state 6
-    reg_instr                      shift and go to state 7
-    mem_instr                      shift and go to state 8
-    bra_instr                      shift and go to state 9
-    empty                          shift and go to state 11
-    ari_instr_name                 shift and go to state 13
-    reg_instr_name                 shift and go to state 14
-    mem_instr_name                 shift and go to state 15
-
 state 48
 
-    (11) ari_instr -> ari_instr_name REG COMMA REG . COMMA REG SEMICOLON body
-    (12) ari_instr -> ari_instr_name REG COMMA REG . COMMA IMM SEMICOLON body
+    (11) ari_instr -> ari_instr_name REG COMMA REG . COMMA REG
+    (12) ari_instr -> ari_instr_name REG COMMA REG . COMMA IMM
 
-    COMMA           shift and go to state 54
+    COMMA           shift and go to state 53
 
 
 state 49
 
-    (14) reg_instr -> reg_instr_name REG COMMA REG . SEMICOLON body
+    (13) reg_instr -> reg_instr_name REG COMMA REG .
 
-    SEMICOLON       shift and go to state 55
+    LABEL           reduce using rule 13 (reg_instr -> reg_instr_name REG COMMA REG .)
+    STLL            reduce using rule 13 (reg_instr -> reg_instr_name REG COMMA REG .)
+    ADD             reduce using rule 13 (reg_instr -> reg_instr_name REG COMMA REG .)
+    ADDI            reduce using rule 13 (reg_instr -> reg_instr_name REG COMMA REG .)
+    SUB             reduce using rule 13 (reg_instr -> reg_instr_name REG COMMA REG .)
+    SUBI            reduce using rule 13 (reg_instr -> reg_instr_name REG COMMA REG .)
+    MUL             reduce using rule 13 (reg_instr -> reg_instr_name REG COMMA REG .)
+    MULI            reduce using rule 13 (reg_instr -> reg_instr_name REG COMMA REG .)
+    MOV             reduce using rule 13 (reg_instr -> reg_instr_name REG COMMA REG .)
+    MOVI            reduce using rule 13 (reg_instr -> reg_instr_name REG COMMA REG .)
+    CMP             reduce using rule 13 (reg_instr -> reg_instr_name REG COMMA REG .)
+    CMPI            reduce using rule 13 (reg_instr -> reg_instr_name REG COMMA REG .)
+    STR             reduce using rule 13 (reg_instr -> reg_instr_name REG COMMA REG .)
+    STRI            reduce using rule 13 (reg_instr -> reg_instr_name REG COMMA REG .)
+    LD              reduce using rule 13 (reg_instr -> reg_instr_name REG COMMA REG .)
+    BGT             reduce using rule 13 (reg_instr -> reg_instr_name REG COMMA REG .)
+    BGTE            reduce using rule 13 (reg_instr -> reg_instr_name REG COMMA REG .)
+    BEQ             reduce using rule 13 (reg_instr -> reg_instr_name REG COMMA REG .)
+    B               reduce using rule 13 (reg_instr -> reg_instr_name REG COMMA REG .)
+    BRGT            reduce using rule 13 (reg_instr -> reg_instr_name REG COMMA REG .)
+    BRGTE           reduce using rule 13 (reg_instr -> reg_instr_name REG COMMA REG .)
+    BREQ            reduce using rule 13 (reg_instr -> reg_instr_name REG COMMA REG .)
+    BR              reduce using rule 13 (reg_instr -> reg_instr_name REG COMMA REG .)
+    $end            reduce using rule 13 (reg_instr -> reg_instr_name REG COMMA REG .)
 
 
 state 50
 
-    (15) reg_instr -> reg_instr_name REG COMMA IMM . SEMICOLON body
+    (14) reg_instr -> reg_instr_name REG COMMA IMM .
 
-    SEMICOLON       shift and go to state 56
+    LABEL           reduce using rule 14 (reg_instr -> reg_instr_name REG COMMA IMM .)
+    STLL            reduce using rule 14 (reg_instr -> reg_instr_name REG COMMA IMM .)
+    ADD             reduce using rule 14 (reg_instr -> reg_instr_name REG COMMA IMM .)
+    ADDI            reduce using rule 14 (reg_instr -> reg_instr_name REG COMMA IMM .)
+    SUB             reduce using rule 14 (reg_instr -> reg_instr_name REG COMMA IMM .)
+    SUBI            reduce using rule 14 (reg_instr -> reg_instr_name REG COMMA IMM .)
+    MUL             reduce using rule 14 (reg_instr -> reg_instr_name REG COMMA IMM .)
+    MULI            reduce using rule 14 (reg_instr -> reg_instr_name REG COMMA IMM .)
+    MOV             reduce using rule 14 (reg_instr -> reg_instr_name REG COMMA IMM .)
+    MOVI            reduce using rule 14 (reg_instr -> reg_instr_name REG COMMA IMM .)
+    CMP             reduce using rule 14 (reg_instr -> reg_instr_name REG COMMA IMM .)
+    CMPI            reduce using rule 14 (reg_instr -> reg_instr_name REG COMMA IMM .)
+    STR             reduce using rule 14 (reg_instr -> reg_instr_name REG COMMA IMM .)
+    STRI            reduce using rule 14 (reg_instr -> reg_instr_name REG COMMA IMM .)
+    LD              reduce using rule 14 (reg_instr -> reg_instr_name REG COMMA IMM .)
+    BGT             reduce using rule 14 (reg_instr -> reg_instr_name REG COMMA IMM .)
+    BGTE            reduce using rule 14 (reg_instr -> reg_instr_name REG COMMA IMM .)
+    BEQ             reduce using rule 14 (reg_instr -> reg_instr_name REG COMMA IMM .)
+    B               reduce using rule 14 (reg_instr -> reg_instr_name REG COMMA IMM .)
+    BRGT            reduce using rule 14 (reg_instr -> reg_instr_name REG COMMA IMM .)
+    BRGTE           reduce using rule 14 (reg_instr -> reg_instr_name REG COMMA IMM .)
+    BREQ            reduce using rule 14 (reg_instr -> reg_instr_name REG COMMA IMM .)
+    BR              reduce using rule 14 (reg_instr -> reg_instr_name REG COMMA IMM .)
+    $end            reduce using rule 14 (reg_instr -> reg_instr_name REG COMMA IMM .)
 
 
 state 51
 
-    (17) mem_instr -> mem_instr_name REG COMMA REG . SEMICOLON body
+    (15) mem_instr -> mem_instr_name REG COMMA REG .
 
-    SEMICOLON       shift and go to state 57
+    LABEL           reduce using rule 15 (mem_instr -> mem_instr_name REG COMMA REG .)
+    STLL            reduce using rule 15 (mem_instr -> mem_instr_name REG COMMA REG .)
+    ADD             reduce using rule 15 (mem_instr -> mem_instr_name REG COMMA REG .)
+    ADDI            reduce using rule 15 (mem_instr -> mem_instr_name REG COMMA REG .)
+    SUB             reduce using rule 15 (mem_instr -> mem_instr_name REG COMMA REG .)
+    SUBI            reduce using rule 15 (mem_instr -> mem_instr_name REG COMMA REG .)
+    MUL             reduce using rule 15 (mem_instr -> mem_instr_name REG COMMA REG .)
+    MULI            reduce using rule 15 (mem_instr -> mem_instr_name REG COMMA REG .)
+    MOV             reduce using rule 15 (mem_instr -> mem_instr_name REG COMMA REG .)
+    MOVI            reduce using rule 15 (mem_instr -> mem_instr_name REG COMMA REG .)
+    CMP             reduce using rule 15 (mem_instr -> mem_instr_name REG COMMA REG .)
+    CMPI            reduce using rule 15 (mem_instr -> mem_instr_name REG COMMA REG .)
+    STR             reduce using rule 15 (mem_instr -> mem_instr_name REG COMMA REG .)
+    STRI            reduce using rule 15 (mem_instr -> mem_instr_name REG COMMA REG .)
+    LD              reduce using rule 15 (mem_instr -> mem_instr_name REG COMMA REG .)
+    BGT             reduce using rule 15 (mem_instr -> mem_instr_name REG COMMA REG .)
+    BGTE            reduce using rule 15 (mem_instr -> mem_instr_name REG COMMA REG .)
+    BEQ             reduce using rule 15 (mem_instr -> mem_instr_name REG COMMA REG .)
+    B               reduce using rule 15 (mem_instr -> mem_instr_name REG COMMA REG .)
+    BRGT            reduce using rule 15 (mem_instr -> mem_instr_name REG COMMA REG .)
+    BRGTE           reduce using rule 15 (mem_instr -> mem_instr_name REG COMMA REG .)
+    BREQ            reduce using rule 15 (mem_instr -> mem_instr_name REG COMMA REG .)
+    BR              reduce using rule 15 (mem_instr -> mem_instr_name REG COMMA REG .)
+    $end            reduce using rule 15 (mem_instr -> mem_instr_name REG COMMA REG .)
 
 
 state 52
 
-    (18) mem_instr -> mem_instr_name REG COMMA IMM . SEMICOLON body
+    (16) mem_instr -> mem_instr_name REG COMMA IMM .
 
-    SEMICOLON       shift and go to state 58
+    LABEL           reduce using rule 16 (mem_instr -> mem_instr_name REG COMMA IMM .)
+    STLL            reduce using rule 16 (mem_instr -> mem_instr_name REG COMMA IMM .)
+    ADD             reduce using rule 16 (mem_instr -> mem_instr_name REG COMMA IMM .)
+    ADDI            reduce using rule 16 (mem_instr -> mem_instr_name REG COMMA IMM .)
+    SUB             reduce using rule 16 (mem_instr -> mem_instr_name REG COMMA IMM .)
+    SUBI            reduce using rule 16 (mem_instr -> mem_instr_name REG COMMA IMM .)
+    MUL             reduce using rule 16 (mem_instr -> mem_instr_name REG COMMA IMM .)
+    MULI            reduce using rule 16 (mem_instr -> mem_instr_name REG COMMA IMM .)
+    MOV             reduce using rule 16 (mem_instr -> mem_instr_name REG COMMA IMM .)
+    MOVI            reduce using rule 16 (mem_instr -> mem_instr_name REG COMMA IMM .)
+    CMP             reduce using rule 16 (mem_instr -> mem_instr_name REG COMMA IMM .)
+    CMPI            reduce using rule 16 (mem_instr -> mem_instr_name REG COMMA IMM .)
+    STR             reduce using rule 16 (mem_instr -> mem_instr_name REG COMMA IMM .)
+    STRI            reduce using rule 16 (mem_instr -> mem_instr_name REG COMMA IMM .)
+    LD              reduce using rule 16 (mem_instr -> mem_instr_name REG COMMA IMM .)
+    BGT             reduce using rule 16 (mem_instr -> mem_instr_name REG COMMA IMM .)
+    BGTE            reduce using rule 16 (mem_instr -> mem_instr_name REG COMMA IMM .)
+    BEQ             reduce using rule 16 (mem_instr -> mem_instr_name REG COMMA IMM .)
+    B               reduce using rule 16 (mem_instr -> mem_instr_name REG COMMA IMM .)
+    BRGT            reduce using rule 16 (mem_instr -> mem_instr_name REG COMMA IMM .)
+    BRGTE           reduce using rule 16 (mem_instr -> mem_instr_name REG COMMA IMM .)
+    BREQ            reduce using rule 16 (mem_instr -> mem_instr_name REG COMMA IMM .)
+    BR              reduce using rule 16 (mem_instr -> mem_instr_name REG COMMA IMM .)
+    $end            reduce using rule 16 (mem_instr -> mem_instr_name REG COMMA IMM .)
 
 
 state 53
 
-    (20) bra_instr -> bra_instr_name LABEL SEMICOLON body .
+    (11) ari_instr -> ari_instr_name REG COMMA REG COMMA . REG
+    (12) ari_instr -> ari_instr_name REG COMMA REG COMMA . IMM
 
-    $end            reduce using rule 20 (bra_instr -> bra_instr_name LABEL SEMICOLON body .)
+    REG             shift and go to state 54
+    IMM             shift and go to state 55
 
 
 state 54
 
-    (11) ari_instr -> ari_instr_name REG COMMA REG COMMA . REG SEMICOLON body
-    (12) ari_instr -> ari_instr_name REG COMMA REG COMMA . IMM SEMICOLON body
+    (11) ari_instr -> ari_instr_name REG COMMA REG COMMA REG .
 
-    REG             shift and go to state 59
-    IMM             shift and go to state 60
+    LABEL           reduce using rule 11 (ari_instr -> ari_instr_name REG COMMA REG COMMA REG .)
+    STLL            reduce using rule 11 (ari_instr -> ari_instr_name REG COMMA REG COMMA REG .)
+    ADD             reduce using rule 11 (ari_instr -> ari_instr_name REG COMMA REG COMMA REG .)
+    ADDI            reduce using rule 11 (ari_instr -> ari_instr_name REG COMMA REG COMMA REG .)
+    SUB             reduce using rule 11 (ari_instr -> ari_instr_name REG COMMA REG COMMA REG .)
+    SUBI            reduce using rule 11 (ari_instr -> ari_instr_name REG COMMA REG COMMA REG .)
+    MUL             reduce using rule 11 (ari_instr -> ari_instr_name REG COMMA REG COMMA REG .)
+    MULI            reduce using rule 11 (ari_instr -> ari_instr_name REG COMMA REG COMMA REG .)
+    MOV             reduce using rule 11 (ari_instr -> ari_instr_name REG COMMA REG COMMA REG .)
+    MOVI            reduce using rule 11 (ari_instr -> ari_instr_name REG COMMA REG COMMA REG .)
+    CMP             reduce using rule 11 (ari_instr -> ari_instr_name REG COMMA REG COMMA REG .)
+    CMPI            reduce using rule 11 (ari_instr -> ari_instr_name REG COMMA REG COMMA REG .)
+    STR             reduce using rule 11 (ari_instr -> ari_instr_name REG COMMA REG COMMA REG .)
+    STRI            reduce using rule 11 (ari_instr -> ari_instr_name REG COMMA REG COMMA REG .)
+    LD              reduce using rule 11 (ari_instr -> ari_instr_name REG COMMA REG COMMA REG .)
+    BGT             reduce using rule 11 (ari_instr -> ari_instr_name REG COMMA REG COMMA REG .)
+    BGTE            reduce using rule 11 (ari_instr -> ari_instr_name REG COMMA REG COMMA REG .)
+    BEQ             reduce using rule 11 (ari_instr -> ari_instr_name REG COMMA REG COMMA REG .)
+    B               reduce using rule 11 (ari_instr -> ari_instr_name REG COMMA REG COMMA REG .)
+    BRGT            reduce using rule 11 (ari_instr -> ari_instr_name REG COMMA REG COMMA REG .)
+    BRGTE           reduce using rule 11 (ari_instr -> ari_instr_name REG COMMA REG COMMA REG .)
+    BREQ            reduce using rule 11 (ari_instr -> ari_instr_name REG COMMA REG COMMA REG .)
+    BR              reduce using rule 11 (ari_instr -> ari_instr_name REG COMMA REG COMMA REG .)
+    $end            reduce using rule 11 (ari_instr -> ari_instr_name REG COMMA REG COMMA REG .)
 
 
 state 55
 
-    (14) reg_instr -> reg_instr_name REG COMMA REG SEMICOLON . body
-    (2) body -> . instruction
-    (3) body -> . label
-    (6) instruction -> . spe_instr
-    (7) instruction -> . ari_instr
-    (8) instruction -> . reg_instr
-    (9) instruction -> . mem_instr
-    (10) instruction -> . bra_instr
-    (4) label -> . LABEL body
-    (5) label -> . empty
-    (22) spe_instr -> . STLL SEMICOLON body
-    (23) spe_instr -> . empty
-    (11) ari_instr -> . ari_instr_name REG COMMA REG COMMA REG SEMICOLON body
-    (12) ari_instr -> . ari_instr_name REG COMMA REG COMMA IMM SEMICOLON body
-    (13) ari_instr -> . empty
-    (14) reg_instr -> . reg_instr_name REG COMMA REG SEMICOLON body
-    (15) reg_instr -> . reg_instr_name REG COMMA IMM SEMICOLON body
-    (16) reg_instr -> . empty
-    (17) mem_instr -> . mem_instr_name REG COMMA REG SEMICOLON body
-    (18) mem_instr -> . mem_instr_name REG COMMA IMM SEMICOLON body
-    (19) mem_instr -> . empty
-    (20) bra_instr -> . bra_instr_name LABEL SEMICOLON body
-    (21) bra_instr -> . empty
-    (44) empty -> .
-    (24) ari_instr_name -> . ADD
-    (25) ari_instr_name -> . ADDI
-    (26) ari_instr_name -> . SUB
-    (27) ari_instr_name -> . SUBI
-    (28) ari_instr_name -> . MUL
-    (29) ari_instr_name -> . MULI
-    (30) reg_instr_name -> . MOVI
-    (31) reg_instr_name -> . CMP
-    (32) reg_instr_name -> . CMPI
-    (33) mem_instr_name -> . STR
-    (34) mem_instr_name -> . STRI
-    (35) mem_instr_name -> . LD
-    (36) bra_instr_name -> . BGT
-    (37) bra_instr_name -> . BGTE
-    (38) bra_instr_name -> . BE
-    (39) bra_instr_name -> . B
-    (40) bra_instr_name -> . BRGT
-    (41) bra_instr_name -> . BRGTE
-    (42) bra_instr_name -> . BRE
-    (43) bra_instr_name -> . BR
+    (12) ari_instr -> ari_instr_name REG COMMA REG COMMA IMM .
 
-    LABEL           shift and go to state 10
-    STLL            shift and go to state 12
-    $end            reduce using rule 44 (empty -> .)
-    ADD             shift and go to state 17
-    ADDI            shift and go to state 18
-    SUB             shift and go to state 19
-    SUBI            shift and go to state 20
-    MUL             shift and go to state 21
-    MULI            shift and go to state 22
-    MOVI            shift and go to state 23
-    CMP             shift and go to state 24
-    CMPI            shift and go to state 25
-    STR             shift and go to state 26
-    STRI            shift and go to state 27
-    LD              shift and go to state 28
-    BGT             shift and go to state 29
-    BGTE            shift and go to state 30
-    BE              shift and go to state 31
-    B               shift and go to state 32
-    BRGT            shift and go to state 33
-    BRGTE           shift and go to state 34
-    BRE             shift and go to state 35
-    BR              shift and go to state 36
+    LABEL           reduce using rule 12 (ari_instr -> ari_instr_name REG COMMA REG COMMA IMM .)
+    STLL            reduce using rule 12 (ari_instr -> ari_instr_name REG COMMA REG COMMA IMM .)
+    ADD             reduce using rule 12 (ari_instr -> ari_instr_name REG COMMA REG COMMA IMM .)
+    ADDI            reduce using rule 12 (ari_instr -> ari_instr_name REG COMMA REG COMMA IMM .)
+    SUB             reduce using rule 12 (ari_instr -> ari_instr_name REG COMMA REG COMMA IMM .)
+    SUBI            reduce using rule 12 (ari_instr -> ari_instr_name REG COMMA REG COMMA IMM .)
+    MUL             reduce using rule 12 (ari_instr -> ari_instr_name REG COMMA REG COMMA IMM .)
+    MULI            reduce using rule 12 (ari_instr -> ari_instr_name REG COMMA REG COMMA IMM .)
+    MOV             reduce using rule 12 (ari_instr -> ari_instr_name REG COMMA REG COMMA IMM .)
+    MOVI            reduce using rule 12 (ari_instr -> ari_instr_name REG COMMA REG COMMA IMM .)
+    CMP             reduce using rule 12 (ari_instr -> ari_instr_name REG COMMA REG COMMA IMM .)
+    CMPI            reduce using rule 12 (ari_instr -> ari_instr_name REG COMMA REG COMMA IMM .)
+    STR             reduce using rule 12 (ari_instr -> ari_instr_name REG COMMA REG COMMA IMM .)
+    STRI            reduce using rule 12 (ari_instr -> ari_instr_name REG COMMA REG COMMA IMM .)
+    LD              reduce using rule 12 (ari_instr -> ari_instr_name REG COMMA REG COMMA IMM .)
+    BGT             reduce using rule 12 (ari_instr -> ari_instr_name REG COMMA REG COMMA IMM .)
+    BGTE            reduce using rule 12 (ari_instr -> ari_instr_name REG COMMA REG COMMA IMM .)
+    BEQ             reduce using rule 12 (ari_instr -> ari_instr_name REG COMMA REG COMMA IMM .)
+    B               reduce using rule 12 (ari_instr -> ari_instr_name REG COMMA REG COMMA IMM .)
+    BRGT            reduce using rule 12 (ari_instr -> ari_instr_name REG COMMA REG COMMA IMM .)
+    BRGTE           reduce using rule 12 (ari_instr -> ari_instr_name REG COMMA REG COMMA IMM .)
+    BREQ            reduce using rule 12 (ari_instr -> ari_instr_name REG COMMA REG COMMA IMM .)
+    BR              reduce using rule 12 (ari_instr -> ari_instr_name REG COMMA REG COMMA IMM .)
+    $end            reduce using rule 12 (ari_instr -> ari_instr_name REG COMMA REG COMMA IMM .)
 
-    reg_instr_name                 shift and go to state 14
-    body                           shift and go to state 61
-    instruction                    shift and go to state 3
-    label                          shift and go to state 4
-    spe_instr                      shift and go to state 5
-    ari_instr                      shift and go to state 6
-    reg_instr                      shift and go to state 7
-    mem_instr                      shift and go to state 8
-    bra_instr                      shift and go to state 9
-    empty                          shift and go to state 11
-    ari_instr_name                 shift and go to state 13
-    mem_instr_name                 shift and go to state 15
-    bra_instr_name                 shift and go to state 16
-
-state 56
-
-    (15) reg_instr -> reg_instr_name REG COMMA IMM SEMICOLON . body
-    (2) body -> . instruction
-    (3) body -> . label
-    (6) instruction -> . spe_instr
-    (7) instruction -> . ari_instr
-    (8) instruction -> . reg_instr
-    (9) instruction -> . mem_instr
-    (10) instruction -> . bra_instr
-    (4) label -> . LABEL body
-    (5) label -> . empty
-    (22) spe_instr -> . STLL SEMICOLON body
-    (23) spe_instr -> . empty
-    (11) ari_instr -> . ari_instr_name REG COMMA REG COMMA REG SEMICOLON body
-    (12) ari_instr -> . ari_instr_name REG COMMA REG COMMA IMM SEMICOLON body
-    (13) ari_instr -> . empty
-    (14) reg_instr -> . reg_instr_name REG COMMA REG SEMICOLON body
-    (15) reg_instr -> . reg_instr_name REG COMMA IMM SEMICOLON body
-    (16) reg_instr -> . empty
-    (17) mem_instr -> . mem_instr_name REG COMMA REG SEMICOLON body
-    (18) mem_instr -> . mem_instr_name REG COMMA IMM SEMICOLON body
-    (19) mem_instr -> . empty
-    (20) bra_instr -> . bra_instr_name LABEL SEMICOLON body
-    (21) bra_instr -> . empty
-    (44) empty -> .
-    (24) ari_instr_name -> . ADD
-    (25) ari_instr_name -> . ADDI
-    (26) ari_instr_name -> . SUB
-    (27) ari_instr_name -> . SUBI
-    (28) ari_instr_name -> . MUL
-    (29) ari_instr_name -> . MULI
-    (30) reg_instr_name -> . MOVI
-    (31) reg_instr_name -> . CMP
-    (32) reg_instr_name -> . CMPI
-    (33) mem_instr_name -> . STR
-    (34) mem_instr_name -> . STRI
-    (35) mem_instr_name -> . LD
-    (36) bra_instr_name -> . BGT
-    (37) bra_instr_name -> . BGTE
-    (38) bra_instr_name -> . BE
-    (39) bra_instr_name -> . B
-    (40) bra_instr_name -> . BRGT
-    (41) bra_instr_name -> . BRGTE
-    (42) bra_instr_name -> . BRE
-    (43) bra_instr_name -> . BR
-
-    LABEL           shift and go to state 10
-    STLL            shift and go to state 12
-    $end            reduce using rule 44 (empty -> .)
-    ADD             shift and go to state 17
-    ADDI            shift and go to state 18
-    SUB             shift and go to state 19
-    SUBI            shift and go to state 20
-    MUL             shift and go to state 21
-    MULI            shift and go to state 22
-    MOVI            shift and go to state 23
-    CMP             shift and go to state 24
-    CMPI            shift and go to state 25
-    STR             shift and go to state 26
-    STRI            shift and go to state 27
-    LD              shift and go to state 28
-    BGT             shift and go to state 29
-    BGTE            shift and go to state 30
-    BE              shift and go to state 31
-    B               shift and go to state 32
-    BRGT            shift and go to state 33
-    BRGTE           shift and go to state 34
-    BRE             shift and go to state 35
-    BR              shift and go to state 36
-
-    reg_instr_name                 shift and go to state 14
-    body                           shift and go to state 62
-    instruction                    shift and go to state 3
-    label                          shift and go to state 4
-    spe_instr                      shift and go to state 5
-    ari_instr                      shift and go to state 6
-    reg_instr                      shift and go to state 7
-    mem_instr                      shift and go to state 8
-    bra_instr                      shift and go to state 9
-    empty                          shift and go to state 11
-    ari_instr_name                 shift and go to state 13
-    mem_instr_name                 shift and go to state 15
-    bra_instr_name                 shift and go to state 16
-
-state 57
-
-    (17) mem_instr -> mem_instr_name REG COMMA REG SEMICOLON . body
-    (2) body -> . instruction
-    (3) body -> . label
-    (6) instruction -> . spe_instr
-    (7) instruction -> . ari_instr
-    (8) instruction -> . reg_instr
-    (9) instruction -> . mem_instr
-    (10) instruction -> . bra_instr
-    (4) label -> . LABEL body
-    (5) label -> . empty
-    (22) spe_instr -> . STLL SEMICOLON body
-    (23) spe_instr -> . empty
-    (11) ari_instr -> . ari_instr_name REG COMMA REG COMMA REG SEMICOLON body
-    (12) ari_instr -> . ari_instr_name REG COMMA REG COMMA IMM SEMICOLON body
-    (13) ari_instr -> . empty
-    (14) reg_instr -> . reg_instr_name REG COMMA REG SEMICOLON body
-    (15) reg_instr -> . reg_instr_name REG COMMA IMM SEMICOLON body
-    (16) reg_instr -> . empty
-    (17) mem_instr -> . mem_instr_name REG COMMA REG SEMICOLON body
-    (18) mem_instr -> . mem_instr_name REG COMMA IMM SEMICOLON body
-    (19) mem_instr -> . empty
-    (20) bra_instr -> . bra_instr_name LABEL SEMICOLON body
-    (21) bra_instr -> . empty
-    (44) empty -> .
-    (24) ari_instr_name -> . ADD
-    (25) ari_instr_name -> . ADDI
-    (26) ari_instr_name -> . SUB
-    (27) ari_instr_name -> . SUBI
-    (28) ari_instr_name -> . MUL
-    (29) ari_instr_name -> . MULI
-    (30) reg_instr_name -> . MOVI
-    (31) reg_instr_name -> . CMP
-    (32) reg_instr_name -> . CMPI
-    (33) mem_instr_name -> . STR
-    (34) mem_instr_name -> . STRI
-    (35) mem_instr_name -> . LD
-    (36) bra_instr_name -> . BGT
-    (37) bra_instr_name -> . BGTE
-    (38) bra_instr_name -> . BE
-    (39) bra_instr_name -> . B
-    (40) bra_instr_name -> . BRGT
-    (41) bra_instr_name -> . BRGTE
-    (42) bra_instr_name -> . BRE
-    (43) bra_instr_name -> . BR
-
-    LABEL           shift and go to state 10
-    STLL            shift and go to state 12
-    $end            reduce using rule 44 (empty -> .)
-    ADD             shift and go to state 17
-    ADDI            shift and go to state 18
-    SUB             shift and go to state 19
-    SUBI            shift and go to state 20
-    MUL             shift and go to state 21
-    MULI            shift and go to state 22
-    MOVI            shift and go to state 23
-    CMP             shift and go to state 24
-    CMPI            shift and go to state 25
-    STR             shift and go to state 26
-    STRI            shift and go to state 27
-    LD              shift and go to state 28
-    BGT             shift and go to state 29
-    BGTE            shift and go to state 30
-    BE              shift and go to state 31
-    B               shift and go to state 32
-    BRGT            shift and go to state 33
-    BRGTE           shift and go to state 34
-    BRE             shift and go to state 35
-    BR              shift and go to state 36
-
-    mem_instr_name                 shift and go to state 15
-    body                           shift and go to state 63
-    instruction                    shift and go to state 3
-    label                          shift and go to state 4
-    spe_instr                      shift and go to state 5
-    ari_instr                      shift and go to state 6
-    reg_instr                      shift and go to state 7
-    mem_instr                      shift and go to state 8
-    bra_instr                      shift and go to state 9
-    empty                          shift and go to state 11
-    ari_instr_name                 shift and go to state 13
-    reg_instr_name                 shift and go to state 14
-    bra_instr_name                 shift and go to state 16
-
-state 58
-
-    (18) mem_instr -> mem_instr_name REG COMMA IMM SEMICOLON . body
-    (2) body -> . instruction
-    (3) body -> . label
-    (6) instruction -> . spe_instr
-    (7) instruction -> . ari_instr
-    (8) instruction -> . reg_instr
-    (9) instruction -> . mem_instr
-    (10) instruction -> . bra_instr
-    (4) label -> . LABEL body
-    (5) label -> . empty
-    (22) spe_instr -> . STLL SEMICOLON body
-    (23) spe_instr -> . empty
-    (11) ari_instr -> . ari_instr_name REG COMMA REG COMMA REG SEMICOLON body
-    (12) ari_instr -> . ari_instr_name REG COMMA REG COMMA IMM SEMICOLON body
-    (13) ari_instr -> . empty
-    (14) reg_instr -> . reg_instr_name REG COMMA REG SEMICOLON body
-    (15) reg_instr -> . reg_instr_name REG COMMA IMM SEMICOLON body
-    (16) reg_instr -> . empty
-    (17) mem_instr -> . mem_instr_name REG COMMA REG SEMICOLON body
-    (18) mem_instr -> . mem_instr_name REG COMMA IMM SEMICOLON body
-    (19) mem_instr -> . empty
-    (20) bra_instr -> . bra_instr_name LABEL SEMICOLON body
-    (21) bra_instr -> . empty
-    (44) empty -> .
-    (24) ari_instr_name -> . ADD
-    (25) ari_instr_name -> . ADDI
-    (26) ari_instr_name -> . SUB
-    (27) ari_instr_name -> . SUBI
-    (28) ari_instr_name -> . MUL
-    (29) ari_instr_name -> . MULI
-    (30) reg_instr_name -> . MOVI
-    (31) reg_instr_name -> . CMP
-    (32) reg_instr_name -> . CMPI
-    (33) mem_instr_name -> . STR
-    (34) mem_instr_name -> . STRI
-    (35) mem_instr_name -> . LD
-    (36) bra_instr_name -> . BGT
-    (37) bra_instr_name -> . BGTE
-    (38) bra_instr_name -> . BE
-    (39) bra_instr_name -> . B
-    (40) bra_instr_name -> . BRGT
-    (41) bra_instr_name -> . BRGTE
-    (42) bra_instr_name -> . BRE
-    (43) bra_instr_name -> . BR
-
-    LABEL           shift and go to state 10
-    STLL            shift and go to state 12
-    $end            reduce using rule 44 (empty -> .)
-    ADD             shift and go to state 17
-    ADDI            shift and go to state 18
-    SUB             shift and go to state 19
-    SUBI            shift and go to state 20
-    MUL             shift and go to state 21
-    MULI            shift and go to state 22
-    MOVI            shift and go to state 23
-    CMP             shift and go to state 24
-    CMPI            shift and go to state 25
-    STR             shift and go to state 26
-    STRI            shift and go to state 27
-    LD              shift and go to state 28
-    BGT             shift and go to state 29
-    BGTE            shift and go to state 30
-    BE              shift and go to state 31
-    B               shift and go to state 32
-    BRGT            shift and go to state 33
-    BRGTE           shift and go to state 34
-    BRE             shift and go to state 35
-    BR              shift and go to state 36
-
-    mem_instr_name                 shift and go to state 15
-    body                           shift and go to state 64
-    instruction                    shift and go to state 3
-    label                          shift and go to state 4
-    spe_instr                      shift and go to state 5
-    ari_instr                      shift and go to state 6
-    reg_instr                      shift and go to state 7
-    mem_instr                      shift and go to state 8
-    bra_instr                      shift and go to state 9
-    empty                          shift and go to state 11
-    ari_instr_name                 shift and go to state 13
-    reg_instr_name                 shift and go to state 14
-    bra_instr_name                 shift and go to state 16
-
-state 59
-
-    (11) ari_instr -> ari_instr_name REG COMMA REG COMMA REG . SEMICOLON body
-
-    SEMICOLON       shift and go to state 65
-
-
-state 60
-
-    (12) ari_instr -> ari_instr_name REG COMMA REG COMMA IMM . SEMICOLON body
-
-    SEMICOLON       shift and go to state 66
-
-
-state 61
-
-    (14) reg_instr -> reg_instr_name REG COMMA REG SEMICOLON body .
-
-    $end            reduce using rule 14 (reg_instr -> reg_instr_name REG COMMA REG SEMICOLON body .)
-
-
-state 62
-
-    (15) reg_instr -> reg_instr_name REG COMMA IMM SEMICOLON body .
-
-    $end            reduce using rule 15 (reg_instr -> reg_instr_name REG COMMA IMM SEMICOLON body .)
-
-
-state 63
-
-    (17) mem_instr -> mem_instr_name REG COMMA REG SEMICOLON body .
-
-    $end            reduce using rule 17 (mem_instr -> mem_instr_name REG COMMA REG SEMICOLON body .)
-
-
-state 64
-
-    (18) mem_instr -> mem_instr_name REG COMMA IMM SEMICOLON body .
-
-    $end            reduce using rule 18 (mem_instr -> mem_instr_name REG COMMA IMM SEMICOLON body .)
-
-
-state 65
-
-    (11) ari_instr -> ari_instr_name REG COMMA REG COMMA REG SEMICOLON . body
-    (2) body -> . instruction
-    (3) body -> . label
-    (6) instruction -> . spe_instr
-    (7) instruction -> . ari_instr
-    (8) instruction -> . reg_instr
-    (9) instruction -> . mem_instr
-    (10) instruction -> . bra_instr
-    (4) label -> . LABEL body
-    (5) label -> . empty
-    (22) spe_instr -> . STLL SEMICOLON body
-    (23) spe_instr -> . empty
-    (11) ari_instr -> . ari_instr_name REG COMMA REG COMMA REG SEMICOLON body
-    (12) ari_instr -> . ari_instr_name REG COMMA REG COMMA IMM SEMICOLON body
-    (13) ari_instr -> . empty
-    (14) reg_instr -> . reg_instr_name REG COMMA REG SEMICOLON body
-    (15) reg_instr -> . reg_instr_name REG COMMA IMM SEMICOLON body
-    (16) reg_instr -> . empty
-    (17) mem_instr -> . mem_instr_name REG COMMA REG SEMICOLON body
-    (18) mem_instr -> . mem_instr_name REG COMMA IMM SEMICOLON body
-    (19) mem_instr -> . empty
-    (20) bra_instr -> . bra_instr_name LABEL SEMICOLON body
-    (21) bra_instr -> . empty
-    (44) empty -> .
-    (24) ari_instr_name -> . ADD
-    (25) ari_instr_name -> . ADDI
-    (26) ari_instr_name -> . SUB
-    (27) ari_instr_name -> . SUBI
-    (28) ari_instr_name -> . MUL
-    (29) ari_instr_name -> . MULI
-    (30) reg_instr_name -> . MOVI
-    (31) reg_instr_name -> . CMP
-    (32) reg_instr_name -> . CMPI
-    (33) mem_instr_name -> . STR
-    (34) mem_instr_name -> . STRI
-    (35) mem_instr_name -> . LD
-    (36) bra_instr_name -> . BGT
-    (37) bra_instr_name -> . BGTE
-    (38) bra_instr_name -> . BE
-    (39) bra_instr_name -> . B
-    (40) bra_instr_name -> . BRGT
-    (41) bra_instr_name -> . BRGTE
-    (42) bra_instr_name -> . BRE
-    (43) bra_instr_name -> . BR
-
-    LABEL           shift and go to state 10
-    STLL            shift and go to state 12
-    $end            reduce using rule 44 (empty -> .)
-    ADD             shift and go to state 17
-    ADDI            shift and go to state 18
-    SUB             shift and go to state 19
-    SUBI            shift and go to state 20
-    MUL             shift and go to state 21
-    MULI            shift and go to state 22
-    MOVI            shift and go to state 23
-    CMP             shift and go to state 24
-    CMPI            shift and go to state 25
-    STR             shift and go to state 26
-    STRI            shift and go to state 27
-    LD              shift and go to state 28
-    BGT             shift and go to state 29
-    BGTE            shift and go to state 30
-    BE              shift and go to state 31
-    B               shift and go to state 32
-    BRGT            shift and go to state 33
-    BRGTE           shift and go to state 34
-    BRE             shift and go to state 35
-    BR              shift and go to state 36
-
-    ari_instr_name                 shift and go to state 13
-    body                           shift and go to state 67
-    instruction                    shift and go to state 3
-    label                          shift and go to state 4
-    spe_instr                      shift and go to state 5
-    ari_instr                      shift and go to state 6
-    reg_instr                      shift and go to state 7
-    mem_instr                      shift and go to state 8
-    bra_instr                      shift and go to state 9
-    empty                          shift and go to state 11
-    reg_instr_name                 shift and go to state 14
-    mem_instr_name                 shift and go to state 15
-    bra_instr_name                 shift and go to state 16
-
-state 66
-
-    (12) ari_instr -> ari_instr_name REG COMMA REG COMMA IMM SEMICOLON . body
-    (2) body -> . instruction
-    (3) body -> . label
-    (6) instruction -> . spe_instr
-    (7) instruction -> . ari_instr
-    (8) instruction -> . reg_instr
-    (9) instruction -> . mem_instr
-    (10) instruction -> . bra_instr
-    (4) label -> . LABEL body
-    (5) label -> . empty
-    (22) spe_instr -> . STLL SEMICOLON body
-    (23) spe_instr -> . empty
-    (11) ari_instr -> . ari_instr_name REG COMMA REG COMMA REG SEMICOLON body
-    (12) ari_instr -> . ari_instr_name REG COMMA REG COMMA IMM SEMICOLON body
-    (13) ari_instr -> . empty
-    (14) reg_instr -> . reg_instr_name REG COMMA REG SEMICOLON body
-    (15) reg_instr -> . reg_instr_name REG COMMA IMM SEMICOLON body
-    (16) reg_instr -> . empty
-    (17) mem_instr -> . mem_instr_name REG COMMA REG SEMICOLON body
-    (18) mem_instr -> . mem_instr_name REG COMMA IMM SEMICOLON body
-    (19) mem_instr -> . empty
-    (20) bra_instr -> . bra_instr_name LABEL SEMICOLON body
-    (21) bra_instr -> . empty
-    (44) empty -> .
-    (24) ari_instr_name -> . ADD
-    (25) ari_instr_name -> . ADDI
-    (26) ari_instr_name -> . SUB
-    (27) ari_instr_name -> . SUBI
-    (28) ari_instr_name -> . MUL
-    (29) ari_instr_name -> . MULI
-    (30) reg_instr_name -> . MOVI
-    (31) reg_instr_name -> . CMP
-    (32) reg_instr_name -> . CMPI
-    (33) mem_instr_name -> . STR
-    (34) mem_instr_name -> . STRI
-    (35) mem_instr_name -> . LD
-    (36) bra_instr_name -> . BGT
-    (37) bra_instr_name -> . BGTE
-    (38) bra_instr_name -> . BE
-    (39) bra_instr_name -> . B
-    (40) bra_instr_name -> . BRGT
-    (41) bra_instr_name -> . BRGTE
-    (42) bra_instr_name -> . BRE
-    (43) bra_instr_name -> . BR
-
-    LABEL           shift and go to state 10
-    STLL            shift and go to state 12
-    $end            reduce using rule 44 (empty -> .)
-    ADD             shift and go to state 17
-    ADDI            shift and go to state 18
-    SUB             shift and go to state 19
-    SUBI            shift and go to state 20
-    MUL             shift and go to state 21
-    MULI            shift and go to state 22
-    MOVI            shift and go to state 23
-    CMP             shift and go to state 24
-    CMPI            shift and go to state 25
-    STR             shift and go to state 26
-    STRI            shift and go to state 27
-    LD              shift and go to state 28
-    BGT             shift and go to state 29
-    BGTE            shift and go to state 30
-    BE              shift and go to state 31
-    B               shift and go to state 32
-    BRGT            shift and go to state 33
-    BRGTE           shift and go to state 34
-    BRE             shift and go to state 35
-    BR              shift and go to state 36
-
-    ari_instr_name                 shift and go to state 13
-    body                           shift and go to state 68
-    instruction                    shift and go to state 3
-    label                          shift and go to state 4
-    spe_instr                      shift and go to state 5
-    ari_instr                      shift and go to state 6
-    reg_instr                      shift and go to state 7
-    mem_instr                      shift and go to state 8
-    bra_instr                      shift and go to state 9
-    empty                          shift and go to state 11
-    reg_instr_name                 shift and go to state 14
-    mem_instr_name                 shift and go to state 15
-    bra_instr_name                 shift and go to state 16
-
-state 67
-
-    (11) ari_instr -> ari_instr_name REG COMMA REG COMMA REG SEMICOLON body .
-
-    $end            reduce using rule 11 (ari_instr -> ari_instr_name REG COMMA REG COMMA REG SEMICOLON body .)
-
-
-state 68
-
-    (12) ari_instr -> ari_instr_name REG COMMA REG COMMA IMM SEMICOLON body .
-
-    $end            reduce using rule 12 (ari_instr -> ari_instr_name REG COMMA REG COMMA IMM SEMICOLON body .)
-
-WARNING: 
-WARNING: Conflicts:
-WARNING: 
-WARNING: reduce/reduce conflict in state 11 resolved using rule (label -> empty)
-WARNING: rejected rule (spe_instr -> empty) in state 11
-WARNING: reduce/reduce conflict in state 11 resolved using rule (label -> empty)
-WARNING: rejected rule (ari_instr -> empty) in state 11
-WARNING: reduce/reduce conflict in state 11 resolved using rule (label -> empty)
-WARNING: rejected rule (reg_instr -> empty) in state 11
-WARNING: reduce/reduce conflict in state 11 resolved using rule (label -> empty)
-WARNING: rejected rule (mem_instr -> empty) in state 11
-WARNING: reduce/reduce conflict in state 11 resolved using rule (label -> empty)
-WARNING: rejected rule (bra_instr -> empty) in state 11
-WARNING: Rule (spe_instr -> empty) is never reduced
-WARNING: Rule (ari_instr -> empty) is never reduced
-WARNING: Rule (reg_instr -> empty) is never reduced
-WARNING: Rule (mem_instr -> empty) is never reduced
-WARNING: Rule (bra_instr -> empty) is never reduced

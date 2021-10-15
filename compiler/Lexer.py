@@ -3,10 +3,10 @@ import ply.lex as lex
 # Tokens
 tokens = [
     'COMMA',
-    'SEMICOLON',
     'REG',
     'IMM',
     'LABEL',
+    'COMMENT'
 ]
 
 # Reserved tokens in language
@@ -18,6 +18,7 @@ reserved = {
     'SUBI': 'SUBI',
     'MUL': 'MUL',
     'MULI': 'MULI',
+    'MOV': 'MOV',
     'MOVI': 'MOVI',
     'CMP': 'CMP',
     'CMPI': 'CMPI',
@@ -26,11 +27,11 @@ reserved = {
     'LD': 'LD',
     'BGT': 'BGT',
     'BGTE': 'BGTE',
-    'BE': 'BE',
+    'BEQ': 'BEQ',
     'B': 'B',
     'BRGT': 'BRGT',
     'BRGTE': 'BRGTE',
-    'BRE': 'BRE',
+    'BREQ': 'BREQ',
     'BR': 'BR',
 }
 
@@ -43,7 +44,6 @@ t_ignore = ' \t'
 
 # Delimiters
 t_COMMA = r','
-t_SEMICOLON = r';'
 
 
 # Register token
@@ -71,15 +71,20 @@ def t_IMM(t):
     return t
 
 
+# Comment token
+def t_COMMENT(t):
+    r'\;.*'
+
+
 # Moves parser 1 line when '\n' is detected
 def t_new_line(t):
-    r'\n+'
-    t.lexer.lineno += len(t.value)
+    r'\n'
+    t.lexer.lineno += 1
 
 
 # Error token
 def t_error(t):
-    print("Illegal character! '%s'" % t.value[0])
+    print("Illegal character! '%s'" % t.value[0] + " on line " + str(t.lineno))
     t.lexer.skip(1)
 
 
@@ -94,5 +99,7 @@ def analyze_lexical(string):
         if not tok:
             break
         result.append(tok)
+
+    analyzer.lineno = 1
 
     return result

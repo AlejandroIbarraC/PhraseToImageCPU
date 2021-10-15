@@ -3,21 +3,25 @@ import Lang
 from Lexer import analyze_lexical
 from Syntaxer import analyze_syntax
 
+# Variables for compilation
 bra_labels = {}
 
 hex_instr = []
 bin_instr = []
 
-nineteen_0s = '0000000000000000000'
-fifteen_0s = '000000000000000'
+# Useful constants
 four_0s = '0000'
+fifteen_0s = '000000000000000'
+nineteen_0s = '0000000000000000000'
 
 
 # Compile a block of code using the Spasm language lexemes and syntax
 def compile_code(code):
     # Lexical and syntax analysis
     analyze_lexical(code)
+
     result_tree = analyze_syntax(code)
+    result_tree.reverse()
 
     print("Result tree:")
     print(result_tree)
@@ -65,7 +69,12 @@ def tree_to_bin(tree):
 
 # Convert binary instructions to hex
 def bin_to_hex():
+    i = 0
     for instr in bin_instr:
+        if len(instr) != 32:
+            print("Not 32: " + instr + " " + str(i))
+        i += 1
+
         bin_code = int(instr, 2)
         hex_code = hex(bin_code)
         hex_code_len = len(hex_code)
@@ -87,7 +96,7 @@ def bin_to_hex():
 
 # Writes instructions in hex form on an output txt file
 def write_instr():
-    with open("../output.txt", "w") as file:
+    with open("./output.txt", "w") as file:
         for instr in hex_instr:
             file.write("%s\n" % instr[2:])
 
@@ -95,7 +104,7 @@ def write_instr():
 # Analyze instructions and convert to corresponding op code for processor
 def analyze_instr(instr, p_dir):
     print("ANALYZING")
-    print("instruction: " + str(instr) + " on line " + str(p_dir))
+    print("instruction: " + str(instr) + " on line " + str(int(p_dir, 16)))
 
     bin_res = ''
     instr_str = instr[0]
@@ -131,29 +140,29 @@ def analyze_instr_ari(instr):
 
         print("imm is " + imm)
 
-        r1 = Lang.registers.get(str(instr[2]))
-        r2 = Lang.registers.get(str(instr[1]))
+        r1 = Lang.registers.get(str(instr[1]))
+        r2 = Lang.registers.get(str(instr[2]))
 
         print("registers are " + r1 + " " + r2)
 
         # Append data
         bin_code += r1
-        bin_code += r2
         bin_code += imm
+        bin_code += r2
     else:
         # Arithmetical instruction is REG REG REG
         # Get data
-        r1 = Lang.registers.get(str(instr[3]))
+        r1 = Lang.registers.get(str(instr[1]))
         r2 = Lang.registers.get(str(instr[2]))
-        r3 = Lang.registers.get(str(instr[1]))
+        r3 = Lang.registers.get(str(instr[3]))
 
         print("registers are " + r1 + " " + r2 + " " + r3)
 
         # Append data
         bin_code += r1
-        bin_code += r2
         bin_code += r3
         bin_code += fifteen_0s
+        bin_code += r2
 
     print("binary: " + bin_code)
     print("length: " + str(len(bin_code)))
@@ -171,30 +180,28 @@ def analyze_instr_reg(instr):
     if isinstance(instr[2], int):
         # Register instruction is REG IMM
         # Get data
-        imm = shift_num(str(bin(instr[2]))[2:], 19)
-        r1 = Lang.reg_instrs.get(str(instr[1]))
+        imm = shift_num(str(bin(instr[2]))[2:], 23)
+        r1 = Lang.registers.get(str(instr[1]))
 
         print("imm is " + imm)
         print("reg is " + r1)
 
         # Append data
-        bin_code += imm
         bin_code += r1
-        bin_code += four_0s
+        bin_code += imm
     else:
         # Register instruction is REG REG
-        bin_code += fifteen_0s
 
         # Get data
-        r1 = Lang.registers.get(str(instr[2]))
-        r2 = Lang.registers.get(str(instr[1]))
+        r1 = Lang.registers.get(str(instr[1]))
+        r2 = Lang.registers.get(str(instr[2]))
 
         print("registers are " + r1 + " " + r2)
 
         # Append data
         bin_code += r1
         bin_code += r2
-        bin_code += four_0s
+        bin_code += nineteen_0s
 
     print("binary: " + bin_code)
     print("length: " + str(len(bin_code)))
@@ -218,12 +225,12 @@ def analyze_instr_mem(instr):
         print("r1 is " + r1)
 
         # Append data
-        bin_code += imm
         bin_code += r1
+        bin_code += imm
     else:
         # Get data
-        r1 = Lang.registers.get(str(instr[2]))
-        r2 = Lang.registers.get(str(instr[1]))
+        r1 = Lang.registers.get(str(instr[1]))
+        r2 = Lang.registers.get(str(instr[2]))
 
         print("r1 is " + r1)
         print("r2 is " + r2)
@@ -246,33 +253,46 @@ def analyze_instr_bra(instr, p_dir):
     bra_op_code = str(format(Lang.bra_instrs.get(instr[0]), '#010b'))[5:]
     print("op code for " + instr[0] + " is " + bra_op_code)
 
-    # Verify that label exists
-    if str(instr[1]) in bra_labels:
-        # Label exists
-        bra_dir = bra_labels.get(instr[1])
-        bra_lines = int(bra_dir, 16) - int(p_dir, 16)
+    target = str(instr[1])
 
-        print("jump " + str(bra_lines) + ' lines')
+    if target.startswith('_'):
+        # Target is a label
+        # Verify that label exists
+        if target in bra_labels:
+            # Label exists
+            bra_dir = bra_labels.get(instr[1])
+            bra_lines = int(bra_dir, 16) - int(p_dir, 16)
 
-        # Switch bit in position 2 for backwards jumps
-        if bra_lines < 0:
-            bra_op_code = list(bra_op_code)
-            bra_op_code[1] = '1'
-            bra_op_code = ''.join(bra_op_code)
-            print("new op code is: " + bra_op_code)
+            print("jump " + str(bra_lines) + ' lines')
 
-        # Append op code
-        bin_code += bra_op_code
+            # Switch bit in position 2 for backwards jumps
+            if bra_lines < 0:
+                bra_op_code = list(bra_op_code)
+                bra_op_code[1] = '1'
+                bra_op_code = ''.join(bra_op_code)
+                print("new op code is: " + bra_op_code)
 
-        # Fill with 0s to complete 32 - 5 bits
-        bra_lines = bin(abs(bra_lines))[2:]
-        bra_lines = shift_num(bra_lines, 27)
+            # Append op code
+            bin_code += bra_op_code
 
-        # Append data
-        bin_code += bra_lines
+            # Fill with 0s to complete 32 - 5 bits
+            bra_lines = bin(abs(bra_lines))[2:]
+            bra_lines = shift_num(bra_lines, 27)
+
+            # Append data
+            bin_code += bra_lines
+        else:
+            # Label doesn't exist
+            print("target branch " + str(instr[1]) + " does not exist")
     else:
-        # Label doesn't exist
-        print("target branch " + str(instr[1]) + " does not exist")
+        # Branch return
+        r1 = Lang.registers.get(str(instr[1]))
+        print("r1 is " + r1)
+
+        bin_code += bra_op_code
+        bin_code += four_0s
+        bin_code += r1
+        bin_code += nineteen_0s
 
     print("binary: " + bin_code)
     print("length: " + str(len(bin_code)))

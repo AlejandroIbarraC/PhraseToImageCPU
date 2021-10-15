@@ -1,5 +1,6 @@
 # Available registers
 registers = {
+    'R0': '0000',
     'R1': '0001',
     'R2': '0010',
     'R3': '0011',
@@ -29,6 +30,7 @@ ari_instrs = {
 
 # Register type instructions
 reg_instrs = {
+    'MOV': int('01000', 2),
     'MOVI': int('01001', 2),
     'CMP': int('01010', 2),
     'CMPI': int('01011', 2)
@@ -45,12 +47,12 @@ mem_instrs = {
 bra_instrs = {
     'BGT': int('10001', 2),
     'BGTE': int('10011', 2),
-    'BE': int('10101', 2),
+    'BEQ': int('10101', 2),
     'B': int('10111', 2),
-    'BRGT': int('10001', 2),
-    'BRGTE': int('10011', 2),
-    'BRE': int('10101', 2),
-    'BR': int('10111', 2)
+    'BRGT': int('10000', 2),
+    'BRGTE': int('10010', 2),
+    'BREQ': int('10100', 2),
+    'BR': int('10110', 2)
 }
 
 # Special type instructions

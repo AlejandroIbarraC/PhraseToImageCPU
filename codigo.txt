@@ -740,9 +740,99 @@ _escribirU
 	B		_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
 	B		_siguienteLetra
 
+_escribirV
+	MOVI		R6, 0	;Xi = 0
+	MOVI      R7, 0	;yi = 0
+	MOVI      R9, 2	;xf = 2
+	MOIV      R10,4     ;yf = 4
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_bresenhamArribaAbajo ;R6=Xi, R7=yi , R9=xf R10=yf yi>yf xi<xf
+	MOVI		R6, 2	;Xi = 2
+	MOVI      R7, 4	;yi = 4
+	MOVI      R9, 4	;xf = 4
+	MOIV      R10,0     ;yf = 0
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_bresenhamAbajoArriba ;R6=Xi, R7=yi , R9=xf R10=yf yi>yf xi<xf
+	B		_siguienteLetra
 
+_escribirW
+	MOVI		R6, 0	; xi = 0
+	MOVI		R7, 0	; yi = 0
+	MOVI		R10, 4	; yf = 4
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	MOVI		R6, 4	; xi = 4
+	MOVI		R7, 0	; yi = 0
+	MOVI		R10, 4	; yf = 4
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	MOVI		R6, 0	;Xi = 2
+	MOVI      R7, 4	;yi = 4
+	MOVI      R9, 2	;xf = 4
+	MOIV      R10,2     ;yf = 0
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_bresenhamAbajoArriba ;R6=Xi, R7=yi , R9=xf R10=yf yi>yf xi<xf
+	MOVI		R6, 2	;Xi = 2
+	MOVI      R7, 2	;yi = 2
+	MOVI      R9, 4	;xf = 4
+	MOIV      R10,4     ;yf = 4
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_bresenhamArribaAbajo ;R6=Xi, R7=yi , R9=xf R10=yf yi>yf xi<xf
+	B		_siguienteLetra
+
+_escribirX
+	MOVI		R6, 0	;Xi = 0
+	MOVI      R7, 0	;yi = 0
+	MOVI      R9, 4	;xf = 4
+	MOIV      R10,4     ;yf = 4
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_bresenhamAbajoArriba ;R6=Xi, R7=yi , R9=xf R10=yf yi>yf xi<xf
+	MOVI		R6, 4	;Xi = 4
+	MOVI      R7, 4	;yi = 4
+	MOVI      R9, 0	;xf = 0
+	MOIV      R10,0     ;yf = 0
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_bresenhamArribaAbajo ;R6=Xi, R7=yi , R9=xf R10=yf yi>yf xi<xf
+	B		_siguienteLetra
+
+_escribirY
+	MOVI		R6, 0	;Xi = 0
+	MOVI      R7, 0	;yi = 0
+	MOVI      R9, 2	;xf = 2
+	MOIV      R10,2     ;yf = 2
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_bresenhamArribaAbajo ;R6=Xi, R7=yi , R9=xf R10=yf yi>yf xi<xf
+	MOVI		R6, 2	;Xi = 2
+	MOVI      R7, 2	;yi = 2
+	MOVI      R9, 0	;xf = 0
+	MOIV      R10,0     ;yf = 0
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_bresenhamAbajoArriba ;R6=Xi, R7=yi , R9=xf R10=yf yi>yf xi<xf
+	MOVI		R6, 2	; xi = 2
+	MOVI		R7, 2	; yi = 2
+	MOVI		R10, 4	; yf = 4
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	B		_siguienteLetra
 	
-
+_escribirZ
+	MOVI		R6, 0	;Xi = 0
+	MOVI      R7, 0	;yi = 0
+	MOVI      R9, 4	;xf = 4
+	MOIV      R10,4     ;yf = 4
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_bresenhamAbajoArriba ;R6=Xi, R7=yi , R9=xf R10=yf yi>yf xi<xf
+	MOVI		R6, 0	;xi = 0
+	MOVI		R7, 0     ;yi = 0
+	MOVI      R9, 4     ;xf = 3
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
+	MOVI		R6, 0	;xi = 0
+	MOVI		R7, 4     ;yi = 0
+	MOVI      R9, 4     ;xf = 3
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
+	B		_siguienteLetra
 _fin
 	B		_fin
 

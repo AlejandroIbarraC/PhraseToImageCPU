@@ -300,6 +300,56 @@ _escribirLetra
 _determinarLetra
 	CMP		R5,68			; compara R5 con D ASCII en decimal
 	BEQ		_escribirD		; escribe D en la imagen
+	CMP		R5, 65			; compara R5 con A en ASCII
+	BEQ		_escribirA		; escribe A en la imagen
+	CMP		R5, 66			; compara R5 con B en ASCII
+	BEQ		_escribirB		; escribe B en la imagen
+	CMP		R5, 67			; compara R5 con C en ASCII
+	BEQ		_escribirC		; escribe C en la imagen
+	CMP		R5, 69			; compara R5 con E en ASCII
+	BEQ		_escribirE		; escribe E en la imagen
+	CMP		R5, 70			; compara R5 con F en ASCII
+	BEQ		_escribirF		; escribe F en la imagen
+	CMP		R5, 71			; compara R5 con G en ASCII
+	BEQ		_escribirG		; escribe G en la imagen
+	CMP		R5, 72			; compara R5 con H en ASCII
+	BEQ		_escribirH		; escribe H en la imagen
+	CMP		R5, 73			; compara R5 con I en ASCII
+	BEQ		_escribirI		; escribe I en la imagen
+	CMP		R5, 74			; compara R5 con J en ASCII
+	BEQ		_escribirJ		; escribe J en la imagen
+	CMP		R5, 75			; compara R5 con K en ASCII
+	BEQ		_escribirK		; escribe K en la imagen
+	CMP		R5, 76			; compara R5 con L en ASCII
+	BEQ		_escribirL		; escribe L en la imagen
+	CMP		R5, 77			; compara R5 con M en ASCII
+	BEQ		_escribirM		; escribe M en la imagen
+	CMP		R5, 78			; compara R5 con N en ASCII
+	BEQ		_escribirN		; escribe N en la imagen
+	CMP		R5, 79			; compara R5 con O en ASCII
+	BEQ		_escribirO		; escribe O en la imagen
+	CMP		R5, 80			; compara R5 con P en ASCII
+	BEQ		_escribirP		; escribe P en la imagen
+	CMP		R5, 81			; compara R5 con Q en ASCII
+	BEQ		_escribirQ		; escribe Q en la imagen
+	CMP		R5, 82			; compara R5 con R en ASCII
+	BEQ		_escribirR		; escribe R en la imagen
+	CMP		R5, 83			; compara R5 con S en ASCII
+	BEQ		_escribirS		; escribe S en la imagen
+	CMP		R5, 84			; compara R5 con T en ASCII
+	BEQ		_escribirT		; escribe T en la imagen
+	CMP		R5, 85			; compara R5 con U en ASCII
+	BEQ		_escribirU		; escribe U en la imagen
+	CMP		R5, 86			; compara R5 con V en ASCII
+	BEQ		_escribirV		; escribe V en la imagen
+	CMP		R5, 87			; compara R5 con W en ASCII
+	BEQ		_escribirW		; escribe W en la imagen
+	CMP		R5, 88			; compara R5 con X en ASCII
+	BEQ		_escribirX		; escribe X en la imagen
+	CMP		R5, 89			; compara R5 con Y en ASCII
+	BEQ		_escribirY		; escribe Y en la imagen
+	CMP		R5, 90			; compara R5 con Z en ASCII
+	BEQ		_escribirZ		; escribe Z en la imagen
 	ADDI		R1, R1, 1			; siguiente letra
 	B		_verificarCampo 	; verifica si cabe la siguiente palabra
 

@@ -1,0 +1,1021 @@
+_Inicio
+	MOVI		R0, 57600 ; direccion de SWINIT
+	LD		R0, R1	; guarda valor de SWINIT
+	CMPI		R1, 0	; verifica si se inicio el sistema
+	BEQ		_Inicio	; si aun no se inicia el sistema sigue esperando
+	MOVI		R1, 57602 ; inicio de memoria de palabras
+	MOVI		R2, 0	; X
+	MOVI		R3, 0	; Y
+
+_verificarCampo
+	CMPI		R1, 57702	; fin de parrafo
+	BEQ		_firmar	; si se termino de escribir el parrafo pasa a firmar
+	MOV		R4, R1	; TMP de direccion de letra actual
+	MOV		R6, R2	; TMP de X
+
+
+_verificarCampoLoop
+	CMPI		R6, 240	; compara x con el ultimo pixel en x
+	BGT		_saltarLinea	; si es mayor que el ultimo bit salta de line
+	LD		R4, R5	; guarda valor de la siguiente letra
+	CMPI		R5, 32	; compara si la letra es un espacio
+	BEQ		_comprobarFinLinea	; si el valor es un espacio salta a comprobar si esta en el fin de Linea
+	ADDI		R6, R6, 6 ; siguiente espacio X
+	ADDI		R4, R4, 1 ; siguiente letra
+	CMPI		R4, 57702	; fin de parrafo
+	BEQ		_comprobarFinLinea
+	B		_verificarCampoLoop
+
+
+
+_siguienteLetra
+	ADDI		R2, R2, 6	; siguiente espacio X
+	ADDI		R1, R1, 1	; siguiente letra
+	CMPI		R1, 57702	; fin de parrafo
+	BEQ		_firmar	; si se termino de escribir el parrafo pasa a firmar
+_comprobarFinLinea
+	CMPI		R2, 240	; verifica si ya llego al final de la imagen en x
+	BGTE		_finLinea ; si es mayor o igual va a finalizar la linea
+	B		_escribirLetra
+
+
+_finLinea
+	LD		R1, R5	; guarda valor de la siguiente letra
+	CMPI		R5, 32	; compara si la letra es un espacio
+	BEQ		_saltarEspacio
+	MOVI		R2, 0	; reinicia x al inicio
+	ADDI		R3, R3, 6 ; siguiente espacio y
+	B		_verificarCampo
+
+_saltarEspacio
+	ADDI		R1, R1, 1	; siguiente letra
+_siguienteLinea		
+	ADDI		R3, R3, 6	; siguiente espacio y
+	MOVI		R2, 0     ; reinicia x al inicio
+	B		_verificarCampo
+
+
+_saltarLinea ; realiza salto de linea cuando la palabra no cabe
+	CMPI		R2, 240			; verifica si ya llego al final de la imagen en x
+	BGTE		_finLinea			; si X es el ultimo pixel o mayor va a _finLinea
+	MOVI		R7, 0 			; contador y
+	MOV		R6, R2			; TMP de X
+_saltarLineaLoop
+	ADD		R8, R3, R7		; guarda en R8=Yfinal la suma de R3=Yabsoluto y R7=Yrelativo
+	MULI		R8, R8, 240		; multiplica y por la cantidad de pixeles en x
+	ADD		R8, R8, R6		; suma los pixeles de Xtmp 
+	STRI		R8, 1			; coloca uno en el pixel de la imagen
+	ADDI		R6, R6, 1			; suma uno al TMP de x
+	CMPI		R6, 240			; compara si ya se llego al ultimo pixel en x
+	BEQ		_saltarLineaSiguienteY
+	B _saltarLineaLoop
+_saltarLineaSiguienteY
+	MOV		R6, R2			; reinicia xtmp a X
+	ADDI		R7, R7, 1			; suma 1 a Yrelativo
+	CMPI		R7, 6			; verifica si y==6
+	BEQ		_siguienteLinea	; si y=6 pasa a la siguiente linea de la imagen
+	B		_saltarLineaLoop	
+
+
+
+
+
+_rellenarEspacio
+	MOVI		R7, 0  		; contador y
+	MOVI		R6, 0  		; contador X
+_rellenarEspacioLoop
+	ADD		R8, R3, R7	; guarda en R8=Yfinal la suma de R3=Yabsoluto y R7=Yrelativo
+	MULI		R8, R8, 240	; multiplica R8=Yfinal con la cantidad de pixeles en X
+	ADD		R8, R8, R2	; suma los pixeles absolutos en x
+	ADD		R8, R8, R6	; suma los pixeles relativos en x
+	STRI		R8, 1		; coloca el valor 1 del pixel en la imagen
+	ADDI		R6, R6, 1		; pasa al siguiente pixel en x
+	CMPI		R6, 6		; compara si ya llego al final de la letra en x
+	BEQ		_rellenarEspacioSiguienteY
+	B 		_rellenarEspacioLoop
+_rellenarEspacioSiguienteY
+	MOVI		R6, 0		; reinica la posicion relativa de x a 0
+	ADDI		R7, R7, 1		; suma 1 a la posicion relativa en y
+	CMPI		R7, 6		; compara si ya llego al final de la letra en y
+	BREQ		R0
+	B 		_rellenarEspacioLoop
+	
+
+_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	ADD		R8, R3, R7	; guarda en R8=Yfinal la suma de R3=Yabsoluto y R7=Yrelativo
+	MULI		R8, R8, 240	; multiplica R8=Yfinal con la cantidad de pixeles en X
+	ADD		R8, R8, R2	; suma los pixeles absolutos en x
+	ADD		R8, R8, R6	; suma los pixeles relativos en x
+	STRI		R8, 0		; coloca el valor 1 del pixel en la imagen
+	CMP		R7, R10		; compara yi con yf
+	BREQ		R0			; si es igual realiza return
+	ADDI		R7, R7, 1		; suma 1 al yi
+	B		_lineaVertical
+
+
+_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
+	ADD		R8, R3, R7	; guarda en R8=Yfinal la suma de R3=Yabsoluto y R7=Yrelativo
+	MULI		R8, R8, 240	; multiplica R8=Yfinal con la cantidad de pixeles en X
+	ADD		R8, R8, R2	; suma los pixeles absolutos en x
+	ADD		R8, R8, R6	; suma los pixeles relativos en x
+	STRI		R8, 0		; coloca el valor 1 del pixel en la imagen
+	CMP		R6, R9		; compara xi con xf
+	BREQ		R0			; si es igual realiza return
+	ADDI		R6, R6, 1		; suma 1 al xi
+	B		_lineaHorizontal
+
+
+_bresenhamYArribaAbajo ; R6=Xi, R7=yi , R9=xf R10=yf yi<yf xi<xf
+	SUB		R11, R10, R7	; M_new=yf-yi
+	MULI		R11, R11, 2	; M_new*=2
+	SUB		R14,	R9, R6	; R14=xf-xi
+	SUB		R12, R11, R14	; slope_error_new=M_new-(xf-xi)
+	MULI		R14, R14, 2	; R14=2*(xf-xi)
+_bresenhamYArribaAbajoLoop
+	ADD		R8, R3, R7	; guarda en R8=Yfinal la suma de R3=Yabsoluto y R7=Yrelativo
+	MULI		R8, R8, 240	; multiplica R8=Yfinal con la cantidad de pixeles en X
+	ADD		R8, R8, R2	; suma los pixeles absolutos en x
+	ADD		R8, R8, R6	; suma los pixeles relativos en x
+	STRI		R8,  0		; coloca el valor 1 del pixel en la imagen
+	ADD		R12, R12, R11	; slope_error_new+=M_new
+	MOVI		R13, 0
+	CMP		R13, R12		; 		
+	BGT		_bresenhamYArribaAbajoFor
+	ADDI		R7, R7, 1		; y+=1
+	SUB		R12, R12, R14	; slope_error_new-=2*(xf-xi)
+_bresenhamYArribaAbajoFor
+	ADDI		R6,R6,1 					;xi+=1
+	CMP		R6,R9					;xi==xf
+	BRGT		R0						; Si xi>xf finaliza el algoritmo
+	B		_bresenhamYArribaAbajoLoop	; for xi < xf+1 realiza loop
+
+
+_bresenhamYAbajoArriba ; R6=Xi, R7=yi , R9=xf R10=yf yi>yf xi<xf
+	SUB		R11, R7, R10	; M_new=yi-yf
+	MULI		R11, R11, 2	; M_new=2*(yi-yf)
+	SUB		R14,	R9, R6	; R14=xf-xi
+	SUB		R12, R11, R14	; slope_error_new=M_new-(xf-xi)
+	MULI		R14, R14, 2	; R14=2*(xf-xi)
+_bresenhamYAbajoArribaLoop
+	ADD		R8, R3, R7	; guarda en R8=Yfinal la suma de R3=Yabsoluto y R7=Yrelativo
+	MULI		R8, R8, 240	; multiplica R8=Yfinal con la cantidad de pixeles en X
+	ADD		R8, R8, R2	; suma los pixeles absolutos en x
+	ADD		R8, R8, R6	; suma los pixeles relativos en x
+	STRI		R8,  0		; coloca el valor 1 del pixel en la imagen
+	ADD		R12, R12, R11	; slope_error_new+=M_new
+	MOVI		R13, 0
+	CMP		R13, R12		; compara que slope_error_new >= 0	o bien que 0
+	BGT		_bresenhamYAbajoArribaFor	; si es menor que 0 o bien 0 > slope_error_new termina el ciclo
+	SUBI		R7, R7, 1		; y-=1
+	SUB		R12, R12, R14	; slope_error_new-=2*(xf-xi)
+_bresenhamYAbajoArribaFor
+	ADDI		R6,R6,1 					;xi+=1
+	CMP		R6,R9					;xi==xf
+	BRGT		R0						; Si xi>xf finaliza el algoritmo
+	B		_bresenhamYAbajoArribaLoop	; for xi < xf+1 realiza loop
+
+
+_bresenhamXArribaAbajo ; R6=Xi, R7=yi , R9=xf R10=yf yi<yf xi<xf
+	SUB		R11, R9, R6	; M_new=yf-yi
+	MULI		R11, R11, 2	; M_new*=2
+	SUB		R14,	R10, R7	; R14=xf-xi
+	SUB		R12, R11, R14	; slope_error_new=M_new-(xf-xi)
+	MULI		R14, R14, 2	; R14=2*(xf-xi)
+_bresenhamXArribaAbajoLoop
+	ADD		R8, R3, R7	; guarda en R8=Yfinal la suma de R3=Yabsoluto y R7=Yrelativo
+	MULI		R8, R8, 240	; multiplica R8=Yfinal con la cantidad de pixeles en X
+	ADD		R8, R8, R2	; suma los pixeles absolutos en x
+	ADD		R8, R8, R6	; suma los pixeles relativos en x
+	STRI		R8,  0		; coloca el valor 1 del pixel en la imagen
+	ADD		R12, R12, R11	; slope_error_new+=M_new
+	MOVI		R13, 0
+	CMP		R13, R12		;
+	BGT		_bresenhamXArribaAbajoFor
+	ADDI		R6, R6, 1		; y+=1
+	SUB		R12, R12, R14	; slope_error_new-=2*(xf-xi)
+_bresenhamXArribaAbajoFor
+	ADDI		R7,R7,1 					;xi+=1
+	CMP		R7,R10					;xi==xf
+	BRGT		R0						; Si xi>xf finaliza el algoritmo
+	B		_bresenhamXArribaAbajoLoop	; for xi < xf+1 realiza loop
+
+_bresenhamXAbajoArriba ; R6=Xi, R7=yi , R9=xf R10=yf yi<yf xi>xf
+	SUB		R11, R6, R9	; M_new=xi-xf
+	MULI		R11, R11, 2	; M_new=2*(xi-xf)
+	SUB		R14,	R10, R7	; R14=yf-yi
+	SUB		R12, R11, R14	; slope_error_new=M_new-(yf-yi)
+	MULI		R14, R14, 2	; R14=2*(yf-yi)
+_bresenhamXAbajoArribaLoop
+	ADD		R8, R3, R7	; guarda en R8=Yfinal la suma de R3=Yabsoluto y R7=Yrelativo
+	MULI		R8, R8, 240	; multiplica R8=Yfinal con la cantidad de pixeles en X
+	ADD		R8, R8, R2	; suma los pixeles absolutos en x
+	ADD		R8, R8, R6	; suma los pixeles relativos en x
+	STRI		R8,  0		; coloca el valor 1 del pixel en la imagen
+	ADD		R12, R12, R11	; slope_error_new+=M_new
+	MOVI		R13, 0
+	CMP		R13, R12		; compara que slope_error_new >= 0	o bien que 0
+	BGT		_bresenhamXAbajoArribaFor	; si es menor que 0 o bien 0 > slope_error_new termina el ciclo
+	SUBI		R6, R6, 1		; y-=1
+	SUB		R12, R12, R14	; slope_error_new-=2*(yf-yi)
+_bresenhamXAbajoArribaFor
+	ADDI		R7,R7,1 					;xi+=1
+	CMP		    R7,R10					;xi==xf
+	BRGT		R0						; Si xi>xf finaliza el algoritmo
+	B		_bresenhamXAbajoArribaLoop	; for xi < xf+1 realiza loop
+
+_bresenhamArribaAbajo ; R6=Xi, R7=yi , R9=xf R10=yf yi<yf xi<xf
+    SUB     R11, R10, R7                ; R11=yf-yi
+    SUB     R12, R9, R6                 ; R12=xf- xi
+    CMP     R12, R11                    ;  compara deltax con deltay
+    BGTE     _bresenhamYArribaAbajo      ; si deltax>deltay realiza BresenhamNormal
+    B       _bresenhamXArribaAbajo      ;  sino realiza  BresenhamInvertido
+
+_bresenhamAbajoArriba ; R6=Xi, R7=yi , R9=xf R10=yf yi>yf xi<xf
+    SUB     R11, R7, R10                ; R11=yi-yf
+    SUB     R12, R9, R6                 ; R12=xf- xi
+    CMP     R12, R11                    ;  compara deltax con deltay
+    BGTE     _bresenhamYAbajoArriba      ; si deltax>deltay realiza BresenhamNormal
+    MOV     R13,R7                      ; temporal de yi
+    MOV     R7,R10                      ; cambia yi por yf
+    MOV     R10,R13                     ; cambia yf por yi
+    MOV     R14,R6                      ; temporal de xi
+    MOV     R6,R9                      ; cambia xi por xf
+    MOV     R9,R14                     ; cambia xf por xi
+    B       _bresenhamXAbajoArriba      ;  sino realiza  BresenhamInvertido
+
+
+
+_bresenhamCirculo ; R6=xc centro, R7=yc centro R9=r radio  
+	MOVI		R10, 0		; x=0
+	MULI		R11, R9,2		; 2*r
+	MOVI		R12, 3		; d=3
+	SUB		R12, R12, R11	; d= 3-2*r
+	MOV		R11,R9		; y=r
+_escribirCirculo
+	ADD		R13, R6, R10	; xr=xc+x
+	ADD		R14,	R7, R11	; yr=yc+y
+	MOV		R4,R15		; guarda pc+2 en r4
+	B		_escribirBitCirculo
+	SUB		R13, R6, R10	; xr=xc-x
+	MOV		R4,R15		; guarda pc+2 en r4
+	B		_escribirBitCirculo
+	SUB		R14,	R7, R11	; yr= yc-y
+	MOV		R4,R15		; guarda pc+2 en r4
+	B		_escribirBitCirculo
+	ADD		R13, R6, R10	; xr=xc+x
+	MOV		R4,R15		; guarda pc+2 en r4
+	B		_escribirBitCirculo
+	ADD		R13, R6, R11	; xr=xc+y
+	ADD		R14,	R7, R10	; yr=yc+x
+	MOV		R4,R15		; guarda pc+2 en r4
+	B		_escribirBitCirculo
+	SUB		R13, R6, R11	; xr=xc-y
+	MOV		R4,R15		; guarda pc+2 en r4
+	B		_escribirBitCirculo
+	SUB		R14,	R7, R10	; yr=yc-x
+	MOV		R4,R15		; guarda pc+2 en r4
+	B		_escribirBitCirculo	
+	ADD		R13, R6, R11	; xr=xc+y
+	MOV		R4,R15		; guarda pc+2 en r4
+	B		_escribirBitCirculo
+_bresenhamCirculoLoopWhile
+	CMP		R10,R11		; compara x con y
+	BRGT	R0			; si x>y realiza return
+_bresenhamCirculoLoop
+	ADDI		R10, R10, 1	; x+=1
+	CMPI		R12, 0		; compara d con 0
+	BGT		_bresenhamCirculoGT	; si d>0  realiza el if
+	MULI		R8, R10, 4		; R8=x*4
+	ADD		R12, R12, R8		; d+=x*4
+	ADDI		R12, R12, 6		; d+=x*4+6
+	B 		_escribirCirculo
+_bresenhamCirculoGT
+	SUBI		R11, R11, 1		; y-=1
+	SUB		R8, R10,R11		; R8=x-y
+	MULI		R8, R8, 4			; R8=(x-y)*4
+	ADD		R12, R12, R8		; d+=(x-y)*4
+	ADDI		R12, R12, 10		; d+=(x-y)*4+10
+	B		_escribirCirculo
+_escribirBitCirculo	;R13=Xrelativo, R14=Yrelativo R4 return
+	ADD		R8, R3, R14	; guarda en R8=Yfinal la suma de R3=Yabsoluto y R7=Yrelativo
+	MULI		R8, R8, 240	; multiplica R8=Yfinal con la cantidad de pixeles en X
+	ADD		R8, R8, R2	; suma los pixeles absolutos en x
+	ADD		R8, R8, R13	; suma los pixeles relativos en x
+	STRI		R8,  0		; coloca el valor 1 del pixel en la imagen
+	BR		R4			; realiza return
+
+_firmar
+	CMPI		R2, 240			; verifica si esta al final de una linea
+	BEQ 		_saltarLineaFirma	; si esta al final salta a la siguiente linea
+	MOV		R0,R15			; guarda PC+2 en R0
+	B		_rellenarEspacio
+	B		_escribirFirma
+_saltarLineaFirma
+	MOVI		R2, 0			; reinicia x a 0
+	ADDI		R3, R3, 6			; pasa a la siguiente linea en y
+	B		_escribirFirma
+
+	
+_terminarImagen
+	CMPI		R2, 240			; verifica si ya llego al final de la imagen en x
+	BGTE		_lineasCompletas   ; si X es el ultimo pixel o mayor va a _finLinea
+	MOVI		R7, 0 			; contador y
+	MOV		R6, R2			; TMP de X
+_terminarLineaLoop
+	ADD		R8, R3, R7		; guarda en R8=Yfinal la suma de R3=Yabsoluto y R7=Yrelativo
+	MULI		R8, R8, 240		; multiplica y por la cantidad de pixeles en x
+	ADD		R8, R8, R6		; suma los pixeles de Xtmp 
+	STRI		R8, 1			; coloca uno en el pixel de la imagen
+	ADDI		R6, R6, 1			; suma uno al TMP de x
+	CMPI		R6, 240			; compara si ya se llego al ultimo pixel en x
+	BEQ		_terminarLineaSiguienteY
+	B 		_terminarLineaLoop
+_terminarLineaSiguienteY
+	MOV		R6, R2			; reinicia xtmp a X
+	ADDI		R7, R7, 1			; suma 1 a Yrelativo
+	CMPI		R7, 6			; verifica si y==6
+	BEQ		_lineasCompletas	; si y=6 pasa a la siguiente linea de la imagen
+	B		_terminarLineaLoop	
+
+_lineasCompletas
+	MOVI		R2, 0 			; reinicia x a 0
+	ADDI		R3, R3, 6			; pasa a la siguiente linea en y
+_lineasCompletasLoop
+	MULI		R8, R3, 240		; multiplica y por la cantidad de pixeles en x
+	ADD		R8, R8, R2		; suma los pixeles de X 
+	STRI		R8, 1			; coloca uno en el pixel de la imagen
+	ADDI		R2, R2, 1			; suma uno a x
+	CMPI		R2, 240			; compara si ya se llego al ultimo pixel en x
+	BEQ		_lineasCompletasSiguienteY
+	B 		_lineasCompletasLoop
+_lineasCompletasSiguienteY
+	MOVI		R2, 0			; reinicia X a 0
+	ADDI		R3, R3, 1			; suma 1 a Yrelativo
+	CMPI		R3, 240			; verifica si y==6
+	BEQ		_enviarGPIO		; si y=6 pasa a la siguiente linea de la imagen
+	B		_lineasCompletasLoop	
+
+_enviarGPIO
+	MOVI		R0, 0		;contador de imagen
+	MOVI		R2, 57601		; GPIO pin
+	_enviarGPIOLoop
+	LD		R0, R1		; carga el pixel de la imagen
+	STR		R2, R1		; muestra el pixel en el GPIO
+	ADDI		R0, R0, 1		; pasa al siguiente pixel de la imagen
+	CMPI		R0, 57600 ; Fin de imagen
+	BEQ		_fin
+	B		_enviarGPIOLoop
+	
+_escribirLetra
+	MOV		R0,R15			; guarda PC+2 en R0
+	B		_rellenarEspacio
+_determinarLetra
+    LD          R1,R5
+	CMPI		R5,68			; compara R5 con D ASCII en decimal
+	BEQ		_escribirD		; escribe D en la imagen
+	CMPI		R5, 65			; compara R5 con A en ASCII
+	BEQ		_escribirA		; escribe A en la imagen
+	CMPI		R5, 66			; compara R5 con B en ASCII
+	BEQ		_escribirB		; escribe B en la imagen
+	CMPI		R5, 67			; compara R5 con C en ASCII
+	BEQ		_escribirC		; escribe C en la imagen
+	CMPI		R5, 69			; compara R5 con E en ASCII
+	BEQ		_escribirE		; escribe E en la imagen
+	CMPI		R5, 70			; compara R5 con F en ASCII
+	BEQ		_escribirF		; escribe F en la imagen
+	CMPI		R5, 71			; compara R5 con G en ASCII
+	BEQ		_escribirG		; escribe G en la imagen
+	CMPI		R5, 72			; compara R5 con H en ASCII
+	BEQ		_escribirH		; escribe H en la imagen
+	CMPI		R5, 73			; compara R5 con I en ASCII
+	BEQ		_escribirI		; escribe I en la imagen
+	CMPI		R5, 74			; compara R5 con J en ASCII
+	BEQ		_escribirJ		; escribe J en la imagen
+	CMPI		R5, 75			; compara R5 con K en ASCII
+	BEQ		_escribirK		; escribe K en la imagen
+	CMPI		R5, 76			; compara R5 con L en ASCII
+	BEQ		_escribirL		; escribe L en la imagen
+	CMPI		R5, 77			; compara R5 con M en ASCII
+	BEQ		_escribirM		; escribe M en la imagen
+	CMPI		R5, 78			; compara R5 con N en ASCII
+	BEQ		_escribirN		; escribe N en la imagen
+	CMPI		R5, 79			; compara R5 con O en ASCII
+	BEQ		_escribirO		; escribe O en la imagen
+	CMPI		R5, 80			; compara R5 con P en ASCII
+	BEQ		_escribirP		; escribe P en la imagen
+	CMPI		R5, 81			; compara R5 con Q en ASCII
+	BEQ		_escribirQ		; escribe Q en la imagen
+	CMPI		R5, 82			; compara R5 con R en ASCII
+	BEQ		_escribirR		; escribe R en la imagen
+	CMPI		R5, 83			; compara R5 con S en ASCII
+	BEQ		_escribirS		; escribe S en la imagen
+	CMPI		R5, 84			; compara R5 con T en ASCII
+	BEQ		_escribirT		; escribe T en la imagen
+	CMPI		R5, 85			; compara R5 con U en ASCII
+	BEQ		_escribirU		; escribe U en la imagen
+	CMPI		R5, 86			; compara R5 con V en ASCII
+	BEQ		_escribirV		; escribe V en la imagen
+	CMPI		R5, 87			; compara R5 con W en ASCII
+	BEQ		_escribirW		; escribe W en la imagen
+	CMPI		R5, 88			; compara R5 con X en ASCII
+	BEQ		_escribirX		; escribe X en la imagen
+	CMPI		R5, 89			; compara R5 con Y en ASCII
+	BEQ		_escribirY		; escribe Y en la imagen
+	CMPI		R5, 90			; compara R5 con Z en ASCII
+	BEQ		_escribirZ		; escribe Z en la imagen
+	ADDI		R2, R2, 6	; siguiente espacio X
+	ADDI		R1, R1, 1			; siguiente letra
+	B		_verificarCampo 	; verifica si cabe la siguiente palabra
+
+
+	
+_escribirFirma
+	MOVI		R6, 0	; xi = 0
+	MOVI		R7, 0	; yi = 0
+	MOVI		R10, 4	; yf = 4
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	MOVI		R6, 0	; xi = 0
+	MOVI		R7, 0	; yi = 0
+	MOVI		R9, 4	; xf = 4
+	MOVI		R10, 4	; yf = 1
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_bresenhamArribaAbajo ; R6=Xi, R7=yi , R9=xf R10=yf yi<yf xi<xf
+	MOVI		R6, 0	;xi = 0
+	MOVI		R7, 0     ;yi = 0
+	MOVI      R9, 4     ;xf = 3
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
+	MOVI		R6, 0	;xi = 0
+	MOVI		R7, 4     ;yi = 0
+	MOVI      R9, 4     ;xf = 3
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
+	MOVI		R6, 4	; xi = 0
+	MOVI		R7, 0	; yi = 0
+	MOVI		R10, 4	; yf = 4
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	MOVI		R6, 2	;Xc = 2
+	MOVI		R7, 2	;Yc = 2
+	MOVI		R9, 2	;Rc = 2
+	MOV       R0, R15   ; guarda PC+2 en R0
+	B		_bresenhamCirculo ; R6=xc centro, R7=yc centro R9=r radio  
+	ADDI		R2, R2, 6		;va al siguiente espacio de palabra
+	B		_terminarImagen
+
+
+_escribirD
+	MOVI		R6, 0	; xi = 0
+	MOVI		R7, 0	; yi = 0
+	MOVI		R10, 4	; yf = 4
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	MOVI		R6, 4	; xi = 0
+	MOVI		R7, 1	; yi = 1
+	MOVI		R10, 3	; yf = 3
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	MOVI		R6, 0	;xi = 0
+	MOVI		R7, 4     ;yi = 4
+	MOVI      R9, 3     ;xf = 2
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
+	MOVI		R6, 0	;xi = 0
+	MOVI		R7, 0     ;yi = 0
+	MOVI      R9, 3     ;xf = 2
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
+	MOVI		R6, 3	; xi = 2
+	MOVI		R7, 0	; yi = 0
+	MOVI		R9, 4	; xf = 4
+	MOVI		R10, 1	; yf = 1
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_bresenhamArribaAbajo ; R6=Xi, R7=yi , R9=xf R10=yf yi<yf xi<xf
+	MOVI		R6, 3	; xi = 2
+	MOVI		R7, 4	; yi = 4
+	MOVI		R9, 4	; xf = 4
+	MOVI		R10, 3	; yf = 3
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_bresenhamAbajoArriba ; R6=Xi, R7=yi , R9=xf R10=yf yi>yf xi<xf
+	B		_siguienteLetra
+
+_escribirA
+    MOVI		R6, 0	; xi = 0
+	MOVI		R7, 2	; yi = 0
+	MOVI		R10, 4	; yf = 4
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	MOVI		R6, 4	; xi = 0
+	MOVI		R7, 2	; yi = 1
+	MOVI		R10, 4	; yf = 3
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	MOVI		R6, 0	;Xi = 0
+	MOVI      R7, 2	;yi = 4
+	MOVI      R9, 2	;xf = 2
+	MOVI      R10,0     ;yf = 0
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_bresenhamAbajoArriba ;R6=Xi, R7=yi , R9=xf R10=yf yi>yf xi<xf
+	MOVI      R6, 2	;xi = 2
+	MOVI      R7, 0     ;yi = 0
+	MOVI      R9, 4     ;xf = 4
+	MOVI      R10,2	;yf = 4
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_bresenhamArribaAbajo  ;;R6=Xi, R7=yi , R9=xf R10=yf yi>yf xi<xf
+	MOVI		R6, 1	;xi = 2
+	MOVI		R7, 2     ;yi = 2
+	MOVI      R9, 3     ;xf = 3
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
+	B		_siguienteLetra
+
+_escribirB
+	MOVI		R6, 1	; xi = 1
+	MOVI		R7, 0	; yi = 0
+	MOVI		R10, 4	; yf = 4
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	MOVI		R6, 0	;xi = 0
+	MOVI		R7, 0     ;yi = 0
+	MOVI      R9, 3     ;xf = 3
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
+	MOVI		R6, 3	; xi = 3
+	MOVI		R7, 0	; yi = 0
+	MOVI		R10, 2	; yf = 2
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	MOVI		R6, 1	;xi = 1
+	MOVI		R7, 2     ;yi = 2
+	MOVI      R9, 3     ;xf = 3
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
+	MOVI		R6, 3	; xi = 3
+	MOVI		R7, 2	; yi = 2
+	MOVI		R10, 4	; yf = 4
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	MOVI		R6, 0	;xi = 0
+	MOVI		R7, 4     ;yi = 4
+	MOVI      R9, 3     ;xf = 3
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
+	B		_siguienteLetra
+
+_escribirC
+	MOVI		R6, 0	; xi = 0
+	MOVI		R7, 0	; yi = 0
+	MOVI		R10, 4	; yf = 4
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	MOVI		R6, 0	;xi = 0
+	MOVI		R7, 0     ;yi = 0
+	MOVI      R9, 3     ;xf = 3
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
+	MOVI		R6, 0	;xi = 0
+	MOVI		R7, 4     ;yi = 0
+	MOVI      R9, 3     ;xf = 3
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
+	B		_siguienteLetra
+
+_escribirE
+	MOVI		R6, 0	; xi = 0
+	MOVI		R7, 0	; yi = 0
+	MOVI		R10, 4	; yf = 4
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	MOVI		R6, 0	;xi = 0
+	MOVI		R7, 0     ;yi = 0
+	MOVI      R9, 3     ;xf = 3
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
+	MOVI		R6, 0	;xi = 0
+	MOVI		R7, 2     ;yi = 2
+	MOVI      R9, 3     ;xf = 3
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
+	MOVI		R6, 0	;xi = 0
+	MOVI		R7, 4     ;yi = 4
+	MOVI      R9, 3     ;xf = 3
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
+	B		_siguienteLetra
+
+_escribirF
+	MOVI		R6, 0	; xi = 0
+	MOVI		R7, 0	; yi = 0
+	MOVI		R10, 4	; yf = 4
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	MOVI		R6, 0	;xi = 0
+	MOVI		R7, 0     ;yi = 0
+	MOVI      R9, 4     ;xf = 3
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
+	MOVI		R6, 0	;xi = 0
+	MOVI		R7, 2     ;yi = 0
+	MOVI      R9, 2     ;xf = 3
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
+	B		_siguienteLetra
+
+_escribirG
+	MOVI		R6, 0	; xi = 0
+	MOVI		R7, 0	; yi = 0
+	MOVI		R10, 4	; yf = 4
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	MOVI		R6, 0	;xi = 0
+	MOVI		R7, 0     ;yi = 0
+	MOVI      R9, 3     ;xf = 2
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
+	MOVI		R6, 0	;xi = 0
+	MOVI		R7, 4     ;yi = 4
+	MOVI      R9, 3     ;xf = 3
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
+	MOVI		R6, 4	; xi = 3
+	MOVI		R7, 2	; yi = 2
+	MOVI		R10, 4	; yf = 4
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	MOVI		R6, 2	;xi = 0
+	MOVI		R7, 2     ;yi = 2
+	MOVI      R9, 3     ;xf = 3
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
+	B		_siguienteLetra
+	
+_escribirH
+	MOVI		R6, 0	; xi = 0
+	MOVI		R7, 0	; yi = 0
+	MOVI		R10, 4	; yf = 4
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	MOVI		R6, 3	; xi = 3
+	MOVI		R7, 0	; yi = 0
+	MOVI		R10, 4	; yf = 4
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	MOVI		R6, 0	;xi = 0
+	MOVI		R7, 2     ;yi = 2
+	MOVI      R9, 3     ;xf = 3
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
+	B		_siguienteLetra
+	
+_escribirI
+	MOVI		R6, 2	; xi = 2
+	MOVI		R7, 0	; yi = 0
+	MOVI		R10, 4	; yf = 4
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	MOVI		R6, 1	;xi = 1
+	MOVI		R7, 0     ;yi = 0
+	MOVI      R9, 3     ;xf = 3
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
+	MOVI		R6, 1	;xi = 1
+	MOVI		R7, 4     ;yi = 4
+	MOVI      R9, 3     ;xf = 3
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
+	B		_siguienteLetra
+
+_escribirJ
+	MOVI		R6, 2	; xi = 2
+	MOVI		R7, 0	; yi = 0
+	MOVI		R10, 4	; yf = 4
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	MOVI		R6, 0	;xi = 1
+	MOVI		R7, 4     ;yi = 0
+	MOVI      R9, 2     ;xf = 2
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
+	MOVI		R6, 0	; xi = 0
+	MOVI		R7, 3	; yi = 3
+	MOVI		R10, 4	; yf = 4
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	B		_siguienteLetra
+
+_escribirK
+	MOVI		R6, 0	; xi = 0
+	MOVI		R7, 0	; yi = 0
+	MOVI		R10, 4	; yf = 4
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	MOVI		R6, 0	;Xi = 0
+	MOVI      R7, 2	;yi = 2
+	MOVI      R9, 2	;xf = 2
+	MOVI      R10,4     ;yf = 4
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_bresenhamArribaAbajo ;R6=Xi, R7=yi , R9=xf R10=yf yi>yf xi<xf
+	MOVI		R6, 0	;Xi = 0
+	MOVI      R7, 2	;yi = 2
+	MOVI      R9, 2	;xf = 2
+	MOVI      R10,0     ;yf = 0
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_bresenhamAbajoArriba ;R6=Xi, R7=yi , R9=xf R10=yf yi>yf xi<xf
+	B		_siguienteLetra
+
+_escribirL
+	MOVI		R6, 0	; xi = 0
+	MOVI		R7, 0	; yi = 0
+	MOVI		R10, 4	; yf = 4
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	MOVI		R6, 0	;xi = 0
+	MOVI		R7, 4     ;yi = 4
+	MOVI      R9, 3     ;xf = 3
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
+	B		_siguienteLetra
+
+_escribirM
+	MOVI		R6, 0	; xi = 0
+	MOVI		R7, 0	; yi = 0
+	MOVI		R10, 4	; yf = 4
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	MOVI		R6, 4	; xi = 4
+	MOVI		R7, 0	; yi = 0
+	MOVI		R10, 4	; yf = 4
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	MOVI		R6, 0	;Xi = 0
+	MOVI      R7, 0	;yi = 0
+	MOVI      R9, 2	;xf = 2
+	MOVI      R10,2     ;yf = 2
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_bresenhamArribaAbajo ;R6=Xi, R7=yi , R9=xf R10=yf yi>yf xi<xf
+	MOVI		R6, 2	;Xi = 2
+	MOVI      R7, 2	;yi = 2
+	MOVI      R9, 4	;xf = 4
+	MOVI      R10,0     ;yf = 0
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_bresenhamAbajoArriba ;R6=Xi, R7=yi , R9=xf R10=yf yi>yf xi<xf
+	B		_siguienteLetra
+
+_escribirN
+	MOVI		R6, 0	; xi = 0
+	MOVI		R7, 0	; yi = 0
+	MOVI		R10, 4	; yf = 4
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	MOVI		R6, 4	; xi = 4
+	MOVI		R7, 0	; yi = 0
+	MOVI		R10, 4	; yf = 4
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	MOVI		R6, 0	;Xi = 0
+	MOVI      R7, 0	;yi = 0
+	MOVI      R9, 4	;xf = 4
+	MOVI      R10,4     ;yf = 4
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_bresenhamArribaAbajo ;R6=Xi, R7=yi , R9=xf R10=yf yi>yf xi<xf
+	B		_siguienteLetra
+
+_escribirO
+	MOVI		R6, 2	;Xc = 2
+	MOVI		R7, 2	;Yc = 2
+	MOVI		R9, 2	;Rc = 2
+	MOV       R0, R15   ; guarda PC+2 en R0
+	B		_bresenhamCirculo ; R6=xc centro, R7=yc centro R9=r radio  
+	B		_siguienteLetra
+
+_escribirP
+	MOVI		R6, 0	; xi = 0
+	MOVI		R7, 0	; yi = 0
+	MOVI		R10, 4	; yf = 4
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	MOVI		R6, 3	; xi = 3
+	MOVI		R7, 0	; yi = 0
+	MOVI		R10, 2	; yf = 2
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	MOVI		R6, 0	;xi = 0
+	MOVI		R7, 0     ;yi = 0
+	MOVI      R9, 3     ;xf = 3
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
+	MOVI		R6, 0	;xi = 0
+	MOVI		R7, 2     ;yi = 2
+	MOVI      R9, 3     ;xf = 3
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
+	B		_siguienteLetra
+
+_escribirQ
+	MOVI		R6, 2	;Xc = 2
+	MOVI		R7, 2	;Yc = 2
+	MOVI		R9, 2	;Rc = 1
+	MOV       R0, R15   ; guarda PC+2 en R0
+	B		_bresenhamCirculo ; R6=xc centro, R7=yc centro R9=r radio  
+	MOVI		R6, 2	;Xi = 0
+	MOVI      R7, 2	;yi = 0
+	MOVI      R9, 4	;xf = 4
+	MOVI      R10,4     ;yf = 4
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_bresenhamArribaAbajo ;R6=Xi, R7=yi , R9=xf R10=yf yi>yf xi<xf
+	B		_siguienteLetra
+
+_escribirR
+	MOVI		R6, 0	; xi = 0
+	MOVI		R7, 0	; yi = 0
+	MOVI		R10, 4	; yf = 4
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	MOVI		R6, 3	; xi = 3
+	MOVI		R7, 0	; yi = 0
+	MOVI		R10, 2	; yf = 2
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	MOVI		R6, 0	;xi = 0
+	MOVI		R7, 0     ;yi = 0
+	MOVI      R9, 3     ;xf = 3
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
+	MOVI		R6, 0	;xi = 0
+	MOVI		R7, 2     ;yi = 2
+	MOVI      R9, 3     ;xf = 3
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
+	MOVI		R6, 2	;Xi = 0
+	MOVI      R7, 2	;yi = 0
+	MOVI      R9, 4	;xf = 4
+	MOVI      R10,4     ;yf = 4
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_bresenhamArribaAbajo ;R6=Xi, R7=yi , R9=xf R10=yf yi>yf xi<xf
+	B		_siguienteLetra
+
+_escribirS
+	MOVI		R6, 0	; xi = 0
+	MOVI		R7, 0	; yi = 0
+	MOVI		R10, 2	; yf = 2
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	MOVI		R6, 0	;xi = 0
+	MOVI		R7, 0     ;yi = 0
+	MOVI      R9, 4     ;xf = 4
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
+	MOVI		R6, 0	;xi = 0
+	MOVI		R7, 2     ;yi = 2
+	MOVI      R9, 4     ;xf = 3
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
+	MOVI		R6, 0	;xi = 0
+	MOVI		R7, 4     ;yi = 4
+	MOVI      R9, 4     ;xf = 3
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
+	MOVI		R6, 4	; xi = 4
+	MOVI		R7, 2	; yi = 2
+	MOVI		R10, 4	; yf = 4
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	B		_siguienteLetra
+
+_escribirT
+	MOVI		R6, 2	; xi = 2
+	MOVI		R7, 0	; yi = 0
+	MOVI		R10, 4	; yf = 4
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	MOVI		R6, 0	;xi = 0
+	MOVI		R7, 0     ;yi = 0
+	MOVI      R9, 4     ;xf = 3
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
+	B		_siguienteLetra
+	
+_escribirU
+	MOVI		R6, 0	; xi = 0
+	MOVI		R7, 0	; yi = 0
+	MOVI		R10, 4	; yf = 4
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	MOVI		R6, 4	; xi = 4
+	MOVI		R7, 0	; yi = 0
+	MOVI		R10, 4	; yf = 4
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	MOVI		R6, 0	;xi = 0
+	MOVI		R7, 4     ;yi = 4
+	MOVI      R9, 4     ;xf = 4
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
+	B		_siguienteLetra
+
+_escribirV
+    MOVI		R6, 0	; xi = 0
+	MOVI		R7, 0	; yi = 0
+	MOVI		R10, 2	; yf = 4
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	MOVI		R6, 4	; xi = 4
+	MOVI		R7, 0	; yi = 0
+	MOVI		R10, 2	; yf = 4
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	MOVI		R6, 0	;Xi = 0
+	MOVI      R7, 2	;yi = 0
+	MOVI      R9, 2	;xf = 2
+	MOVI      R10,4     ;yf = 4
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_bresenhamArribaAbajo ;R6=Xi, R7=yi , R9=xf R10=yf yi>yf xi<xf
+	MOVI		R6, 2	;Xi = 2
+	MOVI      R7, 4	;yi = 4
+	MOVI      R9, 4	;xf = 4
+	MOVI      R10,2     ;yf = 0
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_bresenhamAbajoArriba ;R6=Xi, R7=yi , R9=xf R10=yf yi>yf xi<xf
+	B		_siguienteLetra
+
+_escribirW
+	MOVI		R6, 0	; xi = 0
+	MOVI		R7, 0	; yi = 0
+	MOVI		R10, 4	; yf = 4
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	MOVI		R6, 4	; xi = 4
+	MOVI		R7, 0	; yi = 0
+	MOVI		R10, 4	; yf = 4
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	MOVI		R6, 0	;Xi = 2
+	MOVI      R7, 4	;yi = 4
+	MOVI      R9, 2	;xf = 4
+	MOVI      R10,2     ;yf = 0
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_bresenhamAbajoArriba ;R6=Xi, R7=yi , R9=xf R10=yf yi>yf xi<xf
+	MOVI		R6, 2	;Xi = 2
+	MOVI      R7, 2	;yi = 2
+	MOVI      R9, 4	;xf = 4
+	MOVI      R10,4     ;yf = 4
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_bresenhamArribaAbajo ;R6=Xi, R7=yi , R9=xf R10=yf yi>yf xi<xf
+	B		_siguienteLetra
+
+_escribirX
+	MOVI		R6, 0	;Xi = 0
+	MOVI      R7, 0	;yi = 0
+	MOVI      R9, 4	;xf = 4
+	MOVI      R10,4     ;yf = 4
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_bresenhamArribaAbajo ;R6=Xi, R7=yi , R9=xf R10=yf yi>yf xi<xf
+	MOVI		R6, 0	;Xi = 4
+	MOVI      R7, 4	;yi = 4
+	MOVI      R9, 4	;xf = 0
+	MOVI      R10,0     ;yf = 0
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_bresenhamAbajoArriba ;R6=Xi, R7=yi , R9=xf R10=yf yi>yf xi<xf
+	B		_siguienteLetra
+
+_escribirY
+	MOVI		R6, 0	;Xi = 0
+	MOVI      R7, 0	;yi = 0
+	MOVI      R9, 2	;xf = 2
+	MOVI      R10,2     ;yf = 2
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_bresenhamArribaAbajo ;R6=Xi, R7=yi , R9=xf R10=yf yi>yf xi<xf
+	MOVI		R6, 2	;Xi = 2
+	MOVI      R7, 2	;yi = 2
+	MOVI      R9, 4	;xf = 0
+	MOVI      R10,0     ;yf = 0
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_bresenhamAbajoArriba ;R6=Xi, R7=yi , R9=xf R10=yf yi>yf xi<xf
+	MOVI		R6, 2	; xi = 2
+	MOVI		R7, 2	; yi = 2
+	MOVI		R10, 4	; yf = 4
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	B		_siguienteLetra
+	
+_escribirZ
+	MOVI		R6, 0	;Xi = 0
+	MOVI      R7, 4	;yi = 0
+	MOVI      R9, 4	;xf = 4
+	MOVI      R10,0     ;yf = 4
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_bresenhamAbajoArriba ;R6=Xi, R7=yi , R9=xf R10=yf yi>yf xi<xf
+	MOVI		R6, 0	;xi = 0
+	MOVI		R7, 0     ;yi = 0
+	MOVI      R9, 4     ;xf = 3
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
+	MOVI		R6, 0	;xi = 0
+	MOVI		R7, 4     ;yi = 0
+	MOVI      R9, 4     ;xf = 3
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
+	B		_siguienteLetra
+_fin
+	B		_fin

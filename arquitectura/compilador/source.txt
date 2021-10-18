@@ -1,0 +1,104 @@
+
+    MOVI        R2, 10
+    MOVI        R3, 2
+    MOVI        R2, 0
+	MOVI		R6, 0	; xi = 0
+	MOVI		R7, 0	; yi = 0
+	MOVI		R9, 4	; xf = 4
+	MOVI		R10, 1	; yf = 1
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_bresenhamArribaAbajo ; R6=Xi, R7=yi , R9=xf R10=yf yi<yf xi<xf
+	MOVI		R6, 2	;Xc = 2
+	MOVI		R7, 2	;Yc = 2
+	MOVI		R9, 2	;Rc = 2
+	MOV       R0, R15   ; guarda PC+2 en R0
+	B		_bresenhamCirculo ; R6=xc centro, R7=yc centro R9=r radio
+    B       _hola
+
+
+_bresenhamArribaAbajo ; R6=Xi, R7=yi , R9=xf R10=yf yi<yf xi<xf
+	SUB		R11, R10, R7	; M_new=yf-yi
+	MULI		R11, R11, 2	; M_new*=2
+	SUB		R14,	R9, R6	; R14=xf-xi
+	SUB		R12, R11, R14	; slope_error_new=M_new-(xf-xi)
+	MULI		R14, R14, 2	; R14=2*(xf-xi)
+_bresenhamArribaAbajoLoop
+	ADD		R8, R3, R7	; guarda en R8=Yfinal la suma de R3=Yabsoluto y R7=Yrelativo
+	MULI		R8, R8, 240	; multiplica R8=Yfinal con la cantidad de pixeles en X
+	ADD		R8, R8, R2	; suma los pixeles absolutos en x
+	ADD		R8, R8, R6	; suma los pixeles relativos en x
+	STRI		R8,  0		; coloca el valor 1 del pixel en la imagen
+	ADD		R12, R12, R11	; slope_error_new+=M_new
+	MOVI		R13, 0
+	CMP		R13, R12		;
+	BGT		_bresenhamArribaAbajoFor
+	ADDI		R7, R7, 1		; y+=1
+	SUB		R12, R12, R14	; slope_error_new-=2*(xf-xi)
+_bresenhamArribaAbajoFor
+	ADDI		R6,R6,1 					;xi+=1
+	CMP		R6,R9					;xi==xf
+	BRGT		R0						; Si xi>xf finaliza el algoritmo
+	B		_bresenhamArribaAbajoLoop	; for xi < xf+1 realiza loop
+
+
+_bresenhamCirculo ; R6=xc centro, R7=yc centro R9=r radio
+	MOVI		R10, 0		; x=0
+	MULI		R11, R9,2		; 2*r
+	MOVI		R12, 3		; d=3
+	SUB		R12, R12, R11	; d= 3-2*r
+	MOV		R11,R9		; y=r
+_escribirCirculo
+	ADD		R13, R6, R10	; xr=xc+x
+	ADD		R14,	R7, R11	; yr=yc+y
+	MOV		R4,R15		; guarda pc+2 en r4
+	B		_escribirBitCirculo
+	SUB		R13, R6, R10	; xr=xc-x
+	MOV		R4,R15		; guarda pc+2 en r4
+	B		_escribirBitCirculo
+	SUB		R14,	R7, R11	; yr= yc-y
+	MOV		R4,R15		; guarda pc+2 en r4
+	B		_escribirBitCirculo
+	ADD		R13, R6, R10	; xr=xc+x
+	MOV		R4,R15		; guarda pc+2 en r4
+	B		_escribirBitCirculo
+	ADD		R13, R6, R11	; xr=xc+y
+	ADD		R14,	R7, R10	; yr=yc+x
+	MOV		R4,R15		; guarda pc+2 en r4
+	B		_escribirBitCirculo
+	SUB		R13, R6, R11	; xr=xc-y
+	MOV		R4,R15		; guarda pc+2 en r4
+	B		_escribirBitCirculo
+	SUB		R14,	R7, R10	; yr=yc-x
+	MOV		R4,R15		; guarda pc+2 en r4
+	B		_escribirBitCirculo
+	ADD		R13, R6, R11	; xr=xc+y
+	MOV		R4,R15		; guarda pc+2 en r4
+	B		_escribirBitCirculo
+_bresenhamCirculoLoopWhile
+	CMP		R10,R11		; compara y con x
+	BRGT	R0			; si x>y realiza return
+_bresenhamCirculoLoop
+	ADDI		R10, R10, 1	; x+=1
+	CMPI		R12, 0		; compara d con 0
+	BGT		_bresenhamCirculoGT	; si d>0  realiza el if
+	MULI		R8, R10, 4		; R8=x*4
+	ADD		R12, R12, R8		; d+=x*4
+	ADDI		R12, R12, 6		; d+=x*4+6
+	B 		_escribirCirculo
+_bresenhamCirculoGT
+	SUBI		R11, R11, 1		; y-=1
+	SUB		R8, R10,R11		; R8=x-y
+	MULI		R8, R8, 4			; R8=(x-y)*4
+	ADD		R12, R12, R8		; d+=(x-y)*4
+	ADDI		R12, R12, 10		; d+=(x-y)*4+10
+	B		_escribirCirculo
+_escribirBitCirculo	;R13=Xrelativo, R14=Yrelativo R4 return
+	ADD		R8, R3, R14	; guarda en R8=Yfinal la suma de R3=Yabsoluto y R7=Yrelativo
+	MULI		R8, R8, 240	; multiplica R8=Yfinal con la cantidad de pixeles en X
+	ADD		R8, R8, R2	; suma los pixeles absolutos en x
+	ADD		R8, R8, R13	; suma los pixeles relativos en x
+	STRI		R8,  0		; coloca el valor 1 del pixel en la imagen
+	BR		R4			; realiza return
+
+_hola
+    MOVI    R0,1

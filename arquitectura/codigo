@@ -1,0 +1,347 @@
+_Inicio
+	MOVI		R0, 57600 ; direccion de SWINIT
+	LD		R0, R1	; guarda valor de SWINIT
+	CMPI		R1, 0	; verifica si se inicio el sistema
+	BEQ		_Inicio	; si aun no se inicia el sistema sigue esperando
+	MOVI		R1, 57602 ; inicio de memoria de palabras
+	MOVI		R2, 0	; X
+	MOVI		R3, 0	; Y
+
+_verificarCampo
+	CMPI		R1, 57702	; fin de parrafo
+	BEQ		_firmar	; si se termino de escribir el parrafo pasa a firmar
+	MOV		R4, R1	; TMP de direccion de letra actual
+	MOV		R6, R2	; TMP de X
+
+
+_verificarCampoLoop
+	CMPI		R6, 239	; compara x con el ultimo pixel en x
+	BGT		_saltarLinea	; si es mayor que el ultimo bit salta de line
+	LD		R4, R5	; guarda valor de la siguiente letra
+	CMPI		R5, 48	; compara si la letra es un espacio
+	BEQ		_comprobarFinLinea	; si el valor es un espacio salta a comprobar si esta en el fin de Linea
+	ADDI		R6, R6, 6 ; siguiente espacio X
+	ADDI		R4, R4, 1 ; siguiente letra
+	CMPI		R4, 57702	; fin de parrafo
+	BEQ		_comprobarFinLinea
+	B		_verificarCampoLoop
+
+
+
+_siguienteLetra
+	ADDI		R2, R2, 6	; siguiente espacio X
+	ADDI		R1, R1, 1	; siguiente letra
+	CMPI		R1, 57702	; fin de parrafo
+	BEQ		_firmar	; si se termino de escribir el parrafo pasa a firmar
+_comprobarFinLinea
+	CMPI		R2, 239	; verifica si ya llego al final de la imagen en x
+	BGTE		_finLinea ; si es mayor o igual va a finalizar la linea
+	B		_escbribirLetra
+
+
+_finLinea
+	LD		R1, R5	; guarda valor de la siguiente letra
+	CMPI		R5. 48	; compara si la letra es un espacio
+	BEQ		_saltarEspacio
+	MOVI		R2, 0	; reinicia x al inicio
+	ADDI		R3, R3, 6 ; siguiente espacio y
+	B		_verificarCampo
+
+_saltarEspacio
+	ADDI		R1, R1, 1	; siguiente letra
+_siguienteLinea		
+	ADDI		R3, R3, 6	; siguiente espacio y
+	MOVI		R2, 0     ; reinicia x al inicio
+	B		_verificarCampo
+
+
+_saltarLinea ; realiza salto de linea cuando la palabra no cabe
+	CMPI		R2, 239			; verifica si ya llego al final de la imagen en x
+	BGTE		_finLinea			; si X es el ultimo pixel o mayor va a _finLinea
+	MOVI		R7, 0 			; contador y
+	MOV		R6, R2			; TMP de X
+_saltarLineaLoop
+	ADD		R8, R3, R7		; guarda en R8=Yfinal la suma de R3=Yabsoluto y R7=Yrelativo
+	MULI		R8, R8, 240		; multiplica y por la cantidad de pixeles en x
+	ADD		R8, R8, R6		; suma los pixeles de Xtmp 
+	STRI		R8, 1			; coloca uno en el pixel de la imagen
+	ADDI		R6, R6, 1			; suma uno al TMP de x
+	CMPI		R6, 240			; compara si ya se llego al ultimo pixel en x
+	BEQ		_saltarLineaSiguienteY
+	B _saltarLineaLoop
+_saltarLineaSiguienteY
+	MOV		R6, R2			; reinicia xtmp a X
+	ADDI		R7, R7, 1			; suma 1 a Yrelativo
+	CMPI		R7, 6			; verifica si y==6
+	BEQ		_siguienteLinea	; si y=6 pasa a la siguiente linea de la imagen
+	B		_saltarLineaLoop	
+
+
+
+
+
+_rellenarEspacio
+	MOVI		R7, 0  		; contador y
+	MOV		R6, 0  		; contador X
+_rellenarEspacioLoop
+	ADD		R8, R3, R7	; guarda en R8=Yfinal la suma de R3=Yabsoluto y R7=Yrelativo
+	MULI		R8, R8, 240	; multiplica R8=Yfinal con la cantidad de pixeles en X
+	ADD		R8, R8, R2	; suma los pixeles absolutos en x
+	ADD		R8, R8, R6	; suma los pixeles relativos en x
+	STRI		R8, 1		; coloca el valor 1 del pixel en la imagen
+	ADDI		R6, R6, 1		; pasa al siguiente pixel en x
+	CMPI		R6, 6		; compara si ya llego al final de la letra en x
+	BEQ		_rellenarEspacioSiguienteY
+	B 		_rellenarEspacioLoop
+_rellenarEspacioSiguienteY
+	MOV		R6, 0		; reinica la posicion relativa de x a 0
+	ADDI		R7, R7, 1		; suma 1 a la posicion relativa en y
+	CMPI		R7, 6		; compara si ya llego al final de la letra en y
+	BEQ		_determinarLetra
+	B 		_rellenarEspacioLoop
+	
+
+_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	ADD		R8, R3, R7	; guarda en R8=Yfinal la suma de R3=Yabsoluto y R7=Yrelativo
+	MULI		R8, R8, 240	; multiplica R8=Yfinal con la cantidad de pixeles en X
+	ADD		R8, R8, R2	; suma los pixeles absolutos en x
+	ADD		R8, R8, R6	; suma los pixeles relativos en x
+	STRI		R8, 0		; coloca el valor 1 del pixel en la imagen
+	CMP		R7, R10		; compara yi con yf
+	BREQ		R0			; si es igual realiza return
+	ADD		R7, R7, 1		; suma 1 al yi
+	B		_lineaVertical
+
+
+_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
+	ADD		R8, R3, R7	; guarda en R8=Yfinal la suma de R3=Yabsoluto y R7=Yrelativo
+	MULI		R8, R8, 240	; multiplica R8=Yfinal con la cantidad de pixeles en X
+	ADD		R8, R8, R2	; suma los pixeles absolutos en x
+	ADD		R8, R8, R6	; suma los pixeles relativos en x
+	STRI		R8, 0		; coloca el valor 1 del pixel en la imagen
+	CMP		R6, R9		; compara xi con xf
+	BREQ		R0			; si es igual realiza return
+	ADDI		R6, R6, 1		; suma 1 al xi
+	B		_lineaHorizontal
+
+
+_bresenhamArribaAbajo ; R6=Xi, R7=yi , R9=xf R10=yf yi<yf xi<xf
+	SUB		R11, R10, R7	; M_new=yf-yi
+	MULI		R11, R11, 2	; M_new*=2
+	SUB		R14,	R9, R6	; R14=xf-xi
+	SUB		R12, R11, R14	; slope_error_new=M_new-(xf-xi)
+	MULI		R14, R14, 2	; R14=2*(xf-xi)
+_bresenhamArribaAbajoLoop
+	ADD		R8, R3, R7	; guarda en R8=Yfinal la suma de R3=Yabsoluto y R7=Yrelativo
+	MULI		R8, R8, 240	; multiplica R8=Yfinal con la cantidad de pixeles en X
+	ADD		R8, R8, R2	; suma los pixeles absolutos en x
+	ADD		R8, R8, R6	; suma los pixeles relativos en x
+	STRI		R8,  0		; coloca el valor 1 del pixel en la imagen
+	ADD		R12, R12, R11	; slope_error_new+=M_new
+	MOVI		R13, 0
+	CMP		R13, R12		; 		
+	BGT		_bresenhamArribaAbajoFor
+	ADDI		R7, R7, 1		; y+=1
+	SUB		R12, R12, R14	; slope_error_new-=2*(xf-xi)
+_bresenhamArribaAbajoFor
+	ADDI		R6,R6,1 					;xi+=1
+	CMP		R6,R9					;xi==xf
+	BRGT		R0						; Si xi>xf finaliza el algoritmo
+	B		_bresenhamArribaAbajoLoop	; for xi < xf+1 realiza loop
+
+
+_bresenhamAbajoArriba ; R6=Xi, R7=yi , R9=xf R10=yf yi>yf xi<xf
+	SUB		R11, R7, R10	; M_new=yi-yf
+	MULI		R11, R11, 2	; M_new=2*(yi-yf)
+	SUB		R14,	R9, R6	; R14=xf-xi
+	SUB		R12, R11, R14	; slope_error_new=M_new-(xf-xi)
+	MULI		R14, R14, 2	; R14=2*(xf-xi)
+_bresenhamAbajoArribaLoop
+	ADD		R8, R3, R7	; guarda en R8=Yfinal la suma de R3=Yabsoluto y R7=Yrelativo
+	MULI		R8, R8, 240	; multiplica R8=Yfinal con la cantidad de pixeles en X
+	ADD		R8, R8, R2	; suma los pixeles absolutos en x
+	ADD		R8, R8, R6	; suma los pixeles relativos en x
+	STRI		R8,  0		; coloca el valor 1 del pixel en la imagen
+	ADD		R12, R12, R11	; slope_error_new+=M_new
+	MOVI		R13, 0
+	CMP		R13, R12		; compara que slope_error_new >= 0	o bien que 0
+	BGT		_bresenhamAbajoArribaFor	; si es menor que 0 o bien 0 > slope_error_new termina el ciclo
+	SUBI		R7, R7, 1		; y-=1
+	SUB		R12, R12, R14	; slope_error_new-=2*(xf-xi)
+_bresenhamAbajoArribaFor
+	ADDI		R6,R6,1 					;xi+=1
+	CMP		R6,R9					;xi==xf
+	BRGT		R0						; Si xi>xf finaliza el algoritmo
+	B		_bresenhamAbajoArribaLoop	; for xi < xf+1 realiza loop
+
+	
+_bresenhamCirculo ; R6=xc centro, R7=yc centro R9=r radio  
+	MOVI		R10, 0		; x=0
+	MULI		R11, R9,2		; 2*r
+	MOVI		R12, 3		; d=3
+	SUBI		R12, R12, R11	; d= 3-2*r
+	MOV		R11,R9		; y=r
+_escribirCirculo
+	ADD		R13, R6, R10	; xr=xc+x
+	ADD		R14,	R7, R11	; yr=yc+y
+	MOV		R4,R15		; guarda pc+2 en r4
+	B		_escribirBitCirculo
+	SUB		R13, R6, R10	; xr=xc-x
+	MOV		R4,R15		; guarda pc+2 en r4
+	B		_escribirBitCirculo
+	SUB		R14,	R7, R11	; yr= yc-y
+	MOV		R4,R15		; guarda pc+2 en r4
+	B		_escribirBitCirculo
+	ADD		R13, R6, R10	; xr=xc+x
+	MOV		R4,R15		; guarda pc+2 en r4
+	B		_escribirBitCirculo
+	ADD		R13, R6, R11	; xr=xc+y
+	ADD		R14,	R7, R10	; yr=yc+x
+	MOV		R4,R15		; guarda pc+2 en r4
+	B		_escribirBitCirculo
+	SUB		R13, R6, R11	; xr=xc-y
+	MOV		R4,R15		; guarda pc+2 en r4
+	B		_escribirBitCirculo
+	SUB		R14,	R7, R10	; yr=yc-x
+	MOV		R4,R15		; guarda pc+2 en r4
+	B		_escribirBitCirculo	
+	ADD		R13, R6, R11	; xr=xc+y
+	MOV		R4,R15		; guarda pc+2 en r4
+	B		_escribirBitCirculo
+_bresenhamCirculoLoopWhile
+	CMP		R11,R10		; compara x con y
+	BRGTE	R0			; si x>=y realiza return
+_bresenhamCirculoLoop
+	ADDI		R10, R10, 1	; x+=1
+	CMPI		R12, 0		; compara d con 0
+	BGT		_bresenhamCirculoGT	; si d>0  realiza el if
+	MULI		R8, R10, 4		; R8=x*4
+	ADD		R12, R12, R8		; d+=x*4
+	ADDI		R12, R12, 6		; d+=x*4+6
+	B 		_escribirCirculo
+_bresenhamCirculoGT
+	SUBI		R11, R11, 1		; y-=1
+	SUB		R8, R10,R11		; R8=x-y
+	MULI		R8, R8, 4			; R8=(x-y)*4
+	ADD		R12, R12, R8		; d+=(x-y)*4
+	ADDI		R12, R12, 10		; d+=(x-y)*4+10
+	B		_escribirCirculo
+_escribirBitCirculo	;R13=Xrelativo, R14=Yrelativo R4 return
+	ADD		R8, R3, R14	; guarda en R8=Yfinal la suma de R3=Yabsoluto y R7=Yrelativo
+	MULI		R8, R8, 240	; multiplica R8=Yfinal con la cantidad de pixeles en X
+	ADD		R8, R8, R2	; suma los pixeles absolutos en x
+	ADD		R8, R8, R13	; suma los pixeles relativos en x
+	STRI		R8,  0		; coloca el valor 1 del pixel en la imagen
+	BR		R4			; realiza return
+
+_firmar
+	CMPI		R2, 239			; verifica si esta al final de una linea
+	BEQ 		_saltarLineaFirma	; si esta al final salta a la siguiente linea
+	B		_escribirFirma
+_saltarLineaFirma
+	MOVI		R2, 0			; reinicia x a 0
+	ADDI		R3, R3, 6			; pasa a la siguiente linea en y
+	B		_escribirFirma
+
+	
+_terminarImagen
+	CMPI		R2, 239			; verifica si ya llego al final de la imagen en x
+	BGTE		_LineasCompletas   ; si X es el ultimo pixel o mayor va a _finLinea
+	MOVI		R7, 0 			; contador y
+	MOV		R6, R2			; TMP de X
+_terminarLineaLoop
+	ADD		R8, R3, R7		; guarda en R8=Yfinal la suma de R3=Yabsoluto y R7=Yrelativo
+	MULI		R8, R8, 240		; multiplica y por la cantidad de pixeles en x
+	ADD		R8, R8, R6		; suma los pixeles de Xtmp 
+	STRI		R8, 1			; coloca uno en el pixel de la imagen
+	ADDI		R6, R6, 1			; suma uno al TMP de x
+	CMPI		R6, 240			; compara si ya se llego al ultimo pixel en x
+	BEQ		_terminarLineaSiguienteY
+	B 		_terminarLineaLoop
+_terminarLineaSiguienteY
+	MOV		R6, R2			; reinicia xtmp a X
+	ADDI		R7, R7, 1			; suma 1 a Yrelativo
+	CMPI		R7, 6			; verifica si y==6
+	BEQ		_LineasCompletas	; si y=6 pasa a la siguiente linea de la imagen
+	B		_terminarLineaLoop	
+
+_lineasCompletas
+	MOVI		R2, 0 			; reinicia x a 0
+	ADDI		R3, 6			; pasa a la siguiente linea en y
+_lineasCompletasLoop
+	MULI		R8, R3, 240		; multiplica y por la cantidad de pixeles en x
+	ADD		R8, R8, R2		; suma los pixeles de X 
+	STRI		R8, 1			; coloca uno en el pixel de la imagen
+	ADDI		R2, R2, 1			; suma uno a x
+	CMPI		R6, 240			; compara si ya se llego al ultimo pixel en x
+	BEQ		_lineasCompletasSiguienteY
+	B 		_lineasCompletasLoop
+_lineasCompletasSiguienteY
+	MOV		R2, 0			; reinicia X a 0
+	ADDI		R3, R3, 1			; suma 1 a Yrelativo
+	CMPI		R3, 240			; verifica si y==6
+	BEQ		_enviarGPIO		; si y=6 pasa a la siguiente linea de la imagen
+	B		_lineasCompletasLoop	
+
+_enviarGPIO
+	MOVI		R0, 0		;contador de imagen
+	MOVI		R2, 57601		; GPIO pin
+	_enviarGPIOLoop
+	LD		R0, R1		; carga el pixel de la imagen
+	STR		R2, R1		; muestra el pixel en el GPIO
+	ADDI		R0, R0, 1		; pasa al siguiente pixel de la imagen
+	CMP		R0, 57600 ; Fin de imagen 
+	BEQ		_fin
+	B		_enviarGPIOLoop
+	
+_escribirLetra
+	MOV		R0,R15			; guarda PC+2 en R0
+	B		_rellenarEspacio
+_determinarLetra
+	CMP		R5,68			; compara R5 con D ASCII en decimal
+	BEQ		_escribirD		; escribe D en la imagen
+	ADDI		R1, R1, 1			; siguiente letra
+	B		_verificarCampo 	; verifica si cabe la siguiente palabra
+
+
+	
+_escribirFirma
+	; aqui va la firma
+	ADDI		R2, R2, 6		;va al siguiente espacio de palabra
+	B		_terminarImagen
+
+
+_escribirD
+	MOVI		R6, 0	; xi = 0
+	MOVI		R7, 0	; yi = 0
+	MOVI		R10, 4	; yf = 4
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	MOVI		R6, 3	; xi = 0
+	MOVI		R7, 1	; yi = 1
+	MOVI		R10, 3	; yf = 3
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	MOVI		R6, 0	; xi = 0
+	MOVI		R7, 0	; yi = 0
+	MOVI		R9, 4	; xf = 4
+	MOVI		R10, 1	; yf = 1
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_bresenhamArribaAbajo ; R6=Xi, R7=yi , R9=xf R10=yf yi<yf xi<xf
+	MOVI		R6, 0	; xi = 0
+	MOVI		R7, 4	; yi = 4
+	MOVI		R9, 4	; xf = 4
+	MOVI		R10, 3	; yf = 3
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_bresenhamAbajoArriba ; R6=Xi, R7=yi , R9=xf R10=yf yi>yf xi<xf
+	B		_siguienteLetra
+
+
+
+	
+_fin
+	B		_fin
+
+
+	
+

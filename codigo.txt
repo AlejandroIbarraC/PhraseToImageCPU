@@ -938,11 +938,7 @@ _escribirV
 	MOVI		R6, 2	;Xi = 2
 	MOVI      R7, 4	;yi = 4
 	MOVI      R9, 4	;xf = 4
-<<<<<<< Updated upstream
 	MOVI      R10,2     ;yf = 0
-=======
-	MOVI      R10,0     ;yf = 0
->>>>>>> Stashed changes
 	MOV       R0, R15   ;guarda PC+2 en R0
 	B		_bresenhamAbajoArriba ;R6=Xi, R7=yi , R9=xf R10=yf yi>yf xi<xf
 	B		_siguienteLetra
@@ -981,11 +977,7 @@ _escribirX
 	B		_bresenhamArribaAbajo ;R6=Xi, R7=yi , R9=xf R10=yf yi>yf xi<xf
 	MOVI		R6, 0	;Xi = 4
 	MOVI      R7, 4	;yi = 4
-<<<<<<< Updated upstream
 	MOVI      R9, 4	;xf = 0
-=======
-	MOVI      R9, 0	;xf = 0
->>>>>>> Stashed changes
 	MOVI      R10,0     ;yf = 0
 	MOV       R0, R15   ;guarda PC+2 en R0
 	B		_bresenhamAbajoArriba ;R6=Xi, R7=yi , R9=xf R10=yf yi>yf xi<xf
@@ -1000,11 +992,7 @@ _escribirY
 	B		_bresenhamArribaAbajo ;R6=Xi, R7=yi , R9=xf R10=yf yi>yf xi<xf
 	MOVI		R6, 2	;Xi = 2
 	MOVI      R7, 2	;yi = 2
-<<<<<<< Updated upstream
 	MOVI      R9, 4	;xf = 0
-=======
-	MOVI      R9, 0	;xf = 0
->>>>>>> Stashed changes
 	MOVI      R10,0     ;yf = 0
 	MOV       R0, R15   ;guarda PC+2 en R0
 	B		_bresenhamAbajoArriba ;R6=Xi, R7=yi , R9=xf R10=yf yi>yf xi<xf
@@ -1019,11 +1007,7 @@ _escribirZ
 	MOVI		R6, 0	;Xi = 0
 	MOVI      R7, 4	;yi = 0
 	MOVI      R9, 4	;xf = 4
-<<<<<<< Updated upstream
 	MOVI      R10,0     ;yf = 4
-=======
-	MOVI      R10,4     ;yf = 4
->>>>>>> Stashed changes
 	MOV       R0, R15   ;guarda PC+2 en R0
 	B		_bresenhamAbajoArriba ;R6=Xi, R7=yi , R9=xf R10=yf yi>yf xi<xf
 	MOVI		R6, 0	;xi = 0

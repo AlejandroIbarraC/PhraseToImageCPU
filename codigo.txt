@@ -371,6 +371,10 @@ _escribirLetra
 	B		_rellenarEspacio
 _determinarLetra
     LD          R1,R5
+    	CMPI		R5, 44			; compara R5 con la coma ASCII en decimanl
+    	BEQ		_escribirPunto		; escribe el punto en la imagen
+    	CMPI		R5, 46			; compara R5 con el punto en ASCII en decimal
+     BEQ		_escribirComa		; escribe una coma en el punto
 	CMPI		R5,68			; compara R5 con D ASCII en decimal
 	BEQ		_escribirD		; escribe D en la imagen
 	CMPI		R5, 65			; compara R5 con A en ASCII
@@ -1017,5 +1021,40 @@ _escribirZ
 	MOV       R0, R15   ;guarda PC+2 en R0
 	B		_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
 	B		_siguienteLetra
+
+
+_escribirPunto
+	MOVI		R6, 1	;xi = 1
+	MOVI		R7, 3     ;yi = 3
+	MOVI      R9, 2     ;xf = 2
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
+	MOVI		R6, 1	;xi = 1
+	MOVI		R7, 4     ;yi = 4
+	MOVI      R9, 2     ;xf = 2
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
+	MOVI		R6, 1	; xi = 1
+	MOVI		R7, 3	; yi = 3
+	MOVI		R10, 4	; yf = 4
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	MOVI		R6, 2	; xi = 2
+	MOVI		R7, 3	; yi = 3
+	MOVI		R10, 4	; yf = 4
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	B		_siguienteLetra
+
+_escribirComa
+	MOVI		R6, 2	;Xi = 0
+	MOVI      R7, 4	;yi = 0
+	MOVI      R9, 3	;xf = 4
+	MOVI      R10,3     ;yf = 4
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_bresenhamAbajoArriba ;R6=Xi, R7=yi , R9=xf R10=yf yi>yf xi<xf
+	B		_siguienteLetra	
+
+		
 _fin
 	B		_fin

@@ -372,9 +372,9 @@ _escribirLetra
 _determinarLetra
     LD          R1,R5
     	CMPI		R5, 44			; compara R5 con la coma ASCII en decimanl
-    	BEQ		_escribirPunto		; escribe el punto en la imagen
+    	BEQ		_escribirComa		; escribe el punto en la imagen
     	CMPI		R5, 46			; compara R5 con el punto en ASCII en decimal
-     BEQ		_escribirComa		; escribe una coma en el punto
+     BEQ		_escribirPunto		; escribe una coma en el punto
 	CMPI		R5,68			; compara R5 con D ASCII en decimal
 	BEQ		_escribirD		; escribe D en la imagen
 	CMPI		R5, 65			; compara R5 con A en ASCII

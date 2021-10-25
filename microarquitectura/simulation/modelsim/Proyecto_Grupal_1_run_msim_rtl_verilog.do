@@ -5,6 +5,7 @@ if {[file exists rtl_work]} {
 vlib rtl_work
 vmap work rtl_work
 
+vlog -sv -work work +incdir+C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Tests {C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Tests/IF_Pipeline.sv}
 vlog -sv -work work +incdir+C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU {C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/divisor_nb.sv}
 vlog -sv -work work +incdir+C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Memory {C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Memory/RAM.sv}
 vlog -sv -work work +incdir+C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU {C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/sumador_nb.sv}
@@ -22,7 +23,6 @@ vlog -sv -work work +incdir+C:/Users/braya/Desktop/Arqui/proyecto2/microarquitec
 vlog -sv -work work +incdir+C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/fetch {C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/fetch/PC.sv}
 vlog -sv -work work +incdir+C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Units {C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Units/Mux2_1.sv}
 vlog -sv -work work +incdir+C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/fetch {C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/fetch/IF.sv}
-vlog -sv -work work +incdir+C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/fetch {C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/fetch/IF_Pipeline.sv}
 vlog -sv -work work +incdir+C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Decode {C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Decode/Register_File.sv}
 vlog -sv -work work +incdir+C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Decode {C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Decode/ID.sv}
 vlog -sv -work work +incdir+C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Decode {C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Decode/Extender.sv}

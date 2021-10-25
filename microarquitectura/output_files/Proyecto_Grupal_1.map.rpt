@@ -1,5 +1,5 @@
-Analysis & Synthesis report for Proyecto_Grupal_1
-Sat Oct 23 00:52:42 2021
+Analysis & Elaboration report for Proyecto_Grupal_1
+Mon Oct 25 00:15:46 2021
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -7,54 +7,41 @@ Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 ; Table of Contents ;
 ---------------------
   1. Legal Notice
-  2. Analysis & Synthesis Summary
-  3. Analysis & Synthesis Settings
-  4. Parallel Compilation
-  5. Analysis & Synthesis Source Files Read
-  6. Analysis & Synthesis Resource Usage Summary
-  7. Analysis & Synthesis Resource Utilization by Entity
-  8. Analysis & Synthesis RAM Summary
-  9. Analysis & Synthesis DSP Block Usage Summary
- 10. Registers Removed During Synthesis
- 11. General Register Statistics
- 12. Multiplexer Restructuring Statistics (Restructuring Performed)
- 13. Source assignments for ID:id_module|Register_File:rf|altsyncram:register_rtl_0|altsyncram_46j1:auto_generated
- 14. Parameter Settings for User Entity Instance: IF:IF_module|Mux2_1:pcmux
- 15. Parameter Settings for User Entity Instance: IF:IF_module|PC:pc
- 16. Parameter Settings for User Entity Instance: IF:IF_module|sumador_nb:sump1
- 17. Parameter Settings for User Entity Instance: ID:id_module|Mux2_1:pcreg1
- 18. Parameter Settings for User Entity Instance: ID:id_module|Mux2_1:pcdest
- 19. Parameter Settings for User Entity Instance: ID:id_module|sumador_nb:sump2
- 20. Parameter Settings for User Entity Instance: ID:id_module|Mux2_1:Amux
- 21. Parameter Settings for User Entity Instance: ID:id_module|Mux2_1:Bmux
- 22. Parameter Settings for User Entity Instance: EX:EX_module|ForwardingUnit:fu|Mux2_1:Amux
- 23. Parameter Settings for User Entity Instance: EX:EX_module|ForwardingUnit:fu|Mux2_1:Bmux
- 24. Parameter Settings for User Entity Instance: EX:EX_module|ForwardingUnit:fu|Mux2_1:Amux2
- 25. Parameter Settings for User Entity Instance: EX:EX_module|ForwardingUnit:fu|Mux2_1:Bmux2
- 26. Parameter Settings for User Entity Instance: EX:EX_module|ALU:alucpu
- 27. Parameter Settings for User Entity Instance: EX:EX_module|ALU:alucpu|sumador_nb:sum
- 28. Parameter Settings for User Entity Instance: EX:EX_module|ALU:alucpu|restador_nb:rest
- 29. Parameter Settings for User Entity Instance: EX:EX_module|ALU:alucpu|restador_nb:rest|negador_nb:neg
- 30. Parameter Settings for User Entity Instance: EX:EX_module|ALU:alucpu|restador_nb:rest|sumador_nb:resta
- 31. Parameter Settings for User Entity Instance: EX:EX_module|ALU:alucpu|multiplicador:mult
- 32. Parameter Settings for User Entity Instance: EX:EX_module|ALU:alucpu|Mux:m
- 33. Parameter Settings for User Entity Instance: EX:EX_module|ALU:alucpu|flag_cero:fz
- 34. Parameter Settings for User Entity Instance: EX:EX_module|ALU:alucpu|flag_overflow:fv
- 35. Parameter Settings for User Entity Instance: EX:EX_module|ALU:alucpu|flag_overflow:fv|divisor_nb:div
- 36. Parameter Settings for User Entity Instance: EX:EX_module|PC_condition:pc_cond|ff_enable:flagff
- 37. Parameter Settings for User Entity Instance: MEM:MEM_module|Mux2_1:result_select
- 38. Parameter Settings for Inferred Entity Instance: ID:id_module|Register_File:rf|altsyncram:register_rtl_0
- 39. Parameter Settings for Inferred Entity Instance: EX:EX_module|ALU:alucpu|flag_overflow:fv|divisor_nb:div|lpm_divide:Div0
- 40. altsyncram Parameter Settings by Entity Instance
- 41. Port Connectivity Checks: "EX:EX_module|ALU:alucpu|restador_nb:rest"
- 42. Port Connectivity Checks: "EX:EX_module|ALU:alucpu|sumador_nb:sum"
- 43. Port Connectivity Checks: "EX:EX_module|ALU:alucpu"
- 44. Port Connectivity Checks: "ID:id_module|sumador_nb:sump2"
- 45. Port Connectivity Checks: "IF:IF_module|sumador_nb:sump1"
- 46. Post-Synthesis Netlist Statistics for Top Partition
- 47. Elapsed Time Per Partition
- 48. Analysis & Synthesis Messages
- 49. Analysis & Synthesis Suppressed Messages
+  2. Analysis & Elaboration Summary
+  3. Parallel Compilation
+  4. Parameter Settings for User Entity Instance: Processor:uut|IF:IF_module|Mux2_1:pcmux
+  5. Parameter Settings for User Entity Instance: Processor:uut|IF:IF_module|PC:pc
+  6. Parameter Settings for User Entity Instance: Processor:uut|IF:IF_module|sumador_nb:sump1
+  7. Parameter Settings for User Entity Instance: Processor:uut|ID:id_module|Mux2_1:pcreg1
+  8. Parameter Settings for User Entity Instance: Processor:uut|ID:id_module|Mux2_1:pcdest
+  9. Parameter Settings for User Entity Instance: Processor:uut|ID:id_module|sumador_nb:sump2
+ 10. Parameter Settings for User Entity Instance: Processor:uut|ID:id_module|Mux2_1:Amux
+ 11. Parameter Settings for User Entity Instance: Processor:uut|ID:id_module|Mux2_1:Bmux
+ 12. Parameter Settings for User Entity Instance: Processor:uut|EX:EX_module|ForwardingUnit:fu|Mux2_1:Amux
+ 13. Parameter Settings for User Entity Instance: Processor:uut|EX:EX_module|ForwardingUnit:fu|Mux2_1:Bmux
+ 14. Parameter Settings for User Entity Instance: Processor:uut|EX:EX_module|ForwardingUnit:fu|Mux2_1:Amux2
+ 15. Parameter Settings for User Entity Instance: Processor:uut|EX:EX_module|ForwardingUnit:fu|Mux2_1:Bmux2
+ 16. Parameter Settings for User Entity Instance: Processor:uut|EX:EX_module|ALU:alucpu
+ 17. Parameter Settings for User Entity Instance: Processor:uut|EX:EX_module|ALU:alucpu|sumador_nb:sum
+ 18. Parameter Settings for User Entity Instance: Processor:uut|EX:EX_module|ALU:alucpu|restador_nb:rest
+ 19. Parameter Settings for User Entity Instance: Processor:uut|EX:EX_module|ALU:alucpu|restador_nb:rest|negador_nb:neg
+ 20. Parameter Settings for User Entity Instance: Processor:uut|EX:EX_module|ALU:alucpu|restador_nb:rest|sumador_nb:resta
+ 21. Parameter Settings for User Entity Instance: Processor:uut|EX:EX_module|ALU:alucpu|multiplicador:mult
+ 22. Parameter Settings for User Entity Instance: Processor:uut|EX:EX_module|ALU:alucpu|Mux:m
+ 23. Parameter Settings for User Entity Instance: Processor:uut|EX:EX_module|ALU:alucpu|flag_cero:fz
+ 24. Parameter Settings for User Entity Instance: Processor:uut|EX:EX_module|ALU:alucpu|flag_overflow:fv
+ 25. Parameter Settings for User Entity Instance: Processor:uut|EX:EX_module|ALU:alucpu|flag_overflow:fv|divisor_nb:div
+ 26. Parameter Settings for User Entity Instance: Processor:uut|EX:EX_module|PC_condition:pc_cond|ff_enable:flagff
+ 27. Parameter Settings for User Entity Instance: Processor:uut|MEM:MEM_module|Mux2_1:result_select
+ 28. Analysis & Elaboration Settings
+ 29. Port Connectivity Checks: "Processor:uut|EX:EX_module|ALU:alucpu|restador_nb:rest"
+ 30. Port Connectivity Checks: "Processor:uut|EX:EX_module|ALU:alucpu|sumador_nb:sum"
+ 31. Port Connectivity Checks: "Processor:uut|EX:EX_module|ALU:alucpu"
+ 32. Port Connectivity Checks: "Processor:uut|ID:id_module|sumador_nb:sump2"
+ 33. Port Connectivity Checks: "Processor:uut|IF:IF_module|sumador_nb:sump1"
+ 34. Port Connectivity Checks: "Processor:uut"
+ 35. Analysis & Elaboration Messages
+ 36. Analysis & Elaboration Suppressed Messages
 
 
 
@@ -78,36 +65,287 @@ https://fpgasoftware.intel.com/eula.
 
 
 
++-----------------------------------------------------------------------------+
+; Analysis & Elaboration Summary                                              ;
++-------------------------------+---------------------------------------------+
+; Analysis & Elaboration Status ; Successful - Mon Oct 25 00:15:46 2021       ;
+; Quartus Prime Version         ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
+; Revision Name                 ; Proyecto_Grupal_1                           ;
+; Top-level Entity Name         ; create_image                                ;
+; Family                        ; Cyclone V                                   ;
+; Logic utilization (in ALMs)   ; N/A until Partition Merge                   ;
+; Total registers               ; N/A until Partition Merge                   ;
+; Total pins                    ; N/A until Partition Merge                   ;
+; Total virtual pins            ; N/A until Partition Merge                   ;
+; Total block memory bits       ; N/A until Partition Merge                   ;
+; Total PLLs                    ; N/A until Partition Merge                   ;
+; Total DLLs                    ; N/A until Partition Merge                   ;
++-------------------------------+---------------------------------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 12          ;
+; Maximum allowed            ; 12          ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 1           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
++----------------------------+-------------+
+
+
++--------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Processor:uut|IF:IF_module|Mux2_1:pcmux ;
++----------------+-------+-------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                        ;
++----------------+-------+-------------------------------------------------------------+
+; N              ; 32    ; Signed Integer                                              ;
++----------------+-------+-------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
 +-------------------------------------------------------------------------------+
-; Analysis & Synthesis Summary                                                  ;
-+---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Sat Oct 23 00:52:41 2021       ;
-; Quartus Prime Version           ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
-; Revision Name                   ; Proyecto_Grupal_1                           ;
-; Top-level Entity Name           ; Processor                                   ;
-; Family                          ; Cyclone V                                   ;
-; Logic utilization (in ALMs)     ; N/A                                         ;
-; Total registers                 ; 28162                                       ;
-; Total pins                      ; 5                                           ;
-; Total virtual pins              ; 0                                           ;
-; Total block memory bits         ; 480                                         ;
-; Total DSP Blocks                ; 2                                           ;
-; Total HSSI RX PCSs              ; 0                                           ;
-; Total HSSI PMA RX Deserializers ; 0                                           ;
-; Total HSSI TX PCSs              ; 0                                           ;
-; Total HSSI PMA TX Serializers   ; 0                                           ;
-; Total PLLs                      ; 0                                           ;
-; Total DLLs                      ; 0                                           ;
-+---------------------------------+---------------------------------------------+
+; Parameter Settings for User Entity Instance: Processor:uut|IF:IF_module|PC:pc ;
++----------------+-------+------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                 ;
++----------------+-------+------------------------------------------------------+
+; N              ; 32    ; Signed Integer                                       ;
++----------------+-------+------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Processor:uut|IF:IF_module|sumador_nb:sump1 ;
++----------------+-------+-----------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                            ;
++----------------+-------+-----------------------------------------------------------------+
+; N              ; 32    ; Signed Integer                                                  ;
++----------------+-------+-----------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Processor:uut|ID:id_module|Mux2_1:pcreg1 ;
++----------------+-------+--------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                         ;
++----------------+-------+--------------------------------------------------------------+
+; N              ; 4     ; Signed Integer                                               ;
++----------------+-------+--------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Processor:uut|ID:id_module|Mux2_1:pcdest ;
++----------------+-------+--------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                         ;
++----------------+-------+--------------------------------------------------------------+
+; N              ; 4     ; Signed Integer                                               ;
++----------------+-------+--------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Processor:uut|ID:id_module|sumador_nb:sump2 ;
++----------------+-------+-----------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                            ;
++----------------+-------+-----------------------------------------------------------------+
+; N              ; 32    ; Signed Integer                                                  ;
++----------------+-------+-----------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Processor:uut|ID:id_module|Mux2_1:Amux ;
++----------------+-------+------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                       ;
++----------------+-------+------------------------------------------------------------+
+; N              ; 32    ; Signed Integer                                             ;
++----------------+-------+------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Processor:uut|ID:id_module|Mux2_1:Bmux ;
++----------------+-------+------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                       ;
++----------------+-------+------------------------------------------------------------+
+; N              ; 32    ; Signed Integer                                             ;
++----------------+-------+------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Processor:uut|EX:EX_module|ForwardingUnit:fu|Mux2_1:Amux ;
++----------------+-------+------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                         ;
++----------------+-------+------------------------------------------------------------------------------+
+; N              ; 32    ; Signed Integer                                                               ;
++----------------+-------+------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Processor:uut|EX:EX_module|ForwardingUnit:fu|Mux2_1:Bmux ;
++----------------+-------+------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                         ;
++----------------+-------+------------------------------------------------------------------------------+
+; N              ; 32    ; Signed Integer                                                               ;
++----------------+-------+------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Processor:uut|EX:EX_module|ForwardingUnit:fu|Mux2_1:Amux2 ;
++----------------+-------+-------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                          ;
++----------------+-------+-------------------------------------------------------------------------------+
+; N              ; 32    ; Signed Integer                                                                ;
++----------------+-------+-------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Processor:uut|EX:EX_module|ForwardingUnit:fu|Mux2_1:Bmux2 ;
++----------------+-------+-------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                          ;
++----------------+-------+-------------------------------------------------------------------------------+
+; N              ; 32    ; Signed Integer                                                                ;
++----------------+-------+-------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Processor:uut|EX:EX_module|ALU:alucpu ;
++----------------+-------+-----------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                      ;
++----------------+-------+-----------------------------------------------------------+
+; N              ; 32    ; Signed Integer                                            ;
++----------------+-------+-----------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Processor:uut|EX:EX_module|ALU:alucpu|sumador_nb:sum ;
++----------------+-------+--------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                     ;
++----------------+-------+--------------------------------------------------------------------------+
+; N              ; 32    ; Signed Integer                                                           ;
++----------------+-------+--------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Processor:uut|EX:EX_module|ALU:alucpu|restador_nb:rest ;
++----------------+-------+----------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                       ;
++----------------+-------+----------------------------------------------------------------------------+
+; N              ; 32    ; Signed Integer                                                             ;
++----------------+-------+----------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Processor:uut|EX:EX_module|ALU:alucpu|restador_nb:rest|negador_nb:neg ;
++----------------+-------+-------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                      ;
++----------------+-------+-------------------------------------------------------------------------------------------+
+; N              ; 32    ; Signed Integer                                                                            ;
++----------------+-------+-------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Processor:uut|EX:EX_module|ALU:alucpu|restador_nb:rest|sumador_nb:resta ;
++----------------+-------+---------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                        ;
++----------------+-------+---------------------------------------------------------------------------------------------+
+; N              ; 32    ; Signed Integer                                                                              ;
++----------------+-------+---------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Processor:uut|EX:EX_module|ALU:alucpu|multiplicador:mult ;
++----------------+-------+------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                         ;
++----------------+-------+------------------------------------------------------------------------------+
+; N              ; 32    ; Signed Integer                                                               ;
++----------------+-------+------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Processor:uut|EX:EX_module|ALU:alucpu|Mux:m ;
++----------------+-------+-----------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                            ;
++----------------+-------+-----------------------------------------------------------------+
+; N              ; 32    ; Signed Integer                                                  ;
++----------------+-------+-----------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Processor:uut|EX:EX_module|ALU:alucpu|flag_cero:fz ;
++----------------+-------+------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                   ;
++----------------+-------+------------------------------------------------------------------------+
+; N              ; 32    ; Signed Integer                                                         ;
++----------------+-------+------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Processor:uut|EX:EX_module|ALU:alucpu|flag_overflow:fv ;
++----------------+-------+----------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                       ;
++----------------+-------+----------------------------------------------------------------------------+
+; N              ; 32    ; Signed Integer                                                             ;
++----------------+-------+----------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Processor:uut|EX:EX_module|ALU:alucpu|flag_overflow:fv|divisor_nb:div ;
++----------------+-------+-------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                      ;
++----------------+-------+-------------------------------------------------------------------------------------------+
+; N              ; 32    ; Signed Integer                                                                            ;
++----------------+-------+-------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Processor:uut|EX:EX_module|PC_condition:pc_cond|ff_enable:flagff ;
++----------------+-------+--------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                 ;
++----------------+-------+--------------------------------------------------------------------------------------+
+; n              ; 3     ; Signed Integer                                                                       ;
++----------------+-------+--------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Processor:uut|MEM:MEM_module|Mux2_1:result_select ;
++----------------+-------+-----------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                  ;
++----------------+-------+-----------------------------------------------------------------------+
+; N              ; 32    ; Signed Integer                                                        ;
++----------------+-------+-----------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
 +---------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Settings                                                                                             ;
+; Analysis & Elaboration Settings                                                                                           ;
 +---------------------------------------------------------------------------------+--------------------+--------------------+
 ; Option                                                                          ; Setting            ; Default Value      ;
 +---------------------------------------------------------------------------------+--------------------+--------------------+
 ; Device                                                                          ; 5CSEMA5F31C6       ;                    ;
-; Top-level entity name                                                           ; Processor          ; Proyecto_Grupal_1  ;
+; Top-level entity name                                                           ; create_image       ; Proyecto_Grupal_1  ;
 ; Family name                                                                     ; Cyclone V          ; Cyclone V          ;
 ; Use smart compilation                                                           ; Off                ; Off                ;
 ; Enable parallel Assembler and Timing Analyzer during compilation                ; On                 ; On                 ;
@@ -188,724 +426,26 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------------------------------------------+--------------------+--------------------+
 
 
-+------------------------------------------+
-; Parallel Compilation                     ;
-+----------------------------+-------------+
-; Processors                 ; Number      ;
-+----------------------------+-------------+
-; Number detected on machine ; 12          ;
-; Maximum allowed            ; 12          ;
-;                            ;             ;
-; Average used               ; 1.01        ;
-; Maximum used               ; 12          ;
-;                            ;             ;
-; Usage by Processor         ; % Time Used ;
-;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.1%      ;
-;     Processor 3            ;   0.1%      ;
-;     Processor 4            ;   0.1%      ;
-;     Processor 5            ;   0.1%      ;
-;     Processor 6            ;   0.1%      ;
-;     Processor 7            ;   0.1%      ;
-;     Processor 8            ;   0.1%      ;
-;     Processor 9            ;   0.1%      ;
-;     Processor 10           ;   0.1%      ;
-;     Processors 11-12       ;   0.1%      ;
-+----------------------------+-------------+
-
-
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                             ;
-+----------------------------------+-----------------+------------------------------+--------------------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                         ; Library ;
-+----------------------------------+-----------------+------------------------------+--------------------------------------------------------------------------------------+---------+
-; ALU/divisor_nb.sv                ; yes             ; User SystemVerilog HDL File  ; C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/divisor_nb.sv           ;         ;
-; Memory/ROM.sv                    ; yes             ; User SystemVerilog HDL File  ; C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Memory/ROM.sv               ;         ;
-; Memory/RAM.sv                    ; yes             ; User SystemVerilog HDL File  ; C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Memory/RAM.sv               ;         ;
-; ALU/sumador_nb.sv                ; yes             ; User SystemVerilog HDL File  ; C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/sumador_nb.sv           ;         ;
-; ALU/sumador_1b.sv                ; yes             ; User SystemVerilog HDL File  ; C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/sumador_1b.sv           ;         ;
-; ALU/restador_nb.sv               ; yes             ; User SystemVerilog HDL File  ; C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/restador_nb.sv          ;         ;
-; ALU/negador_nb.sv                ; yes             ; User SystemVerilog HDL File  ; C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/negador_nb.sv           ;         ;
-; ALU/negador_1b.sv                ; yes             ; User SystemVerilog HDL File  ; C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/negador_1b.sv           ;         ;
-; ALU/Mux.sv                       ; yes             ; User SystemVerilog HDL File  ; C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/Mux.sv                  ;         ;
-; ALU/multiplicador.sv             ; yes             ; User SystemVerilog HDL File  ; C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/multiplicador.sv        ;         ;
-; ALU/flag_overflow.sv             ; yes             ; User SystemVerilog HDL File  ; C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/flag_overflow.sv        ;         ;
-; ALU/flag_negativo.sv             ; yes             ; User SystemVerilog HDL File  ; C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/flag_negativo.sv        ;         ;
-; ALU/flag_cero.sv                 ; yes             ; User SystemVerilog HDL File  ; C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/flag_cero.sv            ;         ;
-; ALU/flag_carry.sv                ; yes             ; User SystemVerilog HDL File  ; C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/flag_carry.sv           ;         ;
-; ALU/ALU.sv                       ; yes             ; User SystemVerilog HDL File  ; C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/ALU.sv                  ;         ;
-; fetch/PC.sv                      ; yes             ; User SystemVerilog HDL File  ; C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/fetch/PC.sv                 ;         ;
-; fetch/Instruction_Memory.sv      ; yes             ; User SystemVerilog HDL File  ; C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/fetch/Instruction_Memory.sv ;         ;
-; Units/Mux2_1.sv                  ; yes             ; User SystemVerilog HDL File  ; C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Units/Mux2_1.sv             ;         ;
-; fetch/IF.sv                      ; yes             ; User SystemVerilog HDL File  ; C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/fetch/IF.sv                 ;         ;
-; fetch/IF_Pipeline.sv             ; yes             ; User SystemVerilog HDL File  ; C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/fetch/IF_Pipeline.sv        ;         ;
-; Decode/Register_File.sv          ; yes             ; User SystemVerilog HDL File  ; C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Decode/Register_File.sv     ;         ;
-; Decode/ID.sv                     ; yes             ; User SystemVerilog HDL File  ; C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Decode/ID.sv                ;         ;
-; Decode/Extender.sv               ; yes             ; User SystemVerilog HDL File  ; C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Decode/Extender.sv          ;         ;
-; Decode/Control_unit.sv           ; yes             ; User SystemVerilog HDL File  ; C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Decode/Control_unit.sv      ;         ;
-; Decode/ID_Pipeline.sv            ; yes             ; User SystemVerilog HDL File  ; C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Decode/ID_Pipeline.sv       ;         ;
-; Units/ff_enable.sv               ; yes             ; User SystemVerilog HDL File  ; C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Units/ff_enable.sv          ;         ;
-; Execution/PC_condition.sv        ; yes             ; User SystemVerilog HDL File  ; C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Execution/PC_condition.sv   ;         ;
-; Execution/EX.sv                  ; yes             ; User SystemVerilog HDL File  ; C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Execution/EX.sv             ;         ;
-; Execution/EX_Pipeline.sv         ; yes             ; User SystemVerilog HDL File  ; C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Execution/EX_Pipeline.sv    ;         ;
-; Memory/Memory.sv                 ; yes             ; User SystemVerilog HDL File  ; C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Memory/Memory.sv            ;         ;
-; Memory/MEM.sv                    ; yes             ; User SystemVerilog HDL File  ; C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Memory/MEM.sv               ;         ;
-; Memory/MEM_Pipeline.sv           ; yes             ; User SystemVerilog HDL File  ; C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Memory/MEM_Pipeline.sv      ;         ;
-; Processor.sv                     ; yes             ; User SystemVerilog HDL File  ; C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Processor.sv                ;         ;
-; Execution/ForwardingUnit.sv      ; yes             ; User SystemVerilog HDL File  ; C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Execution/ForwardingUnit.sv ;         ;
-; rom.txt                          ; yes             ; Auto-Found File              ; C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/rom.txt                     ;         ;
-; output.txt                       ; yes             ; Auto-Found File              ; C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/output.txt                  ;         ;
-; altsyncram.tdf                   ; yes             ; Megafunction                 ; c:/intelfpga_lite/20.1/quartus/libraries/megafunctions/altsyncram.tdf                ;         ;
-; stratix_ram_block.inc            ; yes             ; Megafunction                 ; c:/intelfpga_lite/20.1/quartus/libraries/megafunctions/stratix_ram_block.inc         ;         ;
-; lpm_mux.inc                      ; yes             ; Megafunction                 ; c:/intelfpga_lite/20.1/quartus/libraries/megafunctions/lpm_mux.inc                   ;         ;
-; lpm_decode.inc                   ; yes             ; Megafunction                 ; c:/intelfpga_lite/20.1/quartus/libraries/megafunctions/lpm_decode.inc                ;         ;
-; aglobal201.inc                   ; yes             ; Megafunction                 ; c:/intelfpga_lite/20.1/quartus/libraries/megafunctions/aglobal201.inc                ;         ;
-; a_rdenreg.inc                    ; yes             ; Megafunction                 ; c:/intelfpga_lite/20.1/quartus/libraries/megafunctions/a_rdenreg.inc                 ;         ;
-; altrom.inc                       ; yes             ; Megafunction                 ; c:/intelfpga_lite/20.1/quartus/libraries/megafunctions/altrom.inc                    ;         ;
-; altram.inc                       ; yes             ; Megafunction                 ; c:/intelfpga_lite/20.1/quartus/libraries/megafunctions/altram.inc                    ;         ;
-; altdpram.inc                     ; yes             ; Megafunction                 ; c:/intelfpga_lite/20.1/quartus/libraries/megafunctions/altdpram.inc                  ;         ;
-; db/altsyncram_46j1.tdf           ; yes             ; Auto-Generated Megafunction  ; C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/db/altsyncram_46j1.tdf      ;         ;
-; lpm_divide.tdf                   ; yes             ; Megafunction                 ; c:/intelfpga_lite/20.1/quartus/libraries/megafunctions/lpm_divide.tdf                ;         ;
-; abs_divider.inc                  ; yes             ; Megafunction                 ; c:/intelfpga_lite/20.1/quartus/libraries/megafunctions/abs_divider.inc               ;         ;
-; sign_div_unsign.inc              ; yes             ; Megafunction                 ; c:/intelfpga_lite/20.1/quartus/libraries/megafunctions/sign_div_unsign.inc           ;         ;
-; db/lpm_divide_3dm.tdf            ; yes             ; Auto-Generated Megafunction  ; C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/db/lpm_divide_3dm.tdf       ;         ;
-; db/sign_div_unsign_9nh.tdf       ; yes             ; Auto-Generated Megafunction  ; C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/db/sign_div_unsign_9nh.tdf  ;         ;
-; db/alt_u_div_o2f.tdf             ; yes             ; Auto-Generated Megafunction  ; C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/db/alt_u_div_o2f.tdf        ;         ;
-+----------------------------------+-----------------+------------------------------+--------------------------------------------------------------------------------------+---------+
-
-
-+---------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary             ;
-+---------------------------------------------+-----------+
-; Resource                                    ; Usage     ;
-+---------------------------------------------+-----------+
-; Estimate of Logic utilization (ALMs needed) ; 24731     ;
-;                                             ;           ;
-; Combinational ALUT usage for logic          ; 39379     ;
-;     -- 7 input functions                    ; 148       ;
-;     -- 6 input functions                    ; 9871      ;
-;     -- 5 input functions                    ; 880       ;
-;     -- 4 input functions                    ; 27685     ;
-;     -- <=3 input functions                  ; 795       ;
-;                                             ;           ;
-; Dedicated logic registers                   ; 28162     ;
-;                                             ;           ;
-; I/O pins                                    ; 5         ;
-; Total MLAB memory bits                      ; 0         ;
-; Total block memory bits                     ; 480       ;
-;                                             ;           ;
-; Total DSP Blocks                            ; 2         ;
-;                                             ;           ;
-; Maximum fan-out node                        ; clk~input ;
-; Maximum fan-out                             ; 28194     ;
-; Total fan-out                               ; 235561    ;
-; Average fan-out                             ; 3.49      ;
-+---------------------------------------------+-----------+
-
-
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                                                                                   ;
-+----------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------+--------------+
-; Compilation Hierarchy Node                         ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                                                ; Entity Name         ; Library Name ;
-+----------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------+--------------+
-; |Processor                                         ; 39379 (352)         ; 28162 (0)                 ; 480               ; 2          ; 5    ; 0            ; |Processor                                                                                                                                                         ; Processor           ; work         ;
-;    |EX:EX_module|                                  ; 1433 (0)            ; 3 (0)                     ; 0                 ; 2          ; 0    ; 0            ; |Processor|EX:EX_module                                                                                                                                            ; EX                  ; work         ;
-;       |ALU:alucpu|                                 ; 1354 (0)            ; 0 (0)                     ; 0                 ; 2          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu                                                                                                                                 ; ALU                 ; work         ;
-;          |Mux:m|                                   ; 44 (44)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|Mux:m                                                                                                                           ; Mux                 ; work         ;
-;          |flag_cero:fz|                            ; 13 (13)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|flag_cero:fz                                                                                                                    ; flag_cero           ; work         ;
-;          |flag_negativo:fn|                        ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|flag_negativo:fn                                                                                                                ; flag_negativo       ; work         ;
-;          |flag_overflow:fv|                        ; 1133 (17)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|flag_overflow:fv                                                                                                                ; flag_overflow       ; work         ;
-;             |divisor_nb:div|                       ; 1116 (0)            ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|flag_overflow:fv|divisor_nb:div                                                                                                 ; divisor_nb          ; work         ;
-;                |lpm_divide:Div0|                   ; 1116 (0)            ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|flag_overflow:fv|divisor_nb:div|lpm_divide:Div0                                                                                 ; lpm_divide          ; work         ;
-;                   |lpm_divide_3dm:auto_generated|  ; 1116 (0)            ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|flag_overflow:fv|divisor_nb:div|lpm_divide:Div0|lpm_divide_3dm:auto_generated                                                   ; lpm_divide_3dm      ; work         ;
-;                      |sign_div_unsign_9nh:divider| ; 1116 (0)            ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|flag_overflow:fv|divisor_nb:div|lpm_divide:Div0|lpm_divide_3dm:auto_generated|sign_div_unsign_9nh:divider                       ; sign_div_unsign_9nh ; work         ;
-;                         |alt_u_div_o2f:divider|    ; 1116 (1116)         ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|flag_overflow:fv|divisor_nb:div|lpm_divide:Div0|lpm_divide_3dm:auto_generated|sign_div_unsign_9nh:divider|alt_u_div_o2f:divider ; alt_u_div_o2f       ; work         ;
-;          |multiplicador:mult|                      ; 14 (14)             ; 0 (0)                     ; 0                 ; 2          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|multiplicador:mult                                                                                                              ; multiplicador       ; work         ;
-;          |restador_nb:rest|                        ; 77 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|restador_nb:rest                                                                                                                ; restador_nb         ; work         ;
-;             |sumador_nb:resta|                     ; 77 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|restador_nb:rest|sumador_nb:resta                                                                                               ; sumador_nb          ; work         ;
-;                |sumador_1b:gen_loop[10].sum1b3|    ; 4 (4)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|restador_nb:rest|sumador_nb:resta|sumador_1b:gen_loop[10].sum1b3                                                                ; sumador_1b          ; work         ;
-;                |sumador_1b:gen_loop[11].sum1b3|    ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|restador_nb:rest|sumador_nb:resta|sumador_1b:gen_loop[11].sum1b3                                                                ; sumador_1b          ; work         ;
-;                |sumador_1b:gen_loop[12].sum1b3|    ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|restador_nb:rest|sumador_nb:resta|sumador_1b:gen_loop[12].sum1b3                                                                ; sumador_1b          ; work         ;
-;                |sumador_1b:gen_loop[13].sum1b3|    ; 3 (3)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|restador_nb:rest|sumador_nb:resta|sumador_1b:gen_loop[13].sum1b3                                                                ; sumador_1b          ; work         ;
-;                |sumador_1b:gen_loop[14].sum1b3|    ; 3 (3)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|restador_nb:rest|sumador_nb:resta|sumador_1b:gen_loop[14].sum1b3                                                                ; sumador_1b          ; work         ;
-;                |sumador_1b:gen_loop[15].sum1b3|    ; 4 (4)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|restador_nb:rest|sumador_nb:resta|sumador_1b:gen_loop[15].sum1b3                                                                ; sumador_1b          ; work         ;
-;                |sumador_1b:gen_loop[16].sum1b3|    ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|restador_nb:rest|sumador_nb:resta|sumador_1b:gen_loop[16].sum1b3                                                                ; sumador_1b          ; work         ;
-;                |sumador_1b:gen_loop[17].sum1b3|    ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|restador_nb:rest|sumador_nb:resta|sumador_1b:gen_loop[17].sum1b3                                                                ; sumador_1b          ; work         ;
-;                |sumador_1b:gen_loop[18].sum1b3|    ; 3 (3)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|restador_nb:rest|sumador_nb:resta|sumador_1b:gen_loop[18].sum1b3                                                                ; sumador_1b          ; work         ;
-;                |sumador_1b:gen_loop[19].sum1b3|    ; 3 (3)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|restador_nb:rest|sumador_nb:resta|sumador_1b:gen_loop[19].sum1b3                                                                ; sumador_1b          ; work         ;
-;                |sumador_1b:gen_loop[1].sum1b3|     ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|restador_nb:rest|sumador_nb:resta|sumador_1b:gen_loop[1].sum1b3                                                                 ; sumador_1b          ; work         ;
-;                |sumador_1b:gen_loop[20].sum1b3|    ; 4 (4)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|restador_nb:rest|sumador_nb:resta|sumador_1b:gen_loop[20].sum1b3                                                                ; sumador_1b          ; work         ;
-;                |sumador_1b:gen_loop[21].sum1b3|    ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|restador_nb:rest|sumador_nb:resta|sumador_1b:gen_loop[21].sum1b3                                                                ; sumador_1b          ; work         ;
-;                |sumador_1b:gen_loop[22].sum1b3|    ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|restador_nb:rest|sumador_nb:resta|sumador_1b:gen_loop[22].sum1b3                                                                ; sumador_1b          ; work         ;
-;                |sumador_1b:gen_loop[23].sum1b3|    ; 3 (3)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|restador_nb:rest|sumador_nb:resta|sumador_1b:gen_loop[23].sum1b3                                                                ; sumador_1b          ; work         ;
-;                |sumador_1b:gen_loop[24].sum1b3|    ; 3 (3)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|restador_nb:rest|sumador_nb:resta|sumador_1b:gen_loop[24].sum1b3                                                                ; sumador_1b          ; work         ;
-;                |sumador_1b:gen_loop[25].sum1b3|    ; 4 (4)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|restador_nb:rest|sumador_nb:resta|sumador_1b:gen_loop[25].sum1b3                                                                ; sumador_1b          ; work         ;
-;                |sumador_1b:gen_loop[26].sum1b3|    ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|restador_nb:rest|sumador_nb:resta|sumador_1b:gen_loop[26].sum1b3                                                                ; sumador_1b          ; work         ;
-;                |sumador_1b:gen_loop[27].sum1b3|    ; 3 (3)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|restador_nb:rest|sumador_nb:resta|sumador_1b:gen_loop[27].sum1b3                                                                ; sumador_1b          ; work         ;
-;                |sumador_1b:gen_loop[28].sum1b3|    ; 3 (3)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|restador_nb:rest|sumador_nb:resta|sumador_1b:gen_loop[28].sum1b3                                                                ; sumador_1b          ; work         ;
-;                |sumador_1b:gen_loop[29].sum1b3|    ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|restador_nb:rest|sumador_nb:resta|sumador_1b:gen_loop[29].sum1b3                                                                ; sumador_1b          ; work         ;
-;                |sumador_1b:gen_loop[2].sum1b3|     ; 3 (3)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|restador_nb:rest|sumador_nb:resta|sumador_1b:gen_loop[2].sum1b3                                                                 ; sumador_1b          ; work         ;
-;                |sumador_1b:gen_loop[30].sum1b3|    ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|restador_nb:rest|sumador_nb:resta|sumador_1b:gen_loop[30].sum1b3                                                                ; sumador_1b          ; work         ;
-;                |sumador_1b:gen_loop[3].sum1b3|     ; 3 (3)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|restador_nb:rest|sumador_nb:resta|sumador_1b:gen_loop[3].sum1b3                                                                 ; sumador_1b          ; work         ;
-;                |sumador_1b:gen_loop[4].sum1b3|     ; 3 (3)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|restador_nb:rest|sumador_nb:resta|sumador_1b:gen_loop[4].sum1b3                                                                 ; sumador_1b          ; work         ;
-;                |sumador_1b:gen_loop[5].sum1b3|     ; 5 (5)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|restador_nb:rest|sumador_nb:resta|sumador_1b:gen_loop[5].sum1b3                                                                 ; sumador_1b          ; work         ;
-;                |sumador_1b:gen_loop[6].sum1b3|     ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|restador_nb:rest|sumador_nb:resta|sumador_1b:gen_loop[6].sum1b3                                                                 ; sumador_1b          ; work         ;
-;                |sumador_1b:gen_loop[7].sum1b3|     ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|restador_nb:rest|sumador_nb:resta|sumador_1b:gen_loop[7].sum1b3                                                                 ; sumador_1b          ; work         ;
-;                |sumador_1b:gen_loop[8].sum1b3|     ; 3 (3)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|restador_nb:rest|sumador_nb:resta|sumador_1b:gen_loop[8].sum1b3                                                                 ; sumador_1b          ; work         ;
-;                |sumador_1b:gen_loop[9].sum1b3|     ; 3 (3)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|restador_nb:rest|sumador_nb:resta|sumador_1b:gen_loop[9].sum1b3                                                                 ; sumador_1b          ; work         ;
-;                |sumador_1b:sum1b14|                ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|restador_nb:rest|sumador_nb:resta|sumador_1b:sum1b14                                                                            ; sumador_1b          ; work         ;
-;                |sumador_1b:sum1b2|                 ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|restador_nb:rest|sumador_nb:resta|sumador_1b:sum1b2                                                                             ; sumador_1b          ; work         ;
-;          |sumador_nb:sum|                          ; 72 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|sumador_nb:sum                                                                                                                  ; sumador_nb          ; work         ;
-;             |sumador_1b:gen_loop[10].sum1b3|       ; 4 (4)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|sumador_nb:sum|sumador_1b:gen_loop[10].sum1b3                                                                                   ; sumador_1b          ; work         ;
-;             |sumador_1b:gen_loop[11].sum1b3|       ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|sumador_nb:sum|sumador_1b:gen_loop[11].sum1b3                                                                                   ; sumador_1b          ; work         ;
-;             |sumador_1b:gen_loop[12].sum1b3|       ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|sumador_nb:sum|sumador_1b:gen_loop[12].sum1b3                                                                                   ; sumador_1b          ; work         ;
-;             |sumador_1b:gen_loop[13].sum1b3|       ; 3 (3)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|sumador_nb:sum|sumador_1b:gen_loop[13].sum1b3                                                                                   ; sumador_1b          ; work         ;
-;             |sumador_1b:gen_loop[14].sum1b3|       ; 3 (3)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|sumador_nb:sum|sumador_1b:gen_loop[14].sum1b3                                                                                   ; sumador_1b          ; work         ;
-;             |sumador_1b:gen_loop[15].sum1b3|       ; 4 (4)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|sumador_nb:sum|sumador_1b:gen_loop[15].sum1b3                                                                                   ; sumador_1b          ; work         ;
-;             |sumador_1b:gen_loop[16].sum1b3|       ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|sumador_nb:sum|sumador_1b:gen_loop[16].sum1b3                                                                                   ; sumador_1b          ; work         ;
-;             |sumador_1b:gen_loop[17].sum1b3|       ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|sumador_nb:sum|sumador_1b:gen_loop[17].sum1b3                                                                                   ; sumador_1b          ; work         ;
-;             |sumador_1b:gen_loop[18].sum1b3|       ; 3 (3)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|sumador_nb:sum|sumador_1b:gen_loop[18].sum1b3                                                                                   ; sumador_1b          ; work         ;
-;             |sumador_1b:gen_loop[19].sum1b3|       ; 3 (3)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|sumador_nb:sum|sumador_1b:gen_loop[19].sum1b3                                                                                   ; sumador_1b          ; work         ;
-;             |sumador_1b:gen_loop[1].sum1b3|        ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|sumador_nb:sum|sumador_1b:gen_loop[1].sum1b3                                                                                    ; sumador_1b          ; work         ;
-;             |sumador_1b:gen_loop[20].sum1b3|       ; 4 (4)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|sumador_nb:sum|sumador_1b:gen_loop[20].sum1b3                                                                                   ; sumador_1b          ; work         ;
-;             |sumador_1b:gen_loop[21].sum1b3|       ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|sumador_nb:sum|sumador_1b:gen_loop[21].sum1b3                                                                                   ; sumador_1b          ; work         ;
-;             |sumador_1b:gen_loop[22].sum1b3|       ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|sumador_nb:sum|sumador_1b:gen_loop[22].sum1b3                                                                                   ; sumador_1b          ; work         ;
-;             |sumador_1b:gen_loop[23].sum1b3|       ; 3 (3)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|sumador_nb:sum|sumador_1b:gen_loop[23].sum1b3                                                                                   ; sumador_1b          ; work         ;
-;             |sumador_1b:gen_loop[24].sum1b3|       ; 3 (3)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|sumador_nb:sum|sumador_1b:gen_loop[24].sum1b3                                                                                   ; sumador_1b          ; work         ;
-;             |sumador_1b:gen_loop[25].sum1b3|       ; 4 (4)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|sumador_nb:sum|sumador_1b:gen_loop[25].sum1b3                                                                                   ; sumador_1b          ; work         ;
-;             |sumador_1b:gen_loop[26].sum1b3|       ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|sumador_nb:sum|sumador_1b:gen_loop[26].sum1b3                                                                                   ; sumador_1b          ; work         ;
-;             |sumador_1b:gen_loop[27].sum1b3|       ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|sumador_nb:sum|sumador_1b:gen_loop[27].sum1b3                                                                                   ; sumador_1b          ; work         ;
-;             |sumador_1b:gen_loop[28].sum1b3|       ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|sumador_nb:sum|sumador_1b:gen_loop[28].sum1b3                                                                                   ; sumador_1b          ; work         ;
-;             |sumador_1b:gen_loop[29].sum1b3|       ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|sumador_nb:sum|sumador_1b:gen_loop[29].sum1b3                                                                                   ; sumador_1b          ; work         ;
-;             |sumador_1b:gen_loop[2].sum1b3|        ; 3 (3)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|sumador_nb:sum|sumador_1b:gen_loop[2].sum1b3                                                                                    ; sumador_1b          ; work         ;
-;             |sumador_1b:gen_loop[30].sum1b3|       ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|sumador_nb:sum|sumador_1b:gen_loop[30].sum1b3                                                                                   ; sumador_1b          ; work         ;
-;             |sumador_1b:gen_loop[3].sum1b3|        ; 3 (3)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|sumador_nb:sum|sumador_1b:gen_loop[3].sum1b3                                                                                    ; sumador_1b          ; work         ;
-;             |sumador_1b:gen_loop[4].sum1b3|        ; 3 (3)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|sumador_nb:sum|sumador_1b:gen_loop[4].sum1b3                                                                                    ; sumador_1b          ; work         ;
-;             |sumador_1b:gen_loop[5].sum1b3|        ; 5 (5)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|sumador_nb:sum|sumador_1b:gen_loop[5].sum1b3                                                                                    ; sumador_1b          ; work         ;
-;             |sumador_1b:gen_loop[6].sum1b3|        ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|sumador_nb:sum|sumador_1b:gen_loop[6].sum1b3                                                                                    ; sumador_1b          ; work         ;
-;             |sumador_1b:gen_loop[7].sum1b3|        ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|sumador_nb:sum|sumador_1b:gen_loop[7].sum1b3                                                                                    ; sumador_1b          ; work         ;
-;             |sumador_1b:gen_loop[8].sum1b3|        ; 3 (3)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|sumador_nb:sum|sumador_1b:gen_loop[8].sum1b3                                                                                    ; sumador_1b          ; work         ;
-;             |sumador_1b:gen_loop[9].sum1b3|        ; 3 (3)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|sumador_nb:sum|sumador_1b:gen_loop[9].sum1b3                                                                                    ; sumador_1b          ; work         ;
-;             |sumador_1b:sum1b14|                   ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|sumador_nb:sum|sumador_1b:sum1b14                                                                                               ; sumador_1b          ; work         ;
-;             |sumador_1b:sum1b2|                    ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ALU:alucpu|sumador_nb:sum|sumador_1b:sum1b2                                                                                                ; sumador_1b          ; work         ;
-;       |ForwardingUnit:fu|                          ; 77 (8)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ForwardingUnit:fu                                                                                                                          ; ForwardingUnit      ; work         ;
-;          |Mux2_1:Amux2|                            ; 34 (34)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ForwardingUnit:fu|Mux2_1:Amux2                                                                                                             ; Mux2_1              ; work         ;
-;          |Mux2_1:Bmux2|                            ; 35 (35)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|ForwardingUnit:fu|Mux2_1:Bmux2                                                                                                             ; Mux2_1              ; work         ;
-;       |PC_condition:pc_cond|                       ; 2 (2)               ; 3 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|PC_condition:pc_cond                                                                                                                       ; PC_condition        ; work         ;
-;          |ff_enable:flagff|                        ; 0 (0)               ; 3 (3)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX:EX_module|PC_condition:pc_cond|ff_enable:flagff                                                                                                      ; ff_enable           ; work         ;
-;    |EX_Pipeline:EX_Pipeline_module|                ; 0 (0)               ; 71 (71)                   ; 0                 ; 0          ; 0    ; 0            ; |Processor|EX_Pipeline:EX_Pipeline_module                                                                                                                          ; EX_Pipeline         ; work         ;
-;    |ID:id_module|                                  ; 273 (0)             ; 513 (0)                   ; 480               ; 0          ; 0    ; 0            ; |Processor|ID:id_module                                                                                                                                            ; ID                  ; work         ;
-;       |Control_unit:control|                       ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|ID:id_module|Control_unit:control                                                                                                                       ; Control_unit        ; work         ;
-;       |Extender:extend|                            ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|ID:id_module|Extender:extend                                                                                                                            ; Extender            ; work         ;
-;       |Mux2_1:Bmux|                                ; 57 (57)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|ID:id_module|Mux2_1:Bmux                                                                                                                                ; Mux2_1              ; work         ;
-;       |Mux2_1:pcdest|                              ; 4 (4)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|ID:id_module|Mux2_1:pcdest                                                                                                                              ; Mux2_1              ; work         ;
-;       |Mux2_1:pcreg1|                              ; 4 (4)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|ID:id_module|Mux2_1:pcreg1                                                                                                                              ; Mux2_1              ; work         ;
-;       |Register_File:rf|                           ; 177 (177)           ; 513 (513)                 ; 480               ; 0          ; 0    ; 0            ; |Processor|ID:id_module|Register_File:rf                                                                                                                           ; Register_File       ; work         ;
-;          |altsyncram:register_rtl_0|               ; 0 (0)               ; 0 (0)                     ; 480               ; 0          ; 0    ; 0            ; |Processor|ID:id_module|Register_File:rf|altsyncram:register_rtl_0                                                                                                 ; altsyncram          ; work         ;
-;             |altsyncram_46j1:auto_generated|       ; 0 (0)               ; 0 (0)                     ; 480               ; 0          ; 0    ; 0            ; |Processor|ID:id_module|Register_File:rf|altsyncram:register_rtl_0|altsyncram_46j1:auto_generated                                                                  ; altsyncram_46j1     ; work         ;
-;       |sumador_nb:sump2|                           ; 22 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|ID:id_module|sumador_nb:sump2                                                                                                                           ; sumador_nb          ; work         ;
-;          |sumador_1b:gen_loop[11].sum1b3|          ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|ID:id_module|sumador_nb:sump2|sumador_1b:gen_loop[11].sum1b3                                                                                            ; sumador_1b          ; work         ;
-;          |sumador_1b:gen_loop[13].sum1b3|          ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|ID:id_module|sumador_nb:sump2|sumador_1b:gen_loop[13].sum1b3                                                                                            ; sumador_1b          ; work         ;
-;          |sumador_1b:gen_loop[14].sum1b3|          ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|ID:id_module|sumador_nb:sump2|sumador_1b:gen_loop[14].sum1b3                                                                                            ; sumador_1b          ; work         ;
-;          |sumador_1b:gen_loop[17].sum1b3|          ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|ID:id_module|sumador_nb:sump2|sumador_1b:gen_loop[17].sum1b3                                                                                            ; sumador_1b          ; work         ;
-;          |sumador_1b:gen_loop[20].sum1b3|          ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|ID:id_module|sumador_nb:sump2|sumador_1b:gen_loop[20].sum1b3                                                                                            ; sumador_1b          ; work         ;
-;          |sumador_1b:gen_loop[23].sum1b3|          ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|ID:id_module|sumador_nb:sump2|sumador_1b:gen_loop[23].sum1b3                                                                                            ; sumador_1b          ; work         ;
-;          |sumador_1b:gen_loop[26].sum1b3|          ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|ID:id_module|sumador_nb:sump2|sumador_1b:gen_loop[26].sum1b3                                                                                            ; sumador_1b          ; work         ;
-;          |sumador_1b:gen_loop[28].sum1b3|          ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|ID:id_module|sumador_nb:sump2|sumador_1b:gen_loop[28].sum1b3                                                                                            ; sumador_1b          ; work         ;
-;          |sumador_1b:gen_loop[29].sum1b3|          ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|ID:id_module|sumador_nb:sump2|sumador_1b:gen_loop[29].sum1b3                                                                                            ; sumador_1b          ; work         ;
-;          |sumador_1b:gen_loop[4].sum1b3|           ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|ID:id_module|sumador_nb:sump2|sumador_1b:gen_loop[4].sum1b3                                                                                             ; sumador_1b          ; work         ;
-;          |sumador_1b:gen_loop[5].sum1b3|           ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|ID:id_module|sumador_nb:sump2|sumador_1b:gen_loop[5].sum1b3                                                                                             ; sumador_1b          ; work         ;
-;          |sumador_1b:gen_loop[8].sum1b3|           ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|ID:id_module|sumador_nb:sump2|sumador_1b:gen_loop[8].sum1b3                                                                                             ; sumador_1b          ; work         ;
-;          |sumador_1b:sum1b14|                      ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|ID:id_module|sumador_nb:sump2|sumador_1b:sum1b14                                                                                                        ; sumador_1b          ; work         ;
-;    |ID_Pipeline:ID_Pipeline_module|                ; 10 (10)             ; 86 (86)                   ; 0                 ; 0          ; 0    ; 0            ; |Processor|ID_Pipeline:ID_Pipeline_module                                                                                                                          ; ID_Pipeline         ; work         ;
-;    |IF:IF_module|                                  ; 499 (0)             ; 32 (0)                    ; 0                 ; 0          ; 0    ; 0            ; |Processor|IF:IF_module                                                                                                                                            ; IF                  ; work         ;
-;       |Instruction_Memory:im|                      ; 458 (458)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|IF:IF_module|Instruction_Memory:im                                                                                                                      ; Instruction_Memory  ; work         ;
-;       |PC:pc|                                      ; 1 (1)               ; 32 (32)                   ; 0                 ; 0          ; 0    ; 0            ; |Processor|IF:IF_module|PC:pc                                                                                                                                      ; PC                  ; work         ;
-;       |sumador_nb:sump1|                           ; 40 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|IF:IF_module|sumador_nb:sump1                                                                                                                           ; sumador_nb          ; work         ;
-;          |sumador_1b:gen_loop[10].sum1b3|          ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|IF:IF_module|sumador_nb:sump1|sumador_1b:gen_loop[10].sum1b3                                                                                            ; sumador_1b          ; work         ;
-;          |sumador_1b:gen_loop[11].sum1b3|          ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|IF:IF_module|sumador_nb:sump1|sumador_1b:gen_loop[11].sum1b3                                                                                            ; sumador_1b          ; work         ;
-;          |sumador_1b:gen_loop[12].sum1b3|          ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|IF:IF_module|sumador_nb:sump1|sumador_1b:gen_loop[12].sum1b3                                                                                            ; sumador_1b          ; work         ;
-;          |sumador_1b:gen_loop[13].sum1b3|          ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|IF:IF_module|sumador_nb:sump1|sumador_1b:gen_loop[13].sum1b3                                                                                            ; sumador_1b          ; work         ;
-;          |sumador_1b:gen_loop[14].sum1b3|          ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|IF:IF_module|sumador_nb:sump1|sumador_1b:gen_loop[14].sum1b3                                                                                            ; sumador_1b          ; work         ;
-;          |sumador_1b:gen_loop[15].sum1b3|          ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|IF:IF_module|sumador_nb:sump1|sumador_1b:gen_loop[15].sum1b3                                                                                            ; sumador_1b          ; work         ;
-;          |sumador_1b:gen_loop[16].sum1b3|          ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|IF:IF_module|sumador_nb:sump1|sumador_1b:gen_loop[16].sum1b3                                                                                            ; sumador_1b          ; work         ;
-;          |sumador_1b:gen_loop[17].sum1b3|          ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|IF:IF_module|sumador_nb:sump1|sumador_1b:gen_loop[17].sum1b3                                                                                            ; sumador_1b          ; work         ;
-;          |sumador_1b:gen_loop[18].sum1b3|          ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|IF:IF_module|sumador_nb:sump1|sumador_1b:gen_loop[18].sum1b3                                                                                            ; sumador_1b          ; work         ;
-;          |sumador_1b:gen_loop[19].sum1b3|          ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|IF:IF_module|sumador_nb:sump1|sumador_1b:gen_loop[19].sum1b3                                                                                            ; sumador_1b          ; work         ;
-;          |sumador_1b:gen_loop[1].sum1b3|           ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|IF:IF_module|sumador_nb:sump1|sumador_1b:gen_loop[1].sum1b3                                                                                             ; sumador_1b          ; work         ;
-;          |sumador_1b:gen_loop[20].sum1b3|          ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|IF:IF_module|sumador_nb:sump1|sumador_1b:gen_loop[20].sum1b3                                                                                            ; sumador_1b          ; work         ;
-;          |sumador_1b:gen_loop[21].sum1b3|          ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|IF:IF_module|sumador_nb:sump1|sumador_1b:gen_loop[21].sum1b3                                                                                            ; sumador_1b          ; work         ;
-;          |sumador_1b:gen_loop[22].sum1b3|          ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|IF:IF_module|sumador_nb:sump1|sumador_1b:gen_loop[22].sum1b3                                                                                            ; sumador_1b          ; work         ;
-;          |sumador_1b:gen_loop[23].sum1b3|          ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|IF:IF_module|sumador_nb:sump1|sumador_1b:gen_loop[23].sum1b3                                                                                            ; sumador_1b          ; work         ;
-;          |sumador_1b:gen_loop[24].sum1b3|          ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|IF:IF_module|sumador_nb:sump1|sumador_1b:gen_loop[24].sum1b3                                                                                            ; sumador_1b          ; work         ;
-;          |sumador_1b:gen_loop[25].sum1b3|          ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|IF:IF_module|sumador_nb:sump1|sumador_1b:gen_loop[25].sum1b3                                                                                            ; sumador_1b          ; work         ;
-;          |sumador_1b:gen_loop[26].sum1b3|          ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|IF:IF_module|sumador_nb:sump1|sumador_1b:gen_loop[26].sum1b3                                                                                            ; sumador_1b          ; work         ;
-;          |sumador_1b:gen_loop[27].sum1b3|          ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|IF:IF_module|sumador_nb:sump1|sumador_1b:gen_loop[27].sum1b3                                                                                            ; sumador_1b          ; work         ;
-;          |sumador_1b:gen_loop[28].sum1b3|          ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|IF:IF_module|sumador_nb:sump1|sumador_1b:gen_loop[28].sum1b3                                                                                            ; sumador_1b          ; work         ;
-;          |sumador_1b:gen_loop[29].sum1b3|          ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|IF:IF_module|sumador_nb:sump1|sumador_1b:gen_loop[29].sum1b3                                                                                            ; sumador_1b          ; work         ;
-;          |sumador_1b:gen_loop[2].sum1b3|           ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|IF:IF_module|sumador_nb:sump1|sumador_1b:gen_loop[2].sum1b3                                                                                             ; sumador_1b          ; work         ;
-;          |sumador_1b:gen_loop[30].sum1b3|          ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|IF:IF_module|sumador_nb:sump1|sumador_1b:gen_loop[30].sum1b3                                                                                            ; sumador_1b          ; work         ;
-;          |sumador_1b:gen_loop[3].sum1b3|           ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|IF:IF_module|sumador_nb:sump1|sumador_1b:gen_loop[3].sum1b3                                                                                             ; sumador_1b          ; work         ;
-;          |sumador_1b:gen_loop[4].sum1b3|           ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|IF:IF_module|sumador_nb:sump1|sumador_1b:gen_loop[4].sum1b3                                                                                             ; sumador_1b          ; work         ;
-;          |sumador_1b:gen_loop[5].sum1b3|           ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|IF:IF_module|sumador_nb:sump1|sumador_1b:gen_loop[5].sum1b3                                                                                             ; sumador_1b          ; work         ;
-;          |sumador_1b:gen_loop[6].sum1b3|           ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|IF:IF_module|sumador_nb:sump1|sumador_1b:gen_loop[6].sum1b3                                                                                             ; sumador_1b          ; work         ;
-;          |sumador_1b:gen_loop[7].sum1b3|           ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|IF:IF_module|sumador_nb:sump1|sumador_1b:gen_loop[7].sum1b3                                                                                             ; sumador_1b          ; work         ;
-;          |sumador_1b:gen_loop[8].sum1b3|           ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|IF:IF_module|sumador_nb:sump1|sumador_1b:gen_loop[8].sum1b3                                                                                             ; sumador_1b          ; work         ;
-;          |sumador_1b:gen_loop[9].sum1b3|           ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|IF:IF_module|sumador_nb:sump1|sumador_1b:gen_loop[9].sum1b3                                                                                             ; sumador_1b          ; work         ;
-;          |sumador_1b:sum1b14|                      ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|IF:IF_module|sumador_nb:sump1|sumador_1b:sum1b14                                                                                                        ; sumador_1b          ; work         ;
-;    |IF_Pipeline:IF_Pipeline_module|                ; 1 (1)               ; 58 (58)                   ; 0                 ; 0          ; 0    ; 0            ; |Processor|IF_Pipeline:IF_Pipeline_module                                                                                                                          ; IF_Pipeline         ; work         ;
-;    |MEM:MEM_module|                                ; 36811 (0)           ; 27362 (0)                 ; 0                 ; 0          ; 0    ; 0            ; |Processor|MEM:MEM_module                                                                                                                                          ; MEM                 ; work         ;
-;       |Memory:memory_module|                       ; 36763 (75)          ; 27362 (0)                 ; 0                 ; 0          ; 0    ; 0            ; |Processor|MEM:MEM_module|Memory:memory_module                                                                                                                     ; Memory              ; work         ;
-;          |RAM:ram|                                 ; 36592 (36592)       ; 27362 (27362)             ; 0                 ; 0          ; 0    ; 0            ; |Processor|MEM:MEM_module|Memory:memory_module|RAM:ram                                                                                                             ; RAM                 ; work         ;
-;          |ROM:rom|                                 ; 96 (96)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|MEM:MEM_module|Memory:memory_module|ROM:rom                                                                                                             ; ROM                 ; work         ;
-;       |Mux2_1:result_select|                       ; 48 (48)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Processor|MEM:MEM_module|Mux2_1:result_select                                                                                                                     ; Mux2_1              ; work         ;
-;    |MEM_Pipeline:MEM_WB_Pipeline_module|           ; 0 (0)               ; 37 (37)                   ; 0                 ; 0          ; 0    ; 0            ; |Processor|MEM_Pipeline:MEM_WB_Pipeline_module                                                                                                                     ; MEM_Pipeline        ; work         ;
-+----------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------+--------------+
-Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
-
-
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis RAM Summary                                                                                                                                                                      ;
-+---------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+------+------+
-; Name                                                                                              ; Type ; Mode             ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size ; MIF  ;
-+---------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+------+------+
-; ID:id_module|Register_File:rf|altsyncram:register_rtl_0|altsyncram_46j1:auto_generated|ALTSYNCRAM ; AUTO ; Simple Dual Port ; 15           ; 32           ; 15           ; 32           ; 480  ; None ;
-+---------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+------+------+
-
-
-+-----------------------------------------------+
-; Analysis & Synthesis DSP Block Usage Summary  ;
-+---------------------------------+-------------+
-; Statistic                       ; Number Used ;
-+---------------------------------+-------------+
-; Two Independent 18x18           ; 1           ;
-; Sum of two 18x18                ; 1           ;
-; Total number of DSP blocks      ; 2           ;
-;                                 ;             ;
-; Fixed Point Unsigned Multiplier ; 3           ;
-+---------------------------------+-------------+
-
-
-+---------------------------------------------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                                                  ;
-+----------------------------------------------------------+----------------------------------------------------------+
-; Register name                                            ; Reason for Removal                                       ;
-+----------------------------------------------------------+----------------------------------------------------------+
-; MEM:MEM_module|Memory:memory_module|RAM:ram|rdata[1..31] ; Stuck at GND due to stuck port data_in                   ;
-; IF_Pipeline:IF_Pipeline_module|Instr_out[12,15..17]      ; Merged with IF_Pipeline:IF_Pipeline_module|Instr_out[18] ;
-; IF_Pipeline:IF_Pipeline_module|Instr_out[13]             ; Merged with IF_Pipeline:IF_Pipeline_module|Instr_out[14] ;
-; IF_Pipeline:IF_Pipeline_module|Instr_out[18]             ; Stuck at GND due to stuck port data_in                   ;
-; Total Number of Removed Registers = 37                   ;                                                          ;
-+----------------------------------------------------------+----------------------------------------------------------+
-
-
-+------------------------------------------------------+
-; General Register Statistics                          ;
-+----------------------------------------------+-------+
-; Statistic                                    ; Value ;
-+----------------------------------------------+-------+
-; Total registers                              ; 28162 ;
-; Number of registers using Synchronous Clear  ; 5     ;
-; Number of registers using Synchronous Load   ; 65    ;
-; Number of registers using Asynchronous Clear ; 288   ;
-; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 515   ;
-; Number of registers using Preset             ; 0     ;
-+----------------------------------------------+-------+
-
-
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                  ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                        ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------+
-; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |Processor|ID_Pipeline:ID_Pipeline_module|BOUT[14]                ;
-; 4:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; Yes        ; |Processor|ID_Pipeline:ID_Pipeline_module|BOUT[31]                ;
-; 5:1                ; 4 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |Processor|ID_Pipeline:ID_Pipeline_module|BOUT[23]                ;
-; 5:1                ; 4 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |Processor|ID_Pipeline:ID_Pipeline_module|BOUT[18]                ;
-; 5:1                ; 6 bits    ; 18 LEs        ; 18 LEs               ; 0 LEs                  ; Yes        ; |Processor|ID_Pipeline:ID_Pipeline_module|BOUT[19]                ;
-; 5:1                ; 10 bits   ; 30 LEs        ; 30 LEs               ; 0 LEs                  ; Yes        ; |Processor|ID_Pipeline:ID_Pipeline_module|BOUT[1]                 ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |Processor|EX:EX_module|ForwardingUnit:fu|Mux2_1:Amux2|result[27] ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |Processor|EX:EX_module|ForwardingUnit:fu|Mux2_1:Bmux2|result[22] ;
-; 4:1                ; 31 bits   ; 62 LEs        ; 62 LEs               ; 0 LEs                  ; No         ; |Processor|EX:EX_module|ALU:alucpu|Mux:m|Mux18                    ;
-; 5:1                ; 31 bits   ; 93 LEs        ; 93 LEs               ; 0 LEs                  ; No         ; |Processor|MEM:MEM_module|Memory:memory_module|mapadress[3]       ;
-; 6:1                ; 6 bits    ; 24 LEs        ; 24 LEs               ; 0 LEs                  ; No         ; |Processor|MEM:MEM_module|Mux2_1:result_select|result[6]          ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------+
-
-
-+---------------------------------------------------------------------------------------------------------------+
-; Source assignments for ID:id_module|Register_File:rf|altsyncram:register_rtl_0|altsyncram_46j1:auto_generated ;
-+---------------------------------+--------------------+------+-------------------------------------------------+
-; Assignment                      ; Value              ; From ; To                                              ;
-+---------------------------------+--------------------+------+-------------------------------------------------+
-; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                               ;
-+---------------------------------+--------------------+------+-------------------------------------------------+
-
-
-+------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: IF:IF_module|Mux2_1:pcmux ;
-+----------------+-------+-----------------------------------------------+
-; Parameter Name ; Value ; Type                                          ;
-+----------------+-------+-----------------------------------------------+
-; N              ; 32    ; Signed Integer                                ;
-+----------------+-------+-----------------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+-----------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: IF:IF_module|PC:pc ;
-+----------------+-------+----------------------------------------+
-; Parameter Name ; Value ; Type                                   ;
-+----------------+-------+----------------------------------------+
-; N              ; 32    ; Signed Integer                         ;
-+----------------+-------+----------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+----------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: IF:IF_module|sumador_nb:sump1 ;
-+----------------+-------+---------------------------------------------------+
-; Parameter Name ; Value ; Type                                              ;
-+----------------+-------+---------------------------------------------------+
-; N              ; 32    ; Signed Integer                                    ;
-+----------------+-------+---------------------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+-------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: ID:id_module|Mux2_1:pcreg1 ;
-+----------------+-------+------------------------------------------------+
-; Parameter Name ; Value ; Type                                           ;
-+----------------+-------+------------------------------------------------+
-; N              ; 4     ; Signed Integer                                 ;
-+----------------+-------+------------------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+-------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: ID:id_module|Mux2_1:pcdest ;
-+----------------+-------+------------------------------------------------+
-; Parameter Name ; Value ; Type                                           ;
-+----------------+-------+------------------------------------------------+
-; N              ; 4     ; Signed Integer                                 ;
-+----------------+-------+------------------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+----------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: ID:id_module|sumador_nb:sump2 ;
-+----------------+-------+---------------------------------------------------+
-; Parameter Name ; Value ; Type                                              ;
-+----------------+-------+---------------------------------------------------+
-; N              ; 32    ; Signed Integer                                    ;
-+----------------+-------+---------------------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+-----------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: ID:id_module|Mux2_1:Amux ;
-+----------------+-------+----------------------------------------------+
-; Parameter Name ; Value ; Type                                         ;
-+----------------+-------+----------------------------------------------+
-; N              ; 32    ; Signed Integer                               ;
-+----------------+-------+----------------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+-----------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: ID:id_module|Mux2_1:Bmux ;
-+----------------+-------+----------------------------------------------+
-; Parameter Name ; Value ; Type                                         ;
-+----------------+-------+----------------------------------------------+
-; N              ; 32    ; Signed Integer                               ;
-+----------------+-------+----------------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+-----------------------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: EX:EX_module|ForwardingUnit:fu|Mux2_1:Amux ;
-+----------------+-------+----------------------------------------------------------------+
-; Parameter Name ; Value ; Type                                                           ;
-+----------------+-------+----------------------------------------------------------------+
-; N              ; 32    ; Signed Integer                                                 ;
-+----------------+-------+----------------------------------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+-----------------------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: EX:EX_module|ForwardingUnit:fu|Mux2_1:Bmux ;
-+----------------+-------+----------------------------------------------------------------+
-; Parameter Name ; Value ; Type                                                           ;
-+----------------+-------+----------------------------------------------------------------+
-; N              ; 32    ; Signed Integer                                                 ;
-+----------------+-------+----------------------------------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+------------------------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: EX:EX_module|ForwardingUnit:fu|Mux2_1:Amux2 ;
-+----------------+-------+-----------------------------------------------------------------+
-; Parameter Name ; Value ; Type                                                            ;
-+----------------+-------+-----------------------------------------------------------------+
-; N              ; 32    ; Signed Integer                                                  ;
-+----------------+-------+-----------------------------------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+------------------------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: EX:EX_module|ForwardingUnit:fu|Mux2_1:Bmux2 ;
-+----------------+-------+-----------------------------------------------------------------+
-; Parameter Name ; Value ; Type                                                            ;
-+----------------+-------+-----------------------------------------------------------------+
-; N              ; 32    ; Signed Integer                                                  ;
-+----------------+-------+-----------------------------------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+----------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: EX:EX_module|ALU:alucpu ;
-+----------------+-------+---------------------------------------------+
-; Parameter Name ; Value ; Type                                        ;
-+----------------+-------+---------------------------------------------+
-; N              ; 32    ; Signed Integer                              ;
-+----------------+-------+---------------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+-------------------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: EX:EX_module|ALU:alucpu|sumador_nb:sum ;
-+----------------+-------+------------------------------------------------------------+
-; Parameter Name ; Value ; Type                                                       ;
-+----------------+-------+------------------------------------------------------------+
-; N              ; 32    ; Signed Integer                                             ;
-+----------------+-------+------------------------------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+---------------------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: EX:EX_module|ALU:alucpu|restador_nb:rest ;
-+----------------+-------+--------------------------------------------------------------+
-; Parameter Name ; Value ; Type                                                         ;
-+----------------+-------+--------------------------------------------------------------+
-; N              ; 32    ; Signed Integer                                               ;
-+----------------+-------+--------------------------------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+------------------------------------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: EX:EX_module|ALU:alucpu|restador_nb:rest|negador_nb:neg ;
-+----------------+-------+-----------------------------------------------------------------------------+
-; Parameter Name ; Value ; Type                                                                        ;
-+----------------+-------+-----------------------------------------------------------------------------+
-; N              ; 32    ; Signed Integer                                                              ;
-+----------------+-------+-----------------------------------------------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+--------------------------------------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: EX:EX_module|ALU:alucpu|restador_nb:rest|sumador_nb:resta ;
-+----------------+-------+-------------------------------------------------------------------------------+
-; Parameter Name ; Value ; Type                                                                          ;
-+----------------+-------+-------------------------------------------------------------------------------+
-; N              ; 32    ; Signed Integer                                                                ;
-+----------------+-------+-------------------------------------------------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+-----------------------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: EX:EX_module|ALU:alucpu|multiplicador:mult ;
-+----------------+-------+----------------------------------------------------------------+
-; Parameter Name ; Value ; Type                                                           ;
-+----------------+-------+----------------------------------------------------------------+
-; N              ; 32    ; Signed Integer                                                 ;
-+----------------+-------+----------------------------------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+----------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: EX:EX_module|ALU:alucpu|Mux:m ;
-+----------------+-------+---------------------------------------------------+
-; Parameter Name ; Value ; Type                                              ;
-+----------------+-------+---------------------------------------------------+
-; N              ; 32    ; Signed Integer                                    ;
-+----------------+-------+---------------------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+-----------------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: EX:EX_module|ALU:alucpu|flag_cero:fz ;
-+----------------+-------+----------------------------------------------------------+
-; Parameter Name ; Value ; Type                                                     ;
-+----------------+-------+----------------------------------------------------------+
-; N              ; 32    ; Signed Integer                                           ;
-+----------------+-------+----------------------------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+---------------------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: EX:EX_module|ALU:alucpu|flag_overflow:fv ;
-+----------------+-------+--------------------------------------------------------------+
-; Parameter Name ; Value ; Type                                                         ;
-+----------------+-------+--------------------------------------------------------------+
-; N              ; 32    ; Signed Integer                                               ;
-+----------------+-------+--------------------------------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+------------------------------------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: EX:EX_module|ALU:alucpu|flag_overflow:fv|divisor_nb:div ;
-+----------------+-------+-----------------------------------------------------------------------------+
-; Parameter Name ; Value ; Type                                                                        ;
-+----------------+-------+-----------------------------------------------------------------------------+
-; N              ; 32    ; Signed Integer                                                              ;
-+----------------+-------+-----------------------------------------------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+-------------------------------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: EX:EX_module|PC_condition:pc_cond|ff_enable:flagff ;
-+----------------+-------+------------------------------------------------------------------------+
-; Parameter Name ; Value ; Type                                                                   ;
-+----------------+-------+------------------------------------------------------------------------+
-; n              ; 3     ; Signed Integer                                                         ;
-+----------------+-------+------------------------------------------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
++------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "Processor:uut|EX:EX_module|ALU:alucpu|restador_nb:rest" ;
++------+-------+----------+----------------------------------------------------------+
+; Port ; Type  ; Severity ; Details                                                  ;
++------+-------+----------+----------------------------------------------------------+
+; ci   ; Input ; Info     ; Stuck at GND                                             ;
++------+-------+----------+----------------------------------------------------------+
 
 
 +----------------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: MEM:MEM_module|Mux2_1:result_select ;
-+----------------+-------+---------------------------------------------------------+
-; Parameter Name ; Value ; Type                                                    ;
-+----------------+-------+---------------------------------------------------------+
-; N              ; 32    ; Signed Integer                                          ;
-+----------------+-------+---------------------------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+----------------------------------------------------------------------------------------------------------+
-; Parameter Settings for Inferred Entity Instance: ID:id_module|Register_File:rf|altsyncram:register_rtl_0 ;
-+------------------------------------+----------------------+----------------------------------------------+
-; Parameter Name                     ; Value                ; Type                                         ;
-+------------------------------------+----------------------+----------------------------------------------+
-; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                                      ;
-; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                                   ;
-; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                                 ;
-; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                                 ;
-; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE                               ;
-; WIDTH_BYTEENA                      ; 1                    ; Untyped                                      ;
-; OPERATION_MODE                     ; DUAL_PORT            ; Untyped                                      ;
-; WIDTH_A                            ; 32                   ; Untyped                                      ;
-; WIDTHAD_A                          ; 4                    ; Untyped                                      ;
-; NUMWORDS_A                         ; 15                   ; Untyped                                      ;
-; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                                      ;
-; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                                      ;
-; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                                      ;
-; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                                      ;
-; INDATA_ACLR_A                      ; NONE                 ; Untyped                                      ;
-; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                                      ;
-; WIDTH_B                            ; 32                   ; Untyped                                      ;
-; WIDTHAD_B                          ; 4                    ; Untyped                                      ;
-; NUMWORDS_B                         ; 15                   ; Untyped                                      ;
-; INDATA_REG_B                       ; CLOCK1               ; Untyped                                      ;
-; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                                      ;
-; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                                      ;
-; ADDRESS_REG_B                      ; CLOCK1               ; Untyped                                      ;
-; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                                      ;
-; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                                      ;
-; INDATA_ACLR_B                      ; NONE                 ; Untyped                                      ;
-; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                                      ;
-; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                                      ;
-; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                                      ;
-; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                                      ;
-; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                                      ;
-; WIDTH_BYTEENA_A                    ; 1                    ; Untyped                                      ;
-; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                                      ;
-; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                                      ;
-; BYTE_SIZE                          ; 8                    ; Untyped                                      ;
-; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                                      ;
-; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                                      ;
-; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                                      ;
-; INIT_FILE                          ; UNUSED               ; Untyped                                      ;
-; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                                      ;
-; MAXIMUM_DEPTH                      ; 0                    ; Untyped                                      ;
-; CLOCK_ENABLE_INPUT_A               ; NORMAL               ; Untyped                                      ;
-; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                                      ;
-; CLOCK_ENABLE_OUTPUT_A              ; NORMAL               ; Untyped                                      ;
-; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                                      ;
-; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                                      ;
-; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                                      ;
-; ENABLE_ECC                         ; FALSE                ; Untyped                                      ;
-; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                                      ;
-; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                                      ;
-; DEVICE_FAMILY                      ; Cyclone V            ; Untyped                                      ;
-; CBXI_PARAMETER                     ; altsyncram_46j1      ; Untyped                                      ;
-+------------------------------------+----------------------+----------------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+--------------------------------------------------------------------------------------------------------------------------+
-; Parameter Settings for Inferred Entity Instance: EX:EX_module|ALU:alucpu|flag_overflow:fv|divisor_nb:div|lpm_divide:Div0 ;
-+------------------------+----------------+--------------------------------------------------------------------------------+
-; Parameter Name         ; Value          ; Type                                                                           ;
-+------------------------+----------------+--------------------------------------------------------------------------------+
-; LPM_WIDTHN             ; 32             ; Untyped                                                                        ;
-; LPM_WIDTHD             ; 32             ; Untyped                                                                        ;
-; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                                                                        ;
-; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                                                                        ;
-; LPM_PIPELINE           ; 0              ; Untyped                                                                        ;
-; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                                                        ;
-; MAXIMIZE_SPEED         ; 5              ; Untyped                                                                        ;
-; CBXI_PARAMETER         ; lpm_divide_3dm ; Untyped                                                                        ;
-; CARRY_CHAIN            ; MANUAL         ; Untyped                                                                        ;
-; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                                                        ;
-; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                                                     ;
-; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                                                                   ;
-; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                                                                   ;
-; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                                                                 ;
-+------------------------+----------------+--------------------------------------------------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+-----------------------------------------------------------------------------------------------------+
-; altsyncram Parameter Settings by Entity Instance                                                    ;
-+-------------------------------------------+---------------------------------------------------------+
-; Name                                      ; Value                                                   ;
-+-------------------------------------------+---------------------------------------------------------+
-; Number of entity instances                ; 1                                                       ;
-; Entity Instance                           ; ID:id_module|Register_File:rf|altsyncram:register_rtl_0 ;
-;     -- OPERATION_MODE                     ; DUAL_PORT                                               ;
-;     -- WIDTH_A                            ; 32                                                      ;
-;     -- NUMWORDS_A                         ; 15                                                      ;
-;     -- OUTDATA_REG_A                      ; UNREGISTERED                                            ;
-;     -- WIDTH_B                            ; 32                                                      ;
-;     -- NUMWORDS_B                         ; 15                                                      ;
-;     -- ADDRESS_REG_B                      ; CLOCK1                                                  ;
-;     -- OUTDATA_REG_B                      ; UNREGISTERED                                            ;
-;     -- RAM_BLOCK_TYPE                     ; AUTO                                                    ;
-;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                               ;
-+-------------------------------------------+---------------------------------------------------------+
-
-
-+----------------------------------------------------------------------+
-; Port Connectivity Checks: "EX:EX_module|ALU:alucpu|restador_nb:rest" ;
-+------+-------+----------+--------------------------------------------+
-; Port ; Type  ; Severity ; Details                                    ;
-+------+-------+----------+--------------------------------------------+
-; ci   ; Input ; Info     ; Stuck at GND                               ;
-+------+-------+----------+--------------------------------------------+
-
-
-+--------------------------------------------------------------------+
-; Port Connectivity Checks: "EX:EX_module|ALU:alucpu|sumador_nb:sum" ;
-+------+-------+----------+------------------------------------------+
-; Port ; Type  ; Severity ; Details                                  ;
-+------+-------+----------+------------------------------------------+
-; ci   ; Input ; Info     ; Stuck at GND                             ;
-+------+-------+----------+------------------------------------------+
+; Port Connectivity Checks: "Processor:uut|EX:EX_module|ALU:alucpu|sumador_nb:sum" ;
++------+-------+----------+--------------------------------------------------------+
+; Port ; Type  ; Severity ; Details                                                ;
++------+-------+----------+--------------------------------------------------------+
+; ci   ; Input ; Info     ; Stuck at GND                                           ;
++------+-------+----------+--------------------------------------------------------+
 
 
 +----------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "EX:EX_module|ALU:alucpu"                                                            ;
+; Port Connectivity Checks: "Processor:uut|EX:EX_module|ALU:alucpu"                                              ;
 +------+--------+----------+-------------------------------------------------------------------------------------+
 ; Port ; Type   ; Severity ; Details                                                                             ;
 +------+--------+----------+-------------------------------------------------------------------------------------+
@@ -914,7 +454,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 
 
 +--------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "ID:id_module|sumador_nb:sump2"                                                          ;
+; Port Connectivity Checks: "Processor:uut|ID:id_module|sumador_nb:sump2"                                            ;
 +----------+--------+----------+-------------------------------------------------------------------------------------+
 ; Port     ; Type   ; Severity ; Details                                                                             ;
 +----------+--------+----------+-------------------------------------------------------------------------------------+
@@ -927,7 +467,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 
 
 +--------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "IF:IF_module|sumador_nb:sump1"                                                          ;
+; Port Connectivity Checks: "Processor:uut|IF:IF_module|sumador_nb:sump1"                                            ;
 +----------+--------+----------+-------------------------------------------------------------------------------------+
 ; Port     ; Type   ; Severity ; Details                                                                             ;
 +----------+--------+----------+-------------------------------------------------------------------------------------+
@@ -938,66 +478,38 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------+--------+----------+-------------------------------------------------------------------------------------+
 
 
-+-----------------------------------------------------+
-; Post-Synthesis Netlist Statistics for Top Partition ;
-+-----------------------+-----------------------------+
-; Type                  ; Count                       ;
-+-----------------------+-----------------------------+
-; arriav_ff             ; 28162                       ;
-;     CLR               ; 215                         ;
-;     CLR SCLR          ; 5                           ;
-;     CLR SLD           ; 65                          ;
-;     ENA               ; 512                         ;
-;     ENA CLR           ; 3                           ;
-;     plain             ; 27362                       ;
-; arriav_lcell_comb     ; 39379                       ;
-;     arith             ; 630                         ;
-;         0 data inputs ; 60                          ;
-;         1 data inputs ; 31                          ;
-;         2 data inputs ; 14                          ;
-;         4 data inputs ; 30                          ;
-;         5 data inputs ; 495                         ;
-;     extend            ; 148                         ;
-;         7 data inputs ; 148                         ;
-;     normal            ; 38596                       ;
-;         1 data inputs ; 2                           ;
-;         2 data inputs ; 279                         ;
-;         3 data inputs ; 405                         ;
-;         4 data inputs ; 27654                       ;
-;         5 data inputs ; 385                         ;
-;         6 data inputs ; 9871                        ;
-;     shared            ; 5                           ;
-;         0 data inputs ; 2                           ;
-;         2 data inputs ; 2                           ;
-;         4 data inputs ; 1                           ;
-; arriav_mac            ; 2                           ;
-; boundary_port         ; 5                           ;
-; stratixv_ram_block    ; 32                          ;
-;                       ;                             ;
-; Max LUT depth         ; 108.70                      ;
-; Average LUT depth     ; 12.63                       ;
-+-----------------------+-----------------------------+
++-----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "Processor:uut"                                                                             ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port        ; Type   ; Severity ; Details                                                                             ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; GPIO        ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; GPIOBoolean ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
 
 
-+-------------------------------+
-; Elapsed Time Per Partition    ;
-+----------------+--------------+
-; Partition Name ; Elapsed Time ;
-+----------------+--------------+
-; Top            ; 00:01:55     ;
-+----------------+--------------+
-
-
-+-------------------------------+
-; Analysis & Synthesis Messages ;
-+-------------------------------+
++---------------------------------+
+; Analysis & Elaboration Messages ;
++---------------------------------+
 Info: *******************************************************************
-Info: Running Quartus Prime Analysis & Synthesis
+Info: Running Quartus Prime Analysis & Elaboration
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Sat Oct 23 00:50:37 2021
-Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Proyecto_Grupal_1 -c Proyecto_Grupal_1
+    Info: Processing started: Mon Oct 25 00:15:41 2021
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Proyecto_Grupal_1 -c Proyecto_Grupal_1 --analysis_and_elaboration
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file tests/instruction_memory_test.sv
+    Info (12023): Found entity 1: Instruction_Memory_test File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Tests/Instruction_Memory_test.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file tests/if_pipeline_test.sv
+    Info (12023): Found entity 1: IF_Pipeline_test File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Tests/IF_Pipeline_test.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file tests/if_pipeline.sv
+    Info (12023): Found entity 1: IF_Pipeline File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Tests/IF_Pipeline.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file tests/forwardingunit_test.sv
+    Info (12023): Found entity 1: ForwardingUnit_test File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Tests/ForwardingUnit_test.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file tests/extender_test.sv
+    Info (12023): Found entity 1: Extender_test File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Tests/Extender_test.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file tests/control_unit_test.sv
+    Info (12023): Found entity 1: Control_unit_test File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Tests/Control_unit_test.sv Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file alu/divisor_nb.sv
     Info (12023): Found entity 1: divisor_nb File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/divisor_nb.sv Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file memory/rom.sv
@@ -1029,8 +541,6 @@ Info (12021): Found 1 design units, including 1 entities, in source file alu/fla
     Info (12023): Found entity 1: flag_cero File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/flag_cero.sv Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file alu/flag_carry.sv
     Info (12023): Found entity 1: flag_carry File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/flag_carry.sv Line: 1
-Info (12021): Found 1 design units, including 1 entities, in source file alu/alu_test.sv
-    Info (12023): Found entity 1: ALU_test File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/ALU_test.sv Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file alu/alu.sv
     Info (12023): Found entity 1: ALU File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/ALU.sv Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file fetch/pc.sv
@@ -1041,8 +551,8 @@ Info (12021): Found 1 design units, including 1 entities, in source file units/m
     Info (12023): Found entity 1: Mux2_1 File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Units/Mux2_1.sv Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file fetch/if.sv
     Info (12023): Found entity 1: IF File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/fetch/IF.sv Line: 1
-Info (12021): Found 1 design units, including 1 entities, in source file fetch/if_pipeline.sv
-    Info (12023): Found entity 1: IF_Pipeline File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/fetch/IF_Pipeline.sv Line: 1
+Info (15248): File "C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/fetch/IF_Pipeline.sv" is a duplicate of already analyzed file "C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Tests/IF_Pipeline.sv" (same filename, same library name and same md5 digest). Skipping analysis of this file.
+Info (12021): Found 0 design units, including 0 entities, in source file fetch/if_pipeline.sv
 Info (12021): Found 1 design units, including 1 entities, in source file decode/register_file.sv
     Info (12023): Found entity 1: Register_File File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Decode/Register_File.sv Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file decode/id.sv
@@ -1077,123 +587,63 @@ Info (12021): Found 1 design units, including 1 entities, in source file tests/i
     Info (12023): Found entity 1: ID_test File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Tests/ID_test.sv Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file tests/create_image.sv
     Info (12023): Found entity 1: create_image File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Tests/create_image.sv Line: 1
-Info (12127): Elaborating entity "Processor" for the top level hierarchy
-Info (12128): Elaborating entity "IF" for hierarchy "IF:IF_module" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Processor.sv Line: 38
-Info (12128): Elaborating entity "Mux2_1" for hierarchy "IF:IF_module|Mux2_1:pcmux" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/fetch/IF.sv Line: 8
-Info (12128): Elaborating entity "PC" for hierarchy "IF:IF_module|PC:pc" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/fetch/IF.sv Line: 9
-Info (12128): Elaborating entity "sumador_nb" for hierarchy "IF:IF_module|sumador_nb:sump1" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/fetch/IF.sv Line: 12
-Info (12128): Elaborating entity "sumador_1b" for hierarchy "IF:IF_module|sumador_nb:sump1|sumador_1b:sum1b2" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/sumador_nb.sv Line: 14
-Info (12128): Elaborating entity "Instruction_Memory" for hierarchy "IF:IF_module|Instruction_Memory:im" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/fetch/IF.sv Line: 14
+Info (12127): Elaborating entity "create_image" for the top level hierarchy
+Warning (10036): Verilog HDL or VHDL warning at create_image.sv(9): object "i" assigned a value but never read File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Tests/create_image.sv Line: 9
+Warning (10755): Verilog HDL warning at create_image.sv(35): assignments to clk create a combinational loop File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Tests/create_image.sv Line: 35
+Info (12128): Elaborating entity "Processor" for hierarchy "Processor:uut" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Tests/create_image.sv Line: 6
+Info (12128): Elaborating entity "IF" for hierarchy "Processor:uut|IF:IF_module" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Processor.sv Line: 38
+Info (12128): Elaborating entity "Mux2_1" for hierarchy "Processor:uut|IF:IF_module|Mux2_1:pcmux" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/fetch/IF.sv Line: 8
+Info (12128): Elaborating entity "PC" for hierarchy "Processor:uut|IF:IF_module|PC:pc" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/fetch/IF.sv Line: 9
+Info (12128): Elaborating entity "sumador_nb" for hierarchy "Processor:uut|IF:IF_module|sumador_nb:sump1" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/fetch/IF.sv Line: 12
+Info (12128): Elaborating entity "sumador_1b" for hierarchy "Processor:uut|IF:IF_module|sumador_nb:sump1|sumador_1b:sum1b2" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/sumador_nb.sv Line: 14
+Info (12128): Elaborating entity "Instruction_Memory" for hierarchy "Processor:uut|IF:IF_module|Instruction_Memory:im" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/fetch/IF.sv Line: 14
 Warning (10030): Net "Instructiondata.data_a" at Instruction_Memory.sv(6) has no driver or initial value, using a default initial value '0' File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/fetch/Instruction_Memory.sv Line: 6
 Warning (10030): Net "Instructiondata.waddr_a" at Instruction_Memory.sv(6) has no driver or initial value, using a default initial value '0' File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/fetch/Instruction_Memory.sv Line: 6
 Warning (10030): Net "Instructiondata.we_a" at Instruction_Memory.sv(6) has no driver or initial value, using a default initial value '0' File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/fetch/Instruction_Memory.sv Line: 6
-Info (12128): Elaborating entity "IF_Pipeline" for hierarchy "IF_Pipeline:IF_Pipeline_module" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Processor.sv Line: 47
-Info (12128): Elaborating entity "ID" for hierarchy "ID:id_module" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Processor.sv Line: 60
-Info (12128): Elaborating entity "Control_unit" for hierarchy "ID:id_module|Control_unit:control" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Decode/ID.sv Line: 26
-Info (12128): Elaborating entity "Extender" for hierarchy "ID:id_module|Extender:extend" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Decode/ID.sv Line: 30
-Info (12128): Elaborating entity "Mux2_1" for hierarchy "ID:id_module|Mux2_1:pcreg1" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Decode/ID.sv Line: 33
-Info (12128): Elaborating entity "Register_File" for hierarchy "ID:id_module|Register_File:rf" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Decode/ID.sv Line: 38
-Info (12128): Elaborating entity "ID_Pipeline" for hierarchy "ID_Pipeline:ID_Pipeline_module" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Processor.sv Line: 74
-Info (12128): Elaborating entity "EX" for hierarchy "EX:EX_module" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Processor.sv Line: 87
-Info (12128): Elaborating entity "ForwardingUnit" for hierarchy "EX:EX_module|ForwardingUnit:fu" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Execution/EX.sv Line: 16
-Info (12128): Elaborating entity "ALU" for hierarchy "EX:EX_module|ALU:alucpu" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Execution/EX.sv Line: 18
-Info (12128): Elaborating entity "restador_nb" for hierarchy "EX:EX_module|ALU:alucpu|restador_nb:rest" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/ALU.sv Line: 12
-Info (12128): Elaborating entity "negador_nb" for hierarchy "EX:EX_module|ALU:alucpu|restador_nb:rest|negador_nb:neg" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/restador_nb.sv Line: 8
-Info (12128): Elaborating entity "negador_1b" for hierarchy "EX:EX_module|ALU:alucpu|restador_nb:rest|negador_nb:neg|negador_1b:gen_loop[0].uut" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/negador_nb.sv Line: 8
-Info (12128): Elaborating entity "multiplicador" for hierarchy "EX:EX_module|ALU:alucpu|multiplicador:mult" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/ALU.sv Line: 13
-Info (12128): Elaborating entity "Mux" for hierarchy "EX:EX_module|ALU:alucpu|Mux:m" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/ALU.sv Line: 16
-Info (12128): Elaborating entity "flag_negativo" for hierarchy "EX:EX_module|ALU:alucpu|flag_negativo:fn" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/ALU.sv Line: 19
-Info (12128): Elaborating entity "flag_carry" for hierarchy "EX:EX_module|ALU:alucpu|flag_carry:fC" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/ALU.sv Line: 20
-Info (12128): Elaborating entity "flag_cero" for hierarchy "EX:EX_module|ALU:alucpu|flag_cero:fz" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/ALU.sv Line: 21
-Info (12128): Elaborating entity "flag_overflow" for hierarchy "EX:EX_module|ALU:alucpu|flag_overflow:fv" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/ALU.sv Line: 22
-Info (12128): Elaborating entity "divisor_nb" for hierarchy "EX:EX_module|ALU:alucpu|flag_overflow:fv|divisor_nb:div" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/flag_overflow.sv Line: 6
-Info (12128): Elaborating entity "PC_condition" for hierarchy "EX:EX_module|PC_condition:pc_cond" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Execution/EX.sv Line: 20
-Info (12128): Elaborating entity "ff_enable" for hierarchy "EX:EX_module|PC_condition:pc_cond|ff_enable:flagff" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Execution/PC_condition.sv Line: 12
-Info (12128): Elaborating entity "EX_Pipeline" for hierarchy "EX_Pipeline:EX_Pipeline_module" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Processor.sv Line: 99
-Info (12128): Elaborating entity "MEM" for hierarchy "MEM:MEM_module" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Processor.sv Line: 109
-Info (12128): Elaborating entity "Memory" for hierarchy "MEM:MEM_module|Memory:memory_module" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Memory/MEM.sv Line: 12
-Info (12128): Elaborating entity "RAM" for hierarchy "MEM:MEM_module|Memory:memory_module|RAM:ram" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Memory/Memory.sv Line: 9
-Info (12128): Elaborating entity "ROM" for hierarchy "MEM:MEM_module|Memory:memory_module|ROM:rom" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Memory/Memory.sv Line: 10
+Info (12128): Elaborating entity "IF_Pipeline" for hierarchy "Processor:uut|IF_Pipeline:IF_Pipeline_module" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Processor.sv Line: 47
+Info (12128): Elaborating entity "ID" for hierarchy "Processor:uut|ID:id_module" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Processor.sv Line: 60
+Info (12128): Elaborating entity "Control_unit" for hierarchy "Processor:uut|ID:id_module|Control_unit:control" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Decode/ID.sv Line: 26
+Info (12128): Elaborating entity "Extender" for hierarchy "Processor:uut|ID:id_module|Extender:extend" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Decode/ID.sv Line: 30
+Info (12128): Elaborating entity "Mux2_1" for hierarchy "Processor:uut|ID:id_module|Mux2_1:pcreg1" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Decode/ID.sv Line: 33
+Info (12128): Elaborating entity "Register_File" for hierarchy "Processor:uut|ID:id_module|Register_File:rf" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Decode/ID.sv Line: 38
+Info (12128): Elaborating entity "ID_Pipeline" for hierarchy "Processor:uut|ID_Pipeline:ID_Pipeline_module" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Processor.sv Line: 74
+Info (12128): Elaborating entity "EX" for hierarchy "Processor:uut|EX:EX_module" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Processor.sv Line: 87
+Info (12128): Elaborating entity "ForwardingUnit" for hierarchy "Processor:uut|EX:EX_module|ForwardingUnit:fu" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Execution/EX.sv Line: 16
+Info (12128): Elaborating entity "ALU" for hierarchy "Processor:uut|EX:EX_module|ALU:alucpu" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Execution/EX.sv Line: 18
+Info (12128): Elaborating entity "restador_nb" for hierarchy "Processor:uut|EX:EX_module|ALU:alucpu|restador_nb:rest" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/ALU.sv Line: 10
+Info (12128): Elaborating entity "negador_nb" for hierarchy "Processor:uut|EX:EX_module|ALU:alucpu|restador_nb:rest|negador_nb:neg" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/restador_nb.sv Line: 8
+Info (12128): Elaborating entity "negador_1b" for hierarchy "Processor:uut|EX:EX_module|ALU:alucpu|restador_nb:rest|negador_nb:neg|negador_1b:gen_loop[0].uut" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/negador_nb.sv Line: 8
+Info (12128): Elaborating entity "multiplicador" for hierarchy "Processor:uut|EX:EX_module|ALU:alucpu|multiplicador:mult" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/ALU.sv Line: 11
+Info (12128): Elaborating entity "Mux" for hierarchy "Processor:uut|EX:EX_module|ALU:alucpu|Mux:m" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/ALU.sv Line: 14
+Info (12128): Elaborating entity "flag_negativo" for hierarchy "Processor:uut|EX:EX_module|ALU:alucpu|flag_negativo:fn" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/ALU.sv Line: 17
+Info (12128): Elaborating entity "flag_carry" for hierarchy "Processor:uut|EX:EX_module|ALU:alucpu|flag_carry:fC" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/ALU.sv Line: 18
+Info (12128): Elaborating entity "flag_cero" for hierarchy "Processor:uut|EX:EX_module|ALU:alucpu|flag_cero:fz" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/ALU.sv Line: 19
+Info (12128): Elaborating entity "flag_overflow" for hierarchy "Processor:uut|EX:EX_module|ALU:alucpu|flag_overflow:fv" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/ALU.sv Line: 20
+Info (12128): Elaborating entity "divisor_nb" for hierarchy "Processor:uut|EX:EX_module|ALU:alucpu|flag_overflow:fv|divisor_nb:div" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/flag_overflow.sv Line: 6
+Info (12128): Elaborating entity "PC_condition" for hierarchy "Processor:uut|EX:EX_module|PC_condition:pc_cond" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Execution/EX.sv Line: 20
+Info (12128): Elaborating entity "ff_enable" for hierarchy "Processor:uut|EX:EX_module|PC_condition:pc_cond|ff_enable:flagff" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Execution/PC_condition.sv Line: 12
+Info (12128): Elaborating entity "EX_Pipeline" for hierarchy "Processor:uut|EX_Pipeline:EX_Pipeline_module" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Processor.sv Line: 99
+Info (12128): Elaborating entity "MEM" for hierarchy "Processor:uut|MEM:MEM_module" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Processor.sv Line: 109
+Info (12128): Elaborating entity "Memory" for hierarchy "Processor:uut|MEM:MEM_module|Memory:memory_module" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Memory/MEM.sv Line: 12
+Info (12128): Elaborating entity "RAM" for hierarchy "Processor:uut|MEM:MEM_module|Memory:memory_module|RAM:ram" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Memory/Memory.sv Line: 9
+Info (12128): Elaborating entity "ROM" for hierarchy "Processor:uut|MEM:MEM_module|Memory:memory_module|ROM:rom" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Memory/Memory.sv Line: 10
 Warning (10030): Net "ROM.data_a" at ROM.sv(4) has no driver or initial value, using a default initial value '0' File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Memory/ROM.sv Line: 4
 Warning (10030): Net "ROM.waddr_a" at ROM.sv(4) has no driver or initial value, using a default initial value '0' File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Memory/ROM.sv Line: 4
 Warning (10030): Net "ROM.we_a" at ROM.sv(4) has no driver or initial value, using a default initial value '0' File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Memory/ROM.sv Line: 4
-Info (12128): Elaborating entity "MEM_Pipeline" for hierarchy "MEM_Pipeline:MEM_WB_Pipeline_module" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Processor.sv Line: 120
-Warning (276027): Inferred dual-clock RAM node "ID:id_module|Register_File:rf|register_rtl_0" from synchronous design logic.  The read-during-write behavior of a dual-clock RAM is undefined and may not match the behavior of the original design.
-Info (276014): Found 4 instances of uninferred RAM logic
-    Info (276007): RAM logic "MEM:MEM_module|Memory:memory_module|ROM:rom|ROM" is uninferred due to asynchronous read logic File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Memory/ROM.sv Line: 4
-    Info (276007): RAM logic "MEM:MEM_module|Memory:memory_module|RAM:ram|RAM1" is uninferred due to asynchronous read logic File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Memory/RAM.sv Line: 7
-    Info (276007): RAM logic "ID:id_module|Register_File:rf|register" is uninferred due to asynchronous read logic File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Decode/Register_File.sv Line: 7
-    Info (276007): RAM logic "IF:IF_module|Instruction_Memory:im|Instructiondata" is uninferred due to asynchronous read logic File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/fetch/Instruction_Memory.sv Line: 6
-Critical Warning (127005): Memory depth (1024) in the design file differs from memory depth (720) in the Memory Initialization File "C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/db/Proyecto_Grupal_1.ram0_ROM_16bd8.hdl.mif" -- setting initial value for remaining addresses to 0
-Critical Warning (127005): Memory depth (1024) in the design file differs from memory depth (911) in the Memory Initialization File "C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/db/Proyecto_Grupal_1.ram0_Instruction_Memory_6c21a04c.hdl.mif" -- setting initial value for remaining addresses to 0
-Info (19000): Inferred 1 megafunctions from design logic
-    Info (276029): Inferred altsyncram megafunction from the following design logic: "ID:id_module|Register_File:rf|register_rtl_0" 
-        Info (286033): Parameter OPERATION_MODE set to DUAL_PORT
-        Info (286033): Parameter WIDTH_A set to 32
-        Info (286033): Parameter WIDTHAD_A set to 4
-        Info (286033): Parameter NUMWORDS_A set to 15
-        Info (286033): Parameter WIDTH_B set to 32
-        Info (286033): Parameter WIDTHAD_B set to 4
-        Info (286033): Parameter NUMWORDS_B set to 15
-        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
-        Info (286033): Parameter OUTDATA_REG_B set to UNREGISTERED
-        Info (286033): Parameter ADDRESS_ACLR_B set to NONE
-        Info (286033): Parameter OUTDATA_ACLR_B set to NONE
-        Info (286033): Parameter ADDRESS_REG_B set to CLOCK1
-        Info (286033): Parameter INDATA_ACLR_A set to NONE
-        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
-Info (278001): Inferred 1 megafunctions from design logic
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "EX:EX_module|ALU:alucpu|flag_overflow:fv|divisor_nb:div|Div0" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/divisor_nb.sv Line: 4
-Info (12130): Elaborated megafunction instantiation "ID:id_module|Register_File:rf|altsyncram:register_rtl_0"
-Info (12133): Instantiated megafunction "ID:id_module|Register_File:rf|altsyncram:register_rtl_0" with the following parameter:
-    Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
-    Info (12134): Parameter "WIDTH_A" = "32"
-    Info (12134): Parameter "WIDTHAD_A" = "4"
-    Info (12134): Parameter "NUMWORDS_A" = "15"
-    Info (12134): Parameter "WIDTH_B" = "32"
-    Info (12134): Parameter "WIDTHAD_B" = "4"
-    Info (12134): Parameter "NUMWORDS_B" = "15"
-    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
-    Info (12134): Parameter "OUTDATA_REG_B" = "UNREGISTERED"
-    Info (12134): Parameter "ADDRESS_ACLR_B" = "NONE"
-    Info (12134): Parameter "OUTDATA_ACLR_B" = "NONE"
-    Info (12134): Parameter "ADDRESS_REG_B" = "CLOCK1"
-    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
-    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
-Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_46j1.tdf
-    Info (12023): Found entity 1: altsyncram_46j1 File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/db/altsyncram_46j1.tdf Line: 28
-Info (12130): Elaborated megafunction instantiation "EX:EX_module|ALU:alucpu|flag_overflow:fv|divisor_nb:div|lpm_divide:Div0" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/divisor_nb.sv Line: 4
-Info (12133): Instantiated megafunction "EX:EX_module|ALU:alucpu|flag_overflow:fv|divisor_nb:div|lpm_divide:Div0" with the following parameter: File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/divisor_nb.sv Line: 4
-    Info (12134): Parameter "LPM_WIDTHN" = "32"
-    Info (12134): Parameter "LPM_WIDTHD" = "32"
-    Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
-    Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
-Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_3dm.tdf
-    Info (12023): Found entity 1: lpm_divide_3dm File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/db/lpm_divide_3dm.tdf Line: 25
-Info (12021): Found 1 design units, including 1 entities, in source file db/sign_div_unsign_9nh.tdf
-    Info (12023): Found entity 1: sign_div_unsign_9nh File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/db/sign_div_unsign_9nh.tdf Line: 25
-Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_o2f.tdf
-    Info (12023): Found entity 1: alt_u_div_o2f File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/db/alt_u_div_o2f.tdf Line: 23
-Info (286030): Timing-Driven Synthesis is running
+Info (12128): Elaborating entity "MEM_Pipeline" for hierarchy "Processor:uut|MEM_Pipeline:MEM_WB_Pipeline_module" File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Processor.sv Line: 120
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "clk" is missing source, defaulting to GND File: C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Tests/create_image.sv Line: 3
 Info (144001): Generated suppressed messages file C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/output_files/Proyecto_Grupal_1.map.smsg
-Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
-    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 40088 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 3 input pins
-    Info (21059): Implemented 2 output pins
-    Info (21061): Implemented 40049 logic cells
-    Info (21064): Implemented 32 RAM segments
-    Info (21062): Implemented 2 DSP elements
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 11 warnings
-    Info: Peak virtual memory: 5340 megabytes
-    Info: Processing ended: Sat Oct 23 00:52:42 2021
-    Info: Elapsed time: 00:02:05
-    Info: Total CPU time (on all processors): 00:02:13
+Info: Quartus Prime Analysis & Elaboration was successful. 0 errors, 12 warnings
+    Info: Peak virtual memory: 4821 megabytes
+    Info: Processing ended: Mon Oct 25 00:15:46 2021
+    Info: Elapsed time: 00:00:05
+    Info: Total CPU time (on all processors): 00:00:13
 
 
-+------------------------------------------+
-; Analysis & Synthesis Suppressed Messages ;
-+------------------------------------------+
++--------------------------------------------+
+; Analysis & Elaboration Suppressed Messages ;
++--------------------------------------------+
 The suppressed messages can be found in C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/output_files/Proyecto_Grupal_1.map.smsg.
 
 

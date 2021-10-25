@@ -39,7 +39,7 @@
 
 set_global_assignment -name FAMILY "Cyclone V"
 set_global_assignment -name DEVICE 5CSEMA5F31C6
-set_global_assignment -name TOP_LEVEL_ENTITY Processor
+set_global_assignment -name TOP_LEVEL_ENTITY create_image
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 20.1.1
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "12:58:04  OCTOBER 04, 2021"
 set_global_assignment -name LAST_QUARTUS_VERSION "20.1.1 Lite Edition"
@@ -56,6 +56,17 @@ set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_
 set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_boundary_scan
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_location_assignment PIN_AF14 -to clk
+set_location_assignment PIN_AE12 -to swinit
+set_location_assignment PIN_AD10 -to reset
+set_location_assignment PIN_AC18 -to GPIOBoolean
+set_location_assignment PIN_Y17 -to GPIO
+set_global_assignment -name SYSTEMVERILOG_FILE Tests/Instruction_Memory_test.sv
+set_global_assignment -name SYSTEMVERILOG_FILE Tests/IF_Pipeline_test.sv
+set_global_assignment -name SYSTEMVERILOG_FILE Tests/IF_Pipeline.sv
+set_global_assignment -name SYSTEMVERILOG_FILE Tests/ForwardingUnit_test.sv
+set_global_assignment -name SYSTEMVERILOG_FILE Tests/Extender_test.sv
+set_global_assignment -name SYSTEMVERILOG_FILE Tests/Control_unit_test.sv
 set_global_assignment -name SYSTEMVERILOG_FILE ALU/divisor_nb.sv
 set_global_assignment -name SYSTEMVERILOG_FILE Memory/ROM.sv
 set_global_assignment -name SYSTEMVERILOG_FILE Memory/RAM.sv
@@ -71,7 +82,6 @@ set_global_assignment -name SYSTEMVERILOG_FILE ALU/flag_overflow.sv
 set_global_assignment -name SYSTEMVERILOG_FILE ALU/flag_negativo.sv
 set_global_assignment -name SYSTEMVERILOG_FILE ALU/flag_cero.sv
 set_global_assignment -name SYSTEMVERILOG_FILE ALU/flag_carry.sv
-set_global_assignment -name SYSTEMVERILOG_FILE ALU/ALU_test.sv
 set_global_assignment -name SYSTEMVERILOG_FILE ALU/ALU.sv
 set_global_assignment -name SYSTEMVERILOG_FILE fetch/PC.sv
 set_global_assignment -name SYSTEMVERILOG_FILE fetch/Instruction_Memory.sv
@@ -95,11 +105,6 @@ set_global_assignment -name SYSTEMVERILOG_FILE Execution/ForwardingUnit.sv
 set_global_assignment -name SYSTEMVERILOG_FILE Tests/Processor_test.sv
 set_global_assignment -name SYSTEMVERILOG_FILE Tests/ID_test.sv
 set_global_assignment -name SYSTEMVERILOG_FILE Tests/create_image.sv
-set_location_assignment PIN_AF14 -to clk
-set_location_assignment PIN_AE12 -to swinit
-set_location_assignment PIN_AD10 -to reset
-set_location_assignment PIN_AC18 -to GPIOBoolean
-set_location_assignment PIN_Y17 -to GPIO
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top

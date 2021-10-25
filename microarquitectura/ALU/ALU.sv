@@ -3,9 +3,7 @@ module ALU #(parameter N = 4)(input logic [N-1:0] a, b,
 										output logic [N-1:0] result,
 										output logic Neg, Z, C, V);
 	
-	logic [N-1:0] result_suma, result_resta, result_multi, result_div, result_mod;			
-	logic [N-1:0] result_and, result_or, result_xor;
-	logic [N-1:0] result_shleft, result_shright;
+	logic [N-1:0] result_suma, result_resta, result_multi;			
 	logic co_suma, co_resta;
 
 	sumador_nb #(N) sum(a, b,1'b0, result_suma, co_suma);

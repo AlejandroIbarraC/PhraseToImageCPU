@@ -11,7 +11,7 @@ cModel Technology
 Z0 dC:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/simulation/modelsim
 vALU
 Z1 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
-Z2 !s110 1634546586
+Z2 !s110 1634971513
 !i10b 1
 !s100 bf8j^`dEFNn7j`20>K6;L3
 Z3 !s11b Dg1SIo80bB@j0V0VzS_@n1
@@ -22,13 +22,13 @@ R0
 w1634524455
 8C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/ALU.sv
 FC:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/ALU.sv
-!i122 14
+!i122 13
 Z5 L0 1 25
 Z6 OV;L;2020.1;71
 r1
 !s85 0
 31
-Z7 !s108 1634546586.000000
+Z7 !s108 1634971513.000000
 !s107 C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/ALU.sv|
 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU|C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/ALU.sv|
 !i113 1
@@ -49,7 +49,7 @@ R0
 Z11 w1633896987
 8C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Decode/Control_unit.sv
 FC:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Decode/Control_unit.sv
-!i122 23
+!i122 21
 L0 1 40
 R6
 r1
@@ -65,24 +65,24 @@ R10
 n@control_unit
 vcreate_image
 R1
-Z13 !s110 1634546587
+Z13 !s110 1634971514
 !i10b 1
-!s100 8^o8S]HJgdgU26L4F?iX:0
+!s100 nY^B[7fGQTYzVHcPV>mjf3
 R3
-In;:jK3Bib[nhGhbTFzSnj2
+IPR^PV4`jcUMbe3QNcF[aI2
 R4
 S1
 R0
-w1634072702
+w1634971158
 8C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Tests/create_image.sv
 FC:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Tests/create_image.sv
-!i122 34
+!i122 32
 L0 1 43
 R6
 r1
 !s85 0
 31
-Z14 !s108 1634546587.000000
+Z14 !s108 1634971514.000000
 !s107 C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Tests/create_image.sv|
 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Tests|C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Tests/create_image.sv|
 !i113 1
@@ -91,7 +91,7 @@ R8
 R10
 vdivisor_nb
 R1
-Z15 !s110 1634546585
+Z15 !s110 1634971512
 !i10b 1
 !s100 P0i:ONDhf0d<2<:a8fB;]1
 R3
@@ -108,7 +108,7 @@ R6
 r1
 !s85 0
 31
-Z17 !s108 1634546585.000000
+Z17 !s108 1634971512.000000
 !s107 C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/divisor_nb.sv|
 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU|C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/divisor_nb.sv|
 !i113 1
@@ -128,13 +128,13 @@ R0
 w1633818271
 8C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Execution/EX.sv
 FC:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Execution/EX.sv
-!i122 27
+!i122 25
 R5
 R6
 r1
 !s85 0
 31
-R14
+R7
 !s107 C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Execution/EX.sv|
 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Execution|C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Execution/EX.sv|
 !i113 1
@@ -155,7 +155,7 @@ R0
 Z19 w1633566506
 8C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Execution/EX_Pipeline.sv
 FC:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Execution/EX_Pipeline.sv
-!i122 28
+!i122 26
 L0 1 27
 R6
 r1
@@ -182,7 +182,7 @@ R0
 w1633465791
 8C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Decode/Extender.sv
 FC:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Decode/Extender.sv
-!i122 22
+!i122 20
 Z20 L0 1 16
 R6
 r1
@@ -198,7 +198,7 @@ R10
 n@extender
 vff_enable
 R1
-R13
+R2
 !i10b 1
 !s100 a]=o:k[b@o`V`JRfK]ba@0
 R3
@@ -209,7 +209,7 @@ R0
 w1633826967
 8C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Units/ff_enable.sv
 FC:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Units/ff_enable.sv
-!i122 25
+!i122 23
 L0 1 10
 R6
 r1
@@ -235,7 +235,7 @@ R0
 w1633388850
 8C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/flag_carry.sv
 FC:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/flag_carry.sv
-!i122 13
+!i122 12
 Z22 L0 1 7
 R6
 r1
@@ -261,13 +261,13 @@ R0
 w1617191802
 8C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/flag_cero.sv
 FC:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/flag_cero.sv
-!i122 12
+!i122 11
 R22
 R6
 r1
 !s85 0
 31
-R7
+R17
 !s107 C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/flag_cero.sv|
 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU|C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/flag_cero.sv|
 !i113 1
@@ -276,7 +276,7 @@ R9
 R10
 vflag_negativo
 R1
-R2
+R15
 !i10b 1
 !s100 ]Y62RhkL1>GJOHRNk[R]l0
 R3
@@ -287,13 +287,13 @@ R0
 w1633388839
 8C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/flag_negativo.sv
 FC:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/flag_negativo.sv
-!i122 11
+!i122 10
 R22
 R6
 r1
 !s85 0
 31
-R7
+R17
 !s107 C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/flag_negativo.sv|
 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU|C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/flag_negativo.sv|
 !i113 1
@@ -302,7 +302,7 @@ R9
 R10
 vflag_overflow
 R1
-R2
+R15
 !i10b 1
 !s100 CPK_ZPXT?d_Tk@JZ=m_JC0
 R3
@@ -313,13 +313,13 @@ R0
 w1633388833
 8C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/flag_overflow.sv
 FC:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/flag_overflow.sv
-!i122 10
+!i122 9
 L0 1 9
 R6
 r1
 !s85 0
 31
-R7
+R17
 !s107 C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/flag_overflow.sv|
 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU|C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/flag_overflow.sv|
 !i113 1
@@ -339,7 +339,7 @@ R0
 w1633737290
 8C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Execution/ForwardingUnit.sv
 FC:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Execution/ForwardingUnit.sv
-!i122 33
+!i122 31
 Z23 L0 1 15
 R6
 r1
@@ -366,7 +366,7 @@ R0
 R11
 8C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Decode/ID.sv
 FC:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Decode/ID.sv
-!i122 21
+!i122 19
 L0 1 45
 R6
 r1
@@ -393,7 +393,7 @@ R0
 w1633680343
 8C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Decode/ID_Pipeline.sv
 FC:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Decode/ID_Pipeline.sv
-!i122 24
+!i122 22
 L0 1 42
 R6
 r1
@@ -420,7 +420,7 @@ R0
 w1633814032
 8C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/fetch/IF.sv
 FC:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/fetch/IF.sv
-!i122 18
+!i122 16
 R20
 R6
 r1
@@ -447,7 +447,7 @@ R0
 w1633394112
 8C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/fetch/IF_Pipeline.sv
 FC:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/fetch/IF_Pipeline.sv
-!i122 19
+!i122 17
 R23
 R6
 r1
@@ -463,24 +463,24 @@ R10
 n@i@f_@pipeline
 vInstruction_Memory
 R1
-R2
+R13
 !i10b 1
-!s100 oA]@4:6Dm_ZEhJ5WaXZ:D3
+!s100 Pj>F;?:oX94V<^VD3]^KQ0
 R3
-I^E]8jL;zaP@WVW@8inE_>2
+I9JLWmX_G9Tf`hk^VdJC>;0
 R4
 S1
 R0
-w1634546008
+w1634970048
 8C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/fetch/Instruction_Memory.sv
 FC:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/fetch/Instruction_Memory.sv
-!i122 16
+!i122 34
 L0 1 18
 R6
 r1
 !s85 0
 31
-R7
+R14
 !s107 C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/fetch/Instruction_Memory.sv|
 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/fetch|C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/fetch/Instruction_Memory.sv|
 !i113 1
@@ -501,7 +501,7 @@ R0
 w1633597371
 8C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Memory/MEM.sv
 FC:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Memory/MEM.sv
-!i122 30
+!i122 28
 L0 1 17
 R6
 r1
@@ -528,7 +528,7 @@ R0
 w1633587986
 8C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Memory/MEM_Pipeline.sv
 FC:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Memory/MEM_Pipeline.sv
-!i122 31
+!i122 29
 L0 1 21
 R6
 r1
@@ -546,16 +546,16 @@ vMemory
 R1
 R13
 !i10b 1
-!s100 NU1jeoGdUXWS_<^m4K`551
+!s100 JjES9R47AA3ZP99_78NOZ1
 R3
-IhKmo1B6K5R2aV`h;9BSeO2
+I8`U?n]38Vd2CSLd0c;gZ>3
 R4
 S1
 R0
-w1634435308
+w1634969918
 8C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Memory/Memory.sv
 FC:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Memory/Memory.sv
-!i122 29
+!i122 27
 L0 1 51
 R6
 r1
@@ -571,7 +571,7 @@ R10
 n@memory
 vmultiplicador
 R1
-R2
+R15
 !i10b 1
 !s100 ]8>j5BWCjVhA4:mR;cmdg1
 R3
@@ -582,7 +582,7 @@ R0
 w1617144722
 8C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/multiplicador.sv
 FC:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/multiplicador.sv
-!i122 9
+!i122 8
 R16
 R6
 r1
@@ -608,7 +608,7 @@ R0
 R19
 8C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/Mux.sv
 FC:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/Mux.sv
-!i122 8
+!i122 7
 L0 1 14
 R6
 r1
@@ -635,7 +635,7 @@ R0
 w1633387129
 8C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Units/Mux2_1.sv
 FC:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Units/Mux2_1.sv
-!i122 17
+!i122 15
 Z26 L0 1 12
 R6
 r1
@@ -662,7 +662,7 @@ R0
 w1617172098
 8C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/negador_1b.sv
 FC:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/negador_1b.sv
-!i122 7
+!i122 6
 L0 1 5
 R6
 r1
@@ -688,7 +688,7 @@ R0
 w1617173148
 8C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/negador_nb.sv
 FC:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/negador_nb.sv
-!i122 6
+!i122 5
 R26
 R6
 r1
@@ -714,7 +714,7 @@ R0
 w1633386111
 8C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/fetch/PC.sv
 FC:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/fetch/PC.sv
-!i122 15
+!i122 14
 R26
 R6
 r1
@@ -730,7 +730,7 @@ R10
 n@p@c
 vPC_condition
 R1
-R13
+R2
 !i10b 1
 !s100 R85l6eRVc@g?KOH;dHhlB1
 R3
@@ -741,13 +741,13 @@ R0
 w1634440365
 8C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Execution/PC_condition.sv
 FC:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Execution/PC_condition.sv
-!i122 26
+!i122 24
 Z27 L0 1 30
 R6
 r1
 !s85 0
 31
-R14
+R7
 !s107 C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Execution/PC_condition.sv|
 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Execution|C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Execution/PC_condition.sv|
 !i113 1
@@ -768,7 +768,7 @@ R0
 w1634449578
 8C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Processor.sv
 FC:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Processor.sv
-!i122 32
+!i122 30
 L0 1 123
 R6
 r1
@@ -786,16 +786,16 @@ vRAM
 R1
 R15
 !i10b 1
-!s100 50]h7M@I6zHi<BX2U`V@00
+!s100 EMLBHX;o69iX05[gEbajd1
 R3
-IR_B?>R;`kL;^>HH0:KH^K3
+I74ZF54MnhaBg3DOzPF7LR3
 R4
 S1
 R0
-w1634435199
+w1634969049
 8C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Memory/RAM.sv
 FC:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Memory/RAM.sv
-!i122 2
+!i122 1
 R27
 R6
 r1
@@ -822,7 +822,7 @@ R0
 w1633893144
 8C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Decode/Register_File.sv
 FC:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Decode/Register_File.sv
-!i122 20
+!i122 18
 R23
 R6
 r1
@@ -849,7 +849,7 @@ R0
 w1634529253
 8C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/restador_nb.sv
 FC:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/restador_nb.sv
-!i122 5
+!i122 4
 R26
 R6
 r1
@@ -864,24 +864,24 @@ R9
 R10
 vROM
 R1
-R15
+R13
 !i10b 1
-!s100 XMXRlhjmU8@0^ga:e[Q131
+!s100 MC19T_Q5N@HAoGEcin[T51
 R3
-I9eYY3=8B71R?oca95NBS@1
+IH7^niE8WM7Qc633n?Sc>90
 R4
 S1
 R0
-w1634435118
+w1634958300
 8C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Memory/ROM.sv
 FC:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Memory/ROM.sv
-!i122 1
+!i122 33
 L0 1 13
 R6
 r1
 !s85 0
 31
-R17
+R14
 !s107 C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Memory/ROM.sv|
 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Memory|C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Memory/ROM.sv|
 !i113 1
@@ -902,7 +902,7 @@ R0
 w1617173839
 8C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/sumador_1b.sv
 FC:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/sumador_1b.sv
-!i122 4
+!i122 3
 R16
 R6
 r1
@@ -928,7 +928,7 @@ R0
 w1633813709
 8C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/sumador_nb.sv
 FC:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/sumador_nb.sv
-!i122 3
+!i122 2
 L0 1 23
 R6
 r1

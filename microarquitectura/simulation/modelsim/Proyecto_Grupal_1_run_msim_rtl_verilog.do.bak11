@@ -6,7 +6,6 @@ vlib rtl_work
 vmap work rtl_work
 
 vlog -sv -work work +incdir+C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU {C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/divisor_nb.sv}
-vlog -sv -work work +incdir+C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Memory {C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Memory/ROM.sv}
 vlog -sv -work work +incdir+C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Memory {C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Memory/RAM.sv}
 vlog -sv -work work +incdir+C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU {C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/sumador_nb.sv}
 vlog -sv -work work +incdir+C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU {C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/sumador_1b.sv}
@@ -21,7 +20,6 @@ vlog -sv -work work +incdir+C:/Users/braya/Desktop/Arqui/proyecto2/microarquitec
 vlog -sv -work work +incdir+C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU {C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/flag_carry.sv}
 vlog -sv -work work +incdir+C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU {C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/ALU/ALU.sv}
 vlog -sv -work work +incdir+C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/fetch {C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/fetch/PC.sv}
-vlog -sv -work work +incdir+C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/fetch {C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/fetch/Instruction_Memory.sv}
 vlog -sv -work work +incdir+C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Units {C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Units/Mux2_1.sv}
 vlog -sv -work work +incdir+C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/fetch {C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/fetch/IF.sv}
 vlog -sv -work work +incdir+C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/fetch {C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/fetch/IF_Pipeline.sv}
@@ -40,4 +38,6 @@ vlog -sv -work work +incdir+C:/Users/braya/Desktop/Arqui/proyecto2/microarquitec
 vlog -sv -work work +incdir+C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura {C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Processor.sv}
 vlog -sv -work work +incdir+C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Execution {C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Execution/ForwardingUnit.sv}
 vlog -sv -work work +incdir+C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Tests {C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Tests/create_image.sv}
+vlog -sv -work work +incdir+C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Memory {C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/Memory/ROM.sv}
+vlog -sv -work work +incdir+C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/fetch {C:/Users/braya/Desktop/Arqui/proyecto2/microarquitectura/fetch/Instruction_Memory.sv}
 

@@ -2,9 +2,9 @@ module RAM (input logic clk, wboolean,
 				input logic [31:0] address, wdata,
 				output logic [31:0] rdata
 );
-// synthesis translate_off
+
 				
-	logic RAM1[57599:0];
+	logic RAM1[27360:0];
 
 	
 	always_ff @(negedge clk)
@@ -26,5 +26,5 @@ module RAM (input logic clk, wboolean,
 		end
 		
 		
-	// synthesis translate_on
+
 endmodule 

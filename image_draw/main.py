@@ -6,7 +6,7 @@ from PIL import Image
 source_fn = "imagen.txt"
 
 # Pixel height and width of resulting image
-height = 240
+height = 114
 width = 240
 
 

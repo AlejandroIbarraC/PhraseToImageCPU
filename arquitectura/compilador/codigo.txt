@@ -1,14 +1,14 @@
 _Inicio
-	MOVI		R0, 57600 ; direccion de SWINIT
+	MOVI		R0, 27360 ; direccion de SWINIT
 	LD		R0, R1	; guarda valor de SWINIT
 	CMPI		R1, 0	; verifica si se inicio el sistema
 	BEQ		_Inicio	; si aun no se inicia el sistema sigue esperando
-	MOVI		R1, 57602 ; inicio de memoria de palabras
+	MOVI		R1, 27362 ; inicio de memoria de palabras
 	MOVI		R2, 0	; X
 	MOVI		R3, 0	; Y
 
 _verificarCampo
-	CMPI		R1, 57702	; fin de parrafo
+	CMPI		R1, 28082	; fin de parrafo
 	BEQ		_firmar	; si se termino de escribir el parrafo pasa a firmar
 	MOV		R4, R1	; TMP de direccion de letra actual
 	MOV		R6, R2	; TMP de X
@@ -22,7 +22,7 @@ _verificarCampoLoop
 	BEQ		_comprobarFinLinea	; si el valor es un espacio salta a comprobar si esta en el fin de Linea
 	ADDI		R6, R6, 6 ; siguiente espacio X
 	ADDI		R4, R4, 1 ; siguiente letra
-	CMPI		R4, 57702	; fin de parrafo
+	CMPI		R4, 28082	; fin de parrafo
 	BEQ		_comprobarFinLinea
 	B		_verificarCampoLoop
 
@@ -31,7 +31,7 @@ _verificarCampoLoop
 _siguienteLetra
 	ADDI		R2, R2, 6	; siguiente espacio X
 	ADDI		R1, R1, 1	; siguiente letra
-	CMPI		R1, 57702	; fin de parrafo
+	CMPI		R1, 28082	; fin de parrafo
 	BEQ		_firmar	; si se termino de escribir el parrafo pasa a firmar
 _comprobarFinLinea
 	CMPI		R2, 240	; verifica si ya llego al final de la imagen en x
@@ -340,6 +340,8 @@ _terminarLineaSiguienteY
 _lineasCompletas
 	MOVI		R2, 0 			; reinicia x a 0
 	ADDI		R3, R3, 6			; pasa a la siguiente linea en y
+    CMPI		R3, 114			; verifica si y==240
+	BEQ		_enviarGPIO		; si y=240 pasa a la escribir en el GPIO
 _lineasCompletasLoop
 	MULI		R8, R3, 240		; multiplica y por la cantidad de pixeles en x
 	ADD		R8, R8, R2		; suma los pixeles de X 
@@ -351,18 +353,18 @@ _lineasCompletasLoop
 _lineasCompletasSiguienteY
 	MOVI		R2, 0			; reinicia X a 0
 	ADDI		R3, R3, 1			; suma 1 a Yrelativo
-	CMPI		R3, 240			; verifica si y==6
+	CMPI		R3, 114			; verifica si y==6
 	BEQ		_enviarGPIO		; si y=6 pasa a la siguiente linea de la imagen
 	B		_lineasCompletasLoop	
 
 _enviarGPIO
 	MOVI		R0, 0		;contador de imagen
-	MOVI		R2, 57601		; GPIO pin
+	MOVI		R2, 27361		; GPIO pin
 	_enviarGPIOLoop
 	LD		R0, R1		; carga el pixel de la imagen
 	STR		R2, R1		; muestra el pixel en el GPIO
 	ADDI		R0, R0, 1		; pasa al siguiente pixel de la imagen
-	CMPI		R0, 57600 ; Fin de imagen
+	CMPI		R0, 27360 ; Fin de imagen
 	BEQ		_fin
 	B		_enviarGPIOLoop
 	
@@ -371,6 +373,10 @@ _escribirLetra
 	B		_rellenarEspacio
 _determinarLetra
     LD          R1,R5
+    CMPI		R5, 46			; compara R5 con la coma ASCII en decimanl
+    BEQ		_escribirPunto		; escribe el punto en la imagen
+    CMPI		R5, 44			; compara R5 con el punto en ASCII en decimal
+    BEQ		_escribirComa		; escribe una coma en el punto
 	CMPI		R5,68			; compara R5 con D ASCII en decimal
 	BEQ		_escribirD		; escribe D en la imagen
 	CMPI		R5, 65			; compara R5 con A en ASCII
@@ -428,7 +434,7 @@ _determinarLetra
 	B		_verificarCampo 	; verifica si cabe la siguiente palabra
 
 
-	
+
 _escribirFirma
 	MOVI		R6, 0	; xi = 0
 	MOVI		R7, 0	; yi = 0
@@ -460,7 +466,7 @@ _escribirFirma
 	MOVI		R7, 2	;Yc = 2
 	MOVI		R9, 2	;Rc = 2
 	MOV       R0, R15   ; guarda PC+2 en R0
-	B		_bresenhamCirculo ; R6=xc centro, R7=yc centro R9=r radio  
+	B		_bresenhamCirculo ; R6=xc centro, R7=yc centro R9=r radio
 	ADDI		R2, R2, 6		;va al siguiente espacio de palabra
 	B		_terminarImagen
 
@@ -649,7 +655,7 @@ _escribirG
 	MOV       R0, R15   ;guarda PC+2 en R0
 	B		_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
 	B		_siguienteLetra
-	
+
 _escribirH
 	MOVI		R6, 0	; xi = 0
 	MOVI		R7, 0	; yi = 0
@@ -667,7 +673,7 @@ _escribirH
 	MOV       R0, R15   ;guarda PC+2 en R0
 	B		_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
 	B		_siguienteLetra
-	
+
 _escribirI
 	MOVI		R6, 2	; xi = 2
 	MOVI		R7, 0	; yi = 0
@@ -786,7 +792,7 @@ _escribirO
 	MOVI		R7, 2	;Yc = 2
 	MOVI		R9, 2	;Rc = 2
 	MOV       R0, R15   ; guarda PC+2 en R0
-	B		_bresenhamCirculo ; R6=xc centro, R7=yc centro R9=r radio  
+	B		_bresenhamCirculo ; R6=xc centro, R7=yc centro R9=r radio
 	B		_siguienteLetra
 
 _escribirP
@@ -817,7 +823,7 @@ _escribirQ
 	MOVI		R7, 2	;Yc = 2
 	MOVI		R9, 2	;Rc = 1
 	MOV       R0, R15   ; guarda PC+2 en R0
-	B		_bresenhamCirculo ; R6=xc centro, R7=yc centro R9=r radio  
+	B		_bresenhamCirculo ; R6=xc centro, R7=yc centro R9=r radio
 	MOVI		R6, 2	;Xi = 0
 	MOVI      R7, 2	;yi = 0
 	MOVI      R9, 4	;xf = 4
@@ -895,7 +901,7 @@ _escribirT
 	MOV       R0, R15   ;guarda PC+2 en R0
 	B		_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
 	B		_siguienteLetra
-	
+
 _escribirU
 	MOVI		R6, 0	; xi = 0
 	MOVI		R7, 0	; yi = 0
@@ -998,7 +1004,7 @@ _escribirY
 	MOV		R0, R15	; guarda PC+2 en R0
 	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
 	B		_siguienteLetra
-	
+
 _escribirZ
 	MOVI		R6, 0	;Xi = 0
 	MOVI      R7, 4	;yi = 0
@@ -1017,5 +1023,40 @@ _escribirZ
 	MOV       R0, R15   ;guarda PC+2 en R0
 	B		_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
 	B		_siguienteLetra
+
+
+_escribirPunto
+	MOVI		R6, 1	;xi = 1
+	MOVI		R7, 3     ;yi = 3
+	MOVI      R9, 2     ;xf = 2
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
+	MOVI		R6, 1	;xi = 1
+	MOVI		R7, 4     ;yi = 4
+	MOVI      R9, 2     ;xf = 2
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_lineaHorizontal ; R6=Xi, R7=yi , R9=xf xi<xf
+	MOVI		R6, 1	; xi = 1
+	MOVI		R7, 3	; yi = 3
+	MOVI		R10, 4	; yf = 4
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	MOVI		R6, 2	; xi = 2
+	MOVI		R7, 3	; yi = 3
+	MOVI		R10, 4	; yf = 4
+	MOV		R0, R15	; guarda PC+2 en R0
+	B		_lineaVertical ; R6=Xi, R7=yi , R10=yf yi<yf
+	B		_siguienteLetra
+
+_escribirComa
+	MOVI		R6, 2	;Xi = 0
+	MOVI      R7, 4	;yi = 0
+	MOVI      R9, 3	;xf = 4
+	MOVI      R10,3     ;yf = 4
+	MOV       R0, R15   ;guarda PC+2 en R0
+	B		_bresenhamAbajoArriba ;R6=Xi, R7=yi , R9=xf R10=yf yi>yf xi<xf
+	B		_siguienteLetra
+
+
 _fin
 	B		_fin

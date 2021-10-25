@@ -17,7 +17,7 @@ module create_image();
 		i = 'd0;
 		// synthesis translate_off
 		Imagen = $fopen("imagen.txt", "w");
-		while (i < 'd57600)
+		while (i < 'd27360)
 			begin
 				@(posedge clk);
 				if (GPIOBoolean)
